@@ -10,12 +10,16 @@ public class Settler extends Unit {
 		return (Item[]) inventory.toArray();
 	}
 
-
-	public void build(BuildableItem i) {
+	public void build(String what) {
 		// TODO: check inventory
 	}
 
-
+	public void mine() {
+		Asteroid a = this.getAsteroid();
+		if (a != null && a.getCore() != null && a.extractCore(this)) {
+			this.controller.step();
+		}
+	}
 
 	public boolean loadCargo(Item item) {
 		boolean res = this.inventory.size() < 10;

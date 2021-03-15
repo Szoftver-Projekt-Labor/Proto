@@ -7,6 +7,9 @@ public abstract class CoreMaterial implements InCore, Item {
 		return this.extract(miner);
 	}
 
+	/**
+	 * Should remove Ticking descendants from Level
+	 */
 	@Override
 	public boolean extract(Settler miner) {
 		if (!miner.loadCargo(this))
