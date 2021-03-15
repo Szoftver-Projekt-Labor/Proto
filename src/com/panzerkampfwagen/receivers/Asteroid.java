@@ -3,6 +3,7 @@ package com.panzerkampfwagen.receivers;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.panzerkampfwagen.Game;
 import com.panzerkampfwagen.units.Settler;
 import com.panzerkampfwagen.units.Unit;
 import com.panzerkampfwagen.utility.InCore;
@@ -13,6 +14,7 @@ public class Asteroid extends Receiver {
 	private InCore core;
 
 	// #region getters and setters
+
 	public int getLayerCount() {
 		return layerCount;
 	}
@@ -22,6 +24,12 @@ public class Asteroid extends Receiver {
 			return core;
 		return null;
 	}
+
+	public boolean isCloseToSun() {
+		// TODO: Implement
+		return true;
+	}
+
 	// #endregion getters and setters
 
 	/**
@@ -50,11 +58,26 @@ public class Asteroid extends Receiver {
 		return this.core.extract(miner);
 	}
 
+	public void ejectCore() {
+		// TODO: verify integrity
+		this.core = null;
+	}
+
 	public boolean insertCore(InCore core) {
 		if (this.core != null || this.layerCount != 0)
 			return false;
 		this.core = core;
 		return true;
+	}
+
+	public void destroy() {
+		for (Unit unit : this.units) {
+			unit.onReceiverDestroyed();
+		}
+		for (Receiver neighbour : this.neighbours) {
+			neighbour.removeNeighbour(this);
+		}
+		Game.getLevel().removeThing(this);
 	}
 
 	@Override

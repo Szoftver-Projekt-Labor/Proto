@@ -14,6 +14,10 @@ public class MaterialOre implements InCore {
 
 	@Override
 	public boolean extract(Settler miner) {
-		return content.onMined(miner);
+		boolean res = content.onMined(miner);
+		if (res) {
+			miner.getAsteroid().ejectCore();
+		}
+		return res;
 	}
 }

@@ -52,8 +52,16 @@ public abstract class Unit implements InCore {
 		}
 	}
 
-	public void hide() {
-		if (onAsteroid && this.insertToCoreOf((Asteroid) this.receiver)) {
+	// TODO: cleanup
+	public void toggleHide() {
+		Asteroid a = (Asteroid) this.receiver;
+		if (isHiding) {
+			a.ejectCore();
+			this.isHiding = false;
+			controller.step();
+			return;
+		}
+		if (onAsteroid && this.insertToCoreOf(a)) {
 			controller.step();
 		}
 	}

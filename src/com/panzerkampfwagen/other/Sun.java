@@ -1,4 +1,4 @@
-package com.panzerkampfwagen.environment;
+package com.panzerkampfwagen.other;
 
 import java.util.Random;
 
@@ -6,7 +6,6 @@ import com.panzerkampfwagen.Game;
 
 public class Sun {
 	private int timeTillStorm;
-	private Random random = new Random();
 
 	public Sun() {
 		this.setRandomTime();
@@ -28,6 +27,7 @@ public class Sun {
 
 	private void setRandomTime() {
 		// 10 - 20 kör
+		Random random = new Random();
 		this.timeTillStorm = random.nextInt(11) + 10;
 	}
 }

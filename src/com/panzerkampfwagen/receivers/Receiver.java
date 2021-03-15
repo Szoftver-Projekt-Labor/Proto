@@ -14,7 +14,14 @@ public abstract class Receiver {
 
 	public abstract void addUnit(Unit unit);
 
-	public void removeUnit(Unit unit) {
+	public abstract void removeUnit(Unit unit);
+
+	public void addNeighbour(Receiver receiver) {
+		this.neighbours.add(receiver);
+	}
+
+	public void removeNeighbour(Receiver receiver) {
+		this.neighbours.remove(receiver);
 	}
 
 	public void tick() {

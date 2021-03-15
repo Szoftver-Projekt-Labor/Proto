@@ -1,23 +1,32 @@
 package com.panzerkampfwagen.receivers;
 
+import java.lang.ref.WeakReference;
+
 import com.panzerkampfwagen.Game;
 import com.panzerkampfwagen.itemization.BuildableItem;
 import com.panzerkampfwagen.itemization.Item;
+import com.panzerkampfwagen.mining.Ice;
+import com.panzerkampfwagen.mining.Iron;
+import com.panzerkampfwagen.mining.Uranium;
 import com.panzerkampfwagen.units.Settler;
 import com.panzerkampfwagen.units.Unit;
 
 public class Gate extends Receiver implements BuildableItem {
-	protected Gate pair;
-	private boolean isOn = false;
-	private boolean isPlaced = false;
+	protected WeakReference<Gate> pair;
+	private boolean on = false;
+	private boolean placed = false;
 
 	@Override
 	public void addUnit(Unit unit) {
-		if (this.isOn) {
-			unit.setReceiver(this.pair);
+		if (this.on) {
+			unit.setReceiver(this.pair.get());
 			return;
 		}
 		unit.setReceiver(this);
+	}
+
+	@Override
+	public void removeUnit(Unit unit) {
 	}
 
 	// #region Item & BuildableItem implementations
@@ -30,10 +39,10 @@ public class Gate extends Receiver implements BuildableItem {
 	@Override
 	public boolean dropItem(Settler dropper) {
 		Game.getLevel().addThing(this);
-		this.isPlaced = true;
-		if (this.pair.isPlaced) {
-			this.isOn = true;
-			this.pair.isOn = true;
+		this.placed = true;
+		if (this.pair.get().placed) {
+			this.on = true;
+			this.pair.get().on = true;
 		}
 		this.tick();
 		return true;
@@ -45,10 +54,15 @@ public class Gate extends Receiver implements BuildableItem {
 		pairOfGates[0] = new Gate();
 		pairOfGates[1] = new Gate();
 
-		pairOfGates[0].pair = pairOfGates[1];
-		pairOfGates[1].pair = pairOfGates[0];
+		pairOfGates[0].pair = new WeakReference<Gate>(pairOfGates[1]);
+		pairOfGates[1].pair = new WeakReference<Gate>(pairOfGates[0]);
 
 		return pairOfGates;
+	}
+
+	@Override
+	public Item[] getBill() {
+		return new Item[] { new Iron(), new Iron(), new Ice(), new Uranium() };
 	}
 
 	// #endregion Item & BuildableItem implementations

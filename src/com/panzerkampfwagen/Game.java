@@ -17,6 +17,7 @@ public class Game {
 
 	public static void victory() {
 		gameInProgress = false;
+		// TODO: level kinullázása, hogy ne hívogassa a többi tick-et
 		System.out.println("Győztél. Yaay.");
 	}
 
