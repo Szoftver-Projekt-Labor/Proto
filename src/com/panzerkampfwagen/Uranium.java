@@ -4,10 +4,8 @@ public class Uranium extends CoreMaterial {
 
 	@Override
 	public boolean onMined(Settler miner) {
-		Asteroid a = miner.getAsteroid();
-		if (a.isCloseToSun())
-			a.destroy();
-
+		if (this.asteroid.isCloseToSun())
+			asteroid.destroy();
 		return super.onMined(miner);
 	}
 

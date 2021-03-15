@@ -10,6 +10,7 @@ public class RecipeBook {
 		items.put("robot", new Robot());
 		items.put("base", new Base());
 		items.put("gate", new Gate());
+		items.put("struts", new Struts());
 	}
 
 	public static BuildableItem getItem(String itemName) {
