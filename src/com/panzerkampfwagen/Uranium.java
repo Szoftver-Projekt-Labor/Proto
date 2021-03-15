@@ -1,8 +1,4 @@
-package com.panzerkampfwagen.mining;
-
-import com.panzerkampfwagen.itemization.Item;
-import com.panzerkampfwagen.receivers.Asteroid;
-import com.panzerkampfwagen.units.Settler;
+package com.panzerkampfwagen;
 
 public class Uranium extends CoreMaterial {
 

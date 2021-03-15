@@ -1,10 +1,4 @@
-package com.panzerkampfwagen.units;
-
-import com.panzerkampfwagen.Game;
-import com.panzerkampfwagen.utility.InCore;
-import com.panzerkampfwagen.receivers.Asteroid;
-import com.panzerkampfwagen.receivers.Receiver;
-import com.panzerkampfwagen.controllers.Controller;
+package com.panzerkampfwagen;
 
 public abstract class Unit implements InCore {
 	protected Controller controller;

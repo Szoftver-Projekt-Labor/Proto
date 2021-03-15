@@ -1,8 +1,4 @@
-package com.panzerkampfwagen.mining;
-
-import com.panzerkampfwagen.receivers.Asteroid;
-import com.panzerkampfwagen.units.Settler;
-import com.panzerkampfwagen.utility.InCore;
+package com.panzerkampfwagen;
 
 public class MaterialOre implements InCore {
 	private CoreMaterial content;

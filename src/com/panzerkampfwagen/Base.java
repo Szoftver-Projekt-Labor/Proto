@@ -1,10 +1,4 @@
-package com.panzerkampfwagen.other;
-
-import com.panzerkampfwagen.Game;
-import com.panzerkampfwagen.itemization.BuildableItem;
-import com.panzerkampfwagen.itemization.Item;
-import com.panzerkampfwagen.itemization.Struts;
-import com.panzerkampfwagen.units.Settler;
+package com.panzerkampfwagen;
 
 public class Base implements BuildableItem {
 	@Override

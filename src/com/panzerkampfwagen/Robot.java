@@ -1,14 +1,6 @@
-package com.panzerkampfwagen.units;
+package com.panzerkampfwagen;
 
 import java.util.Random;
-
-import com.panzerkampfwagen.Game;
-import com.panzerkampfwagen.itemization.BuildableItem;
-import com.panzerkampfwagen.itemization.Item;
-import com.panzerkampfwagen.mining.Coal;
-import com.panzerkampfwagen.mining.Iron;
-import com.panzerkampfwagen.mining.Uranium;
-import com.panzerkampfwagen.receivers.Receiver;
 
 public class Robot extends Unit implements BuildableItem {
 	@Override

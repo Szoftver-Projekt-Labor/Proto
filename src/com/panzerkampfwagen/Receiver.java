@@ -1,9 +1,7 @@
-package com.panzerkampfwagen.receivers;
+package com.panzerkampfwagen;
 
 import java.util.List;
 import java.util.ArrayList;
-
-import com.panzerkampfwagen.units.Unit;
 
 public abstract class Receiver {
 	protected List<Receiver> neighbours = new ArrayList<>();

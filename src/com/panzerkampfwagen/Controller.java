@@ -1,6 +1,4 @@
-package com.panzerkampfwagen.controllers;
-
-import com.panzerkampfwagen.units.Unit;
+package com.panzerkampfwagen;
 
 public abstract class Controller {
 	protected Unit unit;

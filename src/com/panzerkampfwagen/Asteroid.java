@@ -1,12 +1,7 @@
-package com.panzerkampfwagen.receivers;
+package com.panzerkampfwagen;
 
 import java.util.List;
 import java.util.ArrayList;
-
-import com.panzerkampfwagen.Game;
-import com.panzerkampfwagen.units.Settler;
-import com.panzerkampfwagen.units.Unit;
-import com.panzerkampfwagen.utility.InCore;
 
 public class Asteroid extends Receiver {
 	protected List<Unit> units = new ArrayList<>();

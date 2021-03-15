@@ -1,6 +1,4 @@
-package com.panzerkampfwagen.itemization;
-
-import com.panzerkampfwagen.units.Settler;
+package com.panzerkampfwagen;
 
 public interface Item {
 	public boolean sameAs(Item other);

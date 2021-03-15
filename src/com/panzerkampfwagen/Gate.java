@@ -1,15 +1,6 @@
-package com.panzerkampfwagen.receivers;
+package com.panzerkampfwagen;
 
 import java.lang.ref.WeakReference;
-
-import com.panzerkampfwagen.Game;
-import com.panzerkampfwagen.itemization.BuildableItem;
-import com.panzerkampfwagen.itemization.Item;
-import com.panzerkampfwagen.mining.Ice;
-import com.panzerkampfwagen.mining.Iron;
-import com.panzerkampfwagen.mining.Uranium;
-import com.panzerkampfwagen.units.Settler;
-import com.panzerkampfwagen.units.Unit;
 
 public class Gate extends Receiver implements BuildableItem {
 	protected WeakReference<Gate> pair;

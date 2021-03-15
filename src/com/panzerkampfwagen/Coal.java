@@ -1,6 +1,4 @@
-package com.panzerkampfwagen.mining;
-
-import com.panzerkampfwagen.itemization.Item;
+package com.panzerkampfwagen;
 
 public class Coal extends CoreMaterial {
 

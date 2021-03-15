@@ -1,10 +1,4 @@
-package com.panzerkampfwagen.itemization;
-
-import com.panzerkampfwagen.mining.Coal;
-import com.panzerkampfwagen.mining.Ice;
-import com.panzerkampfwagen.mining.Iron;
-import com.panzerkampfwagen.mining.Uranium;
-import com.panzerkampfwagen.units.Settler;
+package com.panzerkampfwagen;
 
 public class Struts implements BuildableItem {
 	@Override

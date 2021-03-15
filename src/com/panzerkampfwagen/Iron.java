@@ -1,6 +1,4 @@
-package com.panzerkampfwagen.mining;
-
-import com.panzerkampfwagen.itemization.Item;
+package com.panzerkampfwagen;
 
 public class Iron extends CoreMaterial {
 	@Override

@@ -3,11 +3,6 @@ package com.panzerkampfwagen;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.panzerkampfwagen.receivers.Receiver;
-import com.panzerkampfwagen.units.Unit;
-import com.panzerkampfwagen.mining.CoreMaterial;
-import com.panzerkampfwagen.other.Sun;
-
 public class Level {
 	private List<Receiver> receivers = new ArrayList<>();
 	private List<Sun> suns = new ArrayList<>();

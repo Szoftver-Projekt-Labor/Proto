@@ -1,8 +1,6 @@
-package com.panzerkampfwagen.other;
+package com.panzerkampfwagen;
 
 import java.util.Random;
-
-import com.panzerkampfwagen.Game;
 
 public class Sun {
 	private int timeTillStorm;

@@ -1,11 +1,7 @@
-package com.panzerkampfwagen.itemization;
+package com.panzerkampfwagen;
 
 import java.util.Map;
 import java.util.HashMap;
-
-import com.panzerkampfwagen.other.Base;
-import com.panzerkampfwagen.receivers.Gate;
-import com.panzerkampfwagen.units.Robot;
 
 public class RecipeBook {
 	private static Map<String, BuildableItem> items = new HashMap<String, BuildableItem>();

@@ -1,9 +1,4 @@
-package com.panzerkampfwagen.mining;
-
-import com.panzerkampfwagen.itemization.Item;
-import com.panzerkampfwagen.receivers.Asteroid;
-import com.panzerkampfwagen.units.Settler;
-import com.panzerkampfwagen.utility.InCore;
+package com.panzerkampfwagen;
 
 public abstract class CoreMaterial implements InCore, Item {
 	protected Asteroid asteroid;
