@@ -4,7 +4,7 @@ public class Ice extends CoreMaterial {
 
 	@Override
 	public void tick() {
-		if (this.asteroid.isCloseToSun()) {
+		if (this.asteroid.getLayerCount() == 0 && this.asteroid.isCloseToSun()) {
 			this.asteroid.ejectCore();
 			this.asteroid = null;
 			Game.getLevel().removeThing(this);

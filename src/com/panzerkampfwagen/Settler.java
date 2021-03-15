@@ -10,6 +10,13 @@ public class Settler extends Unit {
 		return (Item[]) inventory.toArray();
 	}
 
+
+	public void build(BuildableItem i) {
+		// TODO: check inventory
+	}
+
+
+
 	public boolean loadCargo(Item item) {
 		boolean res = this.inventory.size() < 10;
 		if (res) {
