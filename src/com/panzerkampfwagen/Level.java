@@ -34,19 +34,19 @@ public class Level {
 		}
 	}
 
-	public void removeThing(Receiver receiver) {
+	public boolean removeThing(Receiver receiver) {
 		System.out.println("removeThing(Receiver)");
-		receivers.remove(receiver);
+		return receivers.remove(receiver);
 	}
 
-	public void removeThing(Unit unit) {
+	public boolean removeThing(Unit unit) {
 		System.out.println("removeThing(Unit)");
-		units.remove(unit);
+		return units.remove(unit);
 	}
 
-	public void removeThing(CoreMaterial coreMaterial) {
+	public boolean removeThing(CoreMaterial coreMaterial) {
 		System.out.println("removeThing(CoreMaterial)");
-		coreMaterials.remove(coreMaterial);
+		return coreMaterials.remove(coreMaterial);
 	}
 
 	public void addThing(Receiver receiver) {

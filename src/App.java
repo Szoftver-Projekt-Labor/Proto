@@ -441,7 +441,53 @@ class Test {
 	public void IceSublimation() {
 	}
 
-	public void UraniumExplodes() {
+	public void UraniumExplodes() throws Exception {
+		System.out.println("SettlerMinesIce:");
+
+		Asteroid a = new Asteroid();
+		CoreMaterial cm = new Uranium();
+		cm.insertToCoreOf(a);
+		MaterialOre core =new MaterialOre(cm);
+		Settler s = new Settler();
+		Robot r = new Robot();
+
+		core.insertToCoreOf(a);
+		s.move(a);
+		r.move(a);
+
+		Game.getLevel().addThing(a);
+		Game.getLevel().addThing(s);
+		Game.getLevel().addThing(r);
+
+		System.out.print("Hány rétege legyen az aszteroidának: ");
+		Scanner scanner = new Scanner(System.in);
+		int layerCount = scanner.nextInt();
+		scanner.close();
+		if(layerCount<0)
+			throw new Exception("Ne légy gyökér!");
+		a.setLayerCount(layerCount);
+
+		System.out.print("Közel van-e a naphoz az aszteroida? ");
+		scanner = new Scanner(System.in);
+		boolean closeToSun = scanner.nextBoolean();
+		scanner.close();
+		a.setCloseToSun(closeToSun);
+
+		a.extractCore(s);
+
+		if(layerCount==0 && closeToSun==true){
+			if(Game.getLevel().removeThing(a)) {
+				System.out.println("A teszt sikertelen.");
+				return;
+			}
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		if(Game.getLevel().removeThing(a)) {
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
 	}
 }
 

@@ -3,6 +3,11 @@ package com.panzerkampfwagen;
 public abstract class CoreMaterial implements InCore, Item {
 	protected Asteroid asteroid;
 
+	public void setAsteroid(Asteroid asteroid) {
+		System.out.println("CoreMaterial.setAsteroid");
+		this.asteroid = asteroid;
+	}
+	
 	public boolean onMined(Settler miner) {
 		System.out.println("CoreMaterial.onMined");
 		return this.extract(miner);
