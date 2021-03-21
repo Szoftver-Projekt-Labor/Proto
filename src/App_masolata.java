@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import com.panzerkampfwagen.*;
 
 class Test_copy {
@@ -49,7 +50,9 @@ class Test_copy {
 
 		if(settler.getAsteroid() == a2){
 			System.out.println("A teszt sikeres.");
-		} else System.out.println("A teszt sikertelen.");		 
+			return;
+		}
+		System.out.println("A teszt sikertelen.");	 
 	}
 
 	public void SettlerMovesOnGate(){
@@ -67,13 +70,118 @@ class Test_copy {
 
 		if(settler.getAsteroid() == a2){
 			System.out.println("A teszt sikeres.");
-		} else System.out.println("A teszt sikertelen.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
 	}
 
-	public void SettlerMinesIce(){}
-	public void SettlerMinesCoal(){}
-	public void SettlerMinesUranium(){}
-	public void SettlerMinesIron(){}
+	public void SettlerMinesIce() throws Exception{
+		System.out.println("SettlerMinesIce:");
+
+		Asteroid a = new Asteroid();
+		Settler s = new Settler();
+		Ice i = new Ice();
+
+		s.move(a);
+		a.insertCore(i);
+
+		System.out.print("Hány rétege legyen az aszteroidának: ");
+		Scanner scanner = new Scanner(System.in);
+		int layerCount = scanner.nextInt();
+		scanner.close();
+		if(layerCount<0)
+			throw new Exception("Ne légy gyökér!");
+		a.setLayerCount(layerCount);
+
+		s.mine();
+
+		if(a.getCore()==null && s.getInventory()[0]==i){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+
+	public void SettlerMinesCoal() throws Exception{
+		System.out.println("SettlerMinesCoal:");
+
+		Asteroid a = new Asteroid();
+		Settler s = new Settler();
+		Coal c = new Coal();
+
+		s.move(a);
+		a.insertCore(c);
+
+		System.out.print("Hány rétege legyen az aszteroidának: ");
+		Scanner scanner = new Scanner(System.in);
+		int layerCount = scanner.nextInt();
+		scanner.close();
+		if(layerCount<0)
+			throw new Exception("Ne légy gyökér!");
+		a.setLayerCount(layerCount);
+
+		s.mine();
+
+		if(a.getCore()==null && s.getInventory()[0]==c){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+
+	public void SettlerMinesUranium() throws Exception{
+		System.out.println("SettlerMinesUranium:");
+
+		Asteroid a = new Asteroid();
+		Settler s = new Settler();
+		Uranium u = new Uranium();
+
+		s.move(a);
+		a.insertCore(u);
+
+		System.out.print("Hány rétege legyen az aszteroidának: ");
+		Scanner scanner = new Scanner(System.in);
+		int layerCount = scanner.nextInt();
+		scanner.close();
+		if(layerCount<0)
+			throw new Exception("Ne légy gyökér!");
+		a.setLayerCount(layerCount);
+
+		s.mine();
+
+		if(a.getCore()==null && s.getInventory()[0]==u){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+	
+	public void SettlerMinesIron() throws Exception{
+		System.out.println("SettlerMinesIron:");
+
+		Asteroid a = new Asteroid();
+		Settler s = new Settler();
+		Iron i = new Iron();
+
+		s.move(a);
+		a.insertCore(i);
+
+		System.out.print("Hány rétege legyen az aszteroidának: ");
+		Scanner scanner = new Scanner(System.in);
+		int layerCount = scanner.nextInt();
+		scanner.close();
+		if(layerCount<0)
+			throw new Exception("Ne légy gyökér!");
+		a.setLayerCount(layerCount);
+
+		s.mine();
+
+		if(a.getCore()==null && s.getInventory()[0]==i){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
 	public void SettlerDrills(){}
 	public void SettlerTriestoHide(){}
 	public void SettlerBuildsGate(){}

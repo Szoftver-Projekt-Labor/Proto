@@ -15,11 +15,14 @@ public class Asteroid extends Receiver {
 		return layerCount;
 	}
 
+	public void setLayerCount(int layerCount) {
+		System.out.println("setLayerCount");
+		this.layerCount = layerCount;
+	}
+
 	public InCore getCore() {
 		System.out.println("getCore");
-		if (layerCount == 0)
-			return core;
-		return null;
+		return core;
 	}
 
 	public boolean isCloseToSun() {
