@@ -9,6 +9,7 @@ public class Gate extends Receiver implements BuildableItem {
 
 	@Override
 	public void addUnit(Unit unit) {
+		System.out.println("Gate.addUnit");
 		if (this.on) {
 			unit.setReceiver(this.pair.get());
 			return;
@@ -18,17 +19,20 @@ public class Gate extends Receiver implements BuildableItem {
 
 	@Override
 	public void removeUnit(Unit unit) {
+		System.out.println("Gate.removeUnit");
 	}
 
 	// #region Item & BuildableItem implementations
 
 	@Override
 	public boolean sameAs(Item other) {
+		System.out.println("Gate.sameAs");
 		return other instanceof Gate;
 	}
 
 	@Override
 	public boolean dropItem(Settler dropper) {
+		System.out.println("Gate.dropItem");
 		Game.getLevel().addThing(this);
 		this.placed = true;
 		if (this.pair.get().placed) {
@@ -41,6 +45,7 @@ public class Gate extends Receiver implements BuildableItem {
 
 	@Override
 	public BuildableItem[] make() {
+		System.out.println("Gate.make");
 		Gate[] pairOfGates = new Gate[2];
 		pairOfGates[0] = new Gate();
 		pairOfGates[1] = new Gate();

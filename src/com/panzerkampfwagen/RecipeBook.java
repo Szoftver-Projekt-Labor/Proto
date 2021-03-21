@@ -14,6 +14,7 @@ public class RecipeBook {
 	}
 
 	public static BuildableItem getItem(String itemName) {
+		System.out.println("RecipeBook.getItem");
 		return items.get(itemName);
 	}
 }

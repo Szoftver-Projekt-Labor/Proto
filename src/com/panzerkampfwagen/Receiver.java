@@ -7,6 +7,7 @@ public abstract class Receiver {
 	protected List<Receiver> neighbours = new ArrayList<>();
 
 	public Receiver[] getNeighbours() {
+		System.out.println("getNeighbours");
 		return (Receiver[]) neighbours.toArray();
 	}
 
@@ -15,14 +16,17 @@ public abstract class Receiver {
 	public abstract void removeUnit(Unit unit);
 
 	public void addNeighbour(Receiver receiver) {
+		System.out.println("addNeighbour");
 		this.neighbours.add(receiver);
 	}
 
 	public void removeNeighbour(Receiver receiver) {
+		System.out.println("removeNeighbour");
 		this.neighbours.remove(receiver);
 	}
 
 	public void tick() {
+		System.out.println("tick");
 		// Recalculate neighbours
 	}
 }

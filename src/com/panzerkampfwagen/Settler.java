@@ -7,14 +7,17 @@ public class Settler extends Unit {
 	private List<Item> inventory = new ArrayList<>(10);
 
 	public Item[] getInventory() {
+		System.out.println("getInventory");
 		return (Item[]) inventory.toArray();
 	}
 
 	public void build(String what) {
+		System.out.println("build");
 		// TODO: check inventory
 	}
 
 	public void mine() {
+		System.out.println("mine");
 		Asteroid a = this.getAsteroid();
 		if (a != null && a.getCore() != null && a.extractCore(this)) {
 			this.controller.step();
@@ -22,6 +25,7 @@ public class Settler extends Unit {
 	}
 
 	public boolean loadCargo(Item item) {
+		System.out.println("loadCargo");
 		boolean res = this.inventory.size() < 10;
 		if (res) {
 			this.inventory.add(item);
@@ -30,6 +34,7 @@ public class Settler extends Unit {
 	}
 
 	public boolean dropCargo(int slot) {
+		System.out.println("dropCargo");
 		boolean res = false;
 		try {
 			Item item = this.inventory.get(slot);
@@ -44,11 +49,13 @@ public class Settler extends Unit {
 
 	@Override
 	public void onReceiverDestroyed() {
+		System.out.println("Settler.onReceiverDestroyed");
 		this.die();
 	}
 
 	@Override
 	public void die() {
+		System.out.println("Settler.die");
 		super.die();
 		Game.getLevel().onSettlerDies();
 	}

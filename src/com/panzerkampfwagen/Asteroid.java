@@ -11,16 +11,19 @@ public class Asteroid extends Receiver {
 	// #region getters and setters
 
 	public int getLayerCount() {
+		System.out.println("getLayerCount");
 		return layerCount;
 	}
 
 	public InCore getCore() {
+		System.out.println("getCore");
 		if (layerCount == 0)
 			return core;
 		return null;
 	}
 
 	public boolean isCloseToSun() {
+		System.out.println("isCloseToSun");
 		// TODO: Implement
 		return true;
 	}
@@ -36,6 +39,7 @@ public class Asteroid extends Receiver {
 	 * @return the number of layers drilled
 	 */
 	public int drill(int nLayers) {
+		System.out.println("drill");
 		if (layerCount >= nLayers) {
 			this.layerCount -= nLayers;
 		} else {
@@ -46,6 +50,7 @@ public class Asteroid extends Receiver {
 	}
 
 	public boolean extractCore(Settler miner) {
+		System.out.println("extractCore");
 		if (this.layerCount != 0 || this.core == null) {
 			return false;
 		}
@@ -54,11 +59,13 @@ public class Asteroid extends Receiver {
 	}
 
 	public void ejectCore() {
+		System.out.println("ejectCore");
 		// TODO: verify integrity
 		this.core = null;
 	}
 
 	public boolean insertCore(InCore core) {
+		System.out.println("insertCore");
 		if (this.core != null || this.layerCount != 0)
 			return false;
 		this.core = core;
@@ -66,6 +73,7 @@ public class Asteroid extends Receiver {
 	}
 
 	public void destroy() {
+		System.out.println("destroy");
 		for (Unit unit : this.units) {
 			unit.onReceiverDestroyed();
 		}
@@ -77,12 +85,14 @@ public class Asteroid extends Receiver {
 
 	@Override
 	public void addUnit(Unit unit) {
+		System.out.println("Asteroid.addUnit");
 		this.units.add(unit);
 		unit.setAsteroid(this);
 	}
 
 	@Override
 	public void removeUnit(Unit unit) {
+		System.out.println("Asteroid.removeUnit");
 		this.units.remove(unit);
 	}
 }
