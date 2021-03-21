@@ -572,7 +572,47 @@ class Test {
 		}		
 	}
 
-	public void IceSublimation() {
+	public void IceSublimation() throws Exception {
+		System.out.println("SettlerMinesIce:");
+
+		Asteroid a = new Asteroid();
+		CoreMaterial cm = new Ice();
+		cm.insertToCoreOf(a);
+		MaterialOre core =new MaterialOre(cm);
+
+		core.insertToCoreOf(a);
+
+		Game.getLevel().addThing(a);
+
+		System.out.print("Hány rétege legyen az aszteroidának: ");
+		Scanner scanner = new Scanner(System.in);
+		int layerCount = scanner.nextInt();
+		scanner.close();
+		if(layerCount<0)
+			throw new Exception("Ne légy gyökér!");
+		a.setLayerCount(layerCount);
+
+		System.out.print("Közel van-e a naphoz az aszteroida? ");
+		scanner = new Scanner(System.in);
+		boolean closeToSun = scanner.nextBoolean();
+		scanner.close();
+		a.setCloseToSun(closeToSun);
+
+		Game.getLevel().tickThings();
+
+		if(layerCount==0 && closeToSun==true){
+			if(Game.getLevel().removeThing(cm)) {
+				System.out.println("A teszt sikertelen.");
+				return;
+			}
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		if(Game.getLevel().removeThing(cm)) {
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
 	}
 
 	public void UraniumExplodes() throws Exception {
@@ -662,8 +702,52 @@ Törlés.
 }
 
 public class App {
+	static Test test = new Test();
+	
 	public static void main(String[] args) throws Exception {
 
-		Test.TesztMetodusokKiras();
+		Scanner scanner = new Scanner(System.in);
+		int optionNumber;
+		while(true) {
+			Test.TesztMetodusokKiras();
+			System.out.print("Melyik teszt fusson? ");
+			optionNumber = scanner.nextInt();
+			if(optionNumber<1 || optionNumber>24) {
+				break;
+			}
+			functions[optionNumber-1].run();
+		}
+		scanner.close();		
+	}
+
+	static Functions[] functions = new Functions[]{
+		test::SettlerMovesOnAsteroid,
+		test::SettlerMovesOnGate,
+		test::SettlerMinesIce,
+		test::SettlerMinesCoal,
+		test::SettlerMinesUranium,
+		test::SettlerMinesIron,
+		test::SettlerDrills,
+		test::SettlerTriesToHide,
+		test::SettlerBuildsGate,
+		test::SettlerBuildsBase,
+		test::SettlerBuildsRobot,
+		test::SettlerDropsUranium,
+		test::SettlerDropsIce,
+		test::SettlerDropsCoal,
+		test::SettlerDropsIron,
+		test::SettlerDropsRobot,
+		test::SettlerDropsGate,
+		test::RobotMovesOnAsteroid,
+		test::RobotMovesOnGate,
+		test::RobotDrills,
+		test::RobotTriesToHide,
+		test::CreateSolarStorm,
+		test::IceSublimation,
+		test::UraniumExplodes
+	};
+
+	public interface Functions{
+		void run() throws Exception;
 	}
 }
