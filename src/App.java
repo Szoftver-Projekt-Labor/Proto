@@ -65,11 +65,114 @@ class Test {
 		System.out.println("A teszt sikertelen.");
 	}
 
-	// public void SettlerMinesIce(){}
-	// public void SettlerMinesCoal(){}
-	// public void SettlerMinesUranium(){}
-	// public void SettlerMinesIron(){}
+	public void SettlerMinesIce() throws Exception{
+		System.out.println("SettlerMinesIce:");
 
+		Asteroid a = new Asteroid();
+		Settler s = new Settler();
+		Ice i = new Ice();
+
+		s.move(a);
+		a.insertCore(i);
+
+		System.out.print("Hány rétege legyen az aszteroidának: ");
+		Scanner scanner = new Scanner(System.in);
+		int layerCount = scanner.nextInt();
+		scanner.close();
+		if(layerCount<0)
+			throw new Exception("Ne légy gyökér!");
+		a.setLayerCount(layerCount);
+
+		s.mine();
+
+		if(a.getCore()==null && s.getInventory()[0]==i){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+
+	public void SettlerMinesCoal() throws Exception{
+		System.out.println("SettlerMinesCoal:");
+
+		Asteroid a = new Asteroid();
+		Settler s = new Settler();
+		Coal c = new Coal();
+
+		s.move(a);
+		a.insertCore(c);
+
+		System.out.print("Hány rétege legyen az aszteroidának: ");
+		Scanner scanner = new Scanner(System.in);
+		int layerCount = scanner.nextInt();
+		scanner.close();
+		if(layerCount<0)
+			throw new Exception("Ne légy gyökér!");
+		a.setLayerCount(layerCount);
+
+		s.mine();
+
+		if(a.getCore()==null && s.getInventory()[0]==c){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+
+	public void SettlerMinesUranium() throws Exception{
+		System.out.println("SettlerMinesUranium:");
+
+		Asteroid a = new Asteroid();
+		Settler s = new Settler();
+		Uranium u = new Uranium();
+
+		s.move(a);
+		a.insertCore(u);
+
+		System.out.print("Hány rétege legyen az aszteroidának: ");
+		Scanner scanner = new Scanner(System.in);
+		int layerCount = scanner.nextInt();
+		scanner.close();
+		if(layerCount<0)
+			throw new Exception("Ne légy gyökér!");
+		a.setLayerCount(layerCount);
+
+		s.mine();
+
+		if(a.getCore()==null && s.getInventory()[0]==u){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+	
+	public void SettlerMinesIron() throws Exception{
+		System.out.println("SettlerMinesIron:");
+
+		Asteroid a = new Asteroid();
+		Settler s = new Settler();
+		Iron i = new Iron();
+
+		s.move(a);
+		a.insertCore(i);
+
+		System.out.print("Hány rétege legyen az aszteroidának: ");
+		Scanner scanner = new Scanner(System.in);
+		int layerCount = scanner.nextInt();
+		scanner.close();
+		if(layerCount<0)
+			throw new Exception("Ne légy gyökér!");
+		a.setLayerCount(layerCount);
+
+		s.mine();
+
+		if(a.getCore()==null && s.getInventory()[0]==i){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+	
 	public void SettlerDrills() throws Exception {
 		System.out.println("SettlerDrills");
 
@@ -100,12 +203,155 @@ class Test {
 	public void SettlerBuildsBase() {}
 	public void SettlerBuildsRobot() {}
 
-	//public void SettlerDropsUranium() {}
-	//public void SettlerDropsIce() {}
-	//public void SettlerDropsCoal() {}
-	//public void SettlerDropsIron() {}
-	//public void SettlerDropsRobot() {}
-	//public void SettlerDropsGate() {}
+	public void SettlerDropsUranium(){
+		System.out.println("SettlerDropsUranium:");
+
+		Settler s = new Settler();
+		Uranium u = new Uranium();
+		Asteroid a = new Asteroid();
+
+		s.move(a);
+		s.loadCargo(u);
+
+		if(s.getInventory()[0]!=u){
+			System.out.println("Az inicializacioval gond van.");
+			return;
+		}
+		System.out.println("Az inicializacio sikeres.");
+		
+		s.dropCargo(0);
+
+		if(s.getInventory()[0]==null){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");	
+	}
+
+	public void SettlerDropsIce(){
+		System.out.println("SettlerDropsIce:");
+
+		Settler s = new Settler();
+		Ice i = new Ice();
+		Asteroid a = new Asteroid();
+
+		s.move(a);
+		s.loadCargo(i);
+
+		if(s.getInventory()[0]!=i){
+			System.out.println("Az inicializacioval gond van.");
+			return;
+		}
+		System.out.println("Az inicializacio sikeres.");
+		
+		s.dropCargo(0);
+
+		if(s.getInventory()[0]==null){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+	
+	public void SettlerDropsCoal(){
+		System.out.println("SettlerDropsCoal:");
+
+		Settler s = new Settler();
+		Coal c = new Coal();
+		Asteroid a = new Asteroid();
+
+		s.move(a);
+		s.loadCargo(c);
+
+		if(s.getInventory()[0]!=c){
+			System.out.println("Az inicializacioval gond van.");
+			return;
+		}
+		System.out.println("Az inicializacio sikeres.");
+		
+		s.dropCargo(0);
+
+		if(s.getInventory()[0]==null){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+
+	public void SettlerDropsIron(){
+		System.out.println("SettlerDropsIron:");
+
+		Settler s = new Settler();
+		Iron i = new Iron();
+		Asteroid a = new Asteroid();
+
+		s.move(a);
+		s.loadCargo(i);
+
+		if(s.getInventory()[0]!=i){
+			System.out.println("Az inicializacioval gond van.");
+			return;
+		}
+		System.out.println("Az inicializacio sikeres.");
+		
+		s.dropCargo(0);
+
+		if(s.getInventory()[0]==null){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+	
+	public void SettlerDropsRobot(){
+		System.out.println("SettlerDropsRobot:");
+
+		Settler s = new Settler();
+		Robot r = new Robot();
+		Asteroid a = new Asteroid();
+
+		s.move(a);
+		s.loadCargo(r);
+
+		if(s.getInventory()[0]!=r){
+			System.out.println("Az inicializacioval gond van.");
+			return;
+		}
+		System.out.println("Az inicializacio sikeres.");
+		
+		s.dropCargo(0);
+
+		if(s.getInventory()[0]==null){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+
+	public void SettlerDropsGate(){
+		System.out.println("SettlerDropsGate:");
+
+		Settler s = new Settler();
+		Gate g = new Gate();
+		Asteroid a = new Asteroid();
+
+		s.move(a);
+		s.loadCargo(g);
+
+		if(s.getInventory()[0]!=g){
+			System.out.println("Az inicializacioval gond van.");
+			return;
+		}
+		System.out.println("Az inicializacio sikeres.");
+		
+		s.dropCargo(0);
+
+		if(s.getInventory()[0]==null){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
 
 	public void RobotMovesOnAsteroid() throws Exception {
 		System.out.println("SettlerMovesOnAsteroid:");
