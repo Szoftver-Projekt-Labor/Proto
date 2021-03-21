@@ -20,6 +20,7 @@ class Test {
 	public void SettlerMovesOnAsteroid() throws Exception {
 		System.out.println("SettlerMovesOnAsteroid:");
 
+		//A teszt esetünk környezetének inicializálása
 		Settler settler = new Settler();
 		Asteroid a1 = new Asteroid();
 		Asteroid a2 = new Asteroid();
@@ -53,6 +54,7 @@ class Test {
 	public void SettlerMovesOnGate() {
 		System.out.println("SettlerMovesOnGate:");
 
+		//A teszt esetünk környezetének inicializálása
 		Settler settler = new Settler();
 		Gate gate = new Gate();
 
@@ -68,6 +70,7 @@ class Test {
 	public void SettlerMinesIce() throws Exception{
 		System.out.println("SettlerMinesIce:");
 
+		//A teszt esetünk környezetének inicializálása
 		Asteroid a = new Asteroid();
 		Settler s = new Settler();
 		Ice i = new Ice();
@@ -95,6 +98,7 @@ class Test {
 	public void SettlerMinesCoal() throws Exception{
 		System.out.println("SettlerMinesCoal:");
 
+		//A teszt esetünk környezetének inicializálása
 		Asteroid a = new Asteroid();
 		Settler s = new Settler();
 		Coal c = new Coal();
@@ -122,6 +126,7 @@ class Test {
 	public void SettlerMinesUranium() throws Exception{
 		System.out.println("SettlerMinesUranium:");
 
+		//A teszt esetünk környezetének inicializálása
 		Asteroid a = new Asteroid();
 		Settler s = new Settler();
 		Uranium u = new Uranium();
@@ -149,6 +154,7 @@ class Test {
 	public void SettlerMinesIron() throws Exception{
 		System.out.println("SettlerMinesIron:");
 
+		//A teszt esetünk környezetének inicializálása
 		Asteroid a = new Asteroid();
 		Settler s = new Settler();
 		Iron i = new Iron();
@@ -176,6 +182,7 @@ class Test {
 	public void SettlerDrills() throws Exception {
 		System.out.println("SettlerDrills");
 
+		//A teszt esetünk környezetének inicializálása
 		Settler settler = new Settler();
 		Asteroid a = new Asteroid();
 
@@ -201,11 +208,13 @@ class Test {
 	public void SettlerTriesToHide() {
 		System.out.println("SettlerTriesToHide");
 
+		//A teszt esetünk környezetének inicializálása
 		Settler settler = new Settler();
 		Settler csicska = new Settler();
 		Asteroid a = new Asteroid();
 
 		settler.move(a);
+		a.setLayerCount(0);
 
 		System.out.print("Az Aszteroida magaj legyen üres? (true/false)");
 		Scanner scanner = new Scanner(System.in);
@@ -232,6 +241,7 @@ class Test {
 	public void SettlerDropsUranium(){
 		System.out.println("SettlerDropsUranium:");
 
+		//A teszt esetünk környezetének inicializálása
 		Settler s = new Settler();
 		Uranium u = new Uranium();
 		Asteroid a = new Asteroid();
@@ -257,6 +267,7 @@ class Test {
 	public void SettlerDropsIce(){
 		System.out.println("SettlerDropsIce:");
 
+		//A teszt esetünk környezetének inicializálása
 		Settler s = new Settler();
 		Ice i = new Ice();
 		Asteroid a = new Asteroid();
@@ -282,6 +293,7 @@ class Test {
 	public void SettlerDropsCoal(){
 		System.out.println("SettlerDropsCoal:");
 
+		//A teszt esetünk környezetének inicializálása
 		Settler s = new Settler();
 		Coal c = new Coal();
 		Asteroid a = new Asteroid();
@@ -307,6 +319,7 @@ class Test {
 	public void SettlerDropsIron(){
 		System.out.println("SettlerDropsIron:");
 
+		//A teszt esetünk környezetének inicializálása
 		Settler s = new Settler();
 		Iron i = new Iron();
 		Asteroid a = new Asteroid();
@@ -332,6 +345,7 @@ class Test {
 	public void SettlerDropsRobot(){
 		System.out.println("SettlerDropsRobot:");
 
+		//A teszt esetünk környezetének inicializálása
 		Settler s = new Settler();
 		Robot r = new Robot();
 		Asteroid a = new Asteroid();
@@ -357,6 +371,7 @@ class Test {
 	public void SettlerDropsGate(){
 		System.out.println("SettlerDropsGate:");
 
+		//A teszt esetünk környezetének inicializálása
 		Settler s = new Settler();
 		Gate g = new Gate();
 		Asteroid a = new Asteroid();
@@ -382,6 +397,7 @@ class Test {
 	public void RobotMovesOnAsteroid() throws Exception {
 		System.out.println("SettlerMovesOnAsteroid:");
 
+		//A teszt esetünk környezetének inicializálása
 		Robot robot = new Robot();
 		Asteroid a1 = new Asteroid();
 		Asteroid a2 = new Asteroid();
@@ -421,6 +437,7 @@ class Test {
 	public void RobotMovesOnGate() {
 		System.out.println("SettlerMovesOnGate:");
 
+		//A teszt esetünk környezetének inicializálása
 		Robot robot = new Robot();
 		Gate gate = new Gate();
 
@@ -436,6 +453,7 @@ class Test {
 	public void RobotDrills() throws Exception {
 		System.out.println("RobotDrills");
 
+		//A teszt esetünk környezetének inicializálása
 		Robot robot = new Robot();
 		Asteroid a = new Asteroid();
 
@@ -461,13 +479,15 @@ class Test {
 	public void RobotTriesToHide() {
 		System.out.println("RobotTriesToHide");
 
+		//A teszt esetünk környezetének inicializálása
 		Robot robot = new Robot();
 		Settler csicska = new Settler();
 		Asteroid a = new Asteroid();
 
 		robot.move(a);
+		a.setLayerCount(0);
 
-		System.out.print("Az Aszteroida magaj legyen üres? (true/false)");
+		System.out.print("Az Aszteroida magja legyen üres? (true/false)");
 		Scanner scanner = new Scanner(System.in);
 		boolean b = scanner.nextBoolean();
 		scanner.close();
@@ -485,7 +505,71 @@ class Test {
 		System.out.println("A teszt sikertelen.");
 	}
 
-	public void CreateSolarStrom() {
+	public void CreateSolarStorm() throws Exception{
+		System.out.println("CreateSolarStorm");
+
+		//A teszt esetünk környezetének inicializálása
+		Game game = new Game();
+		Level level = new Level();
+		Sun sun = new Sun();
+		Asteroid a = new Asteroid();
+		Settler settler = new Settler();
+		Robot robot = new Robot();
+
+		//game.
+		level.addThing(a);
+		level.addThing(settler);
+		level.addThing(robot);
+		a.addUnit(settler);
+		a.addUnit(robot);
+		a.setLayerCount(0);
+
+		System.out.print("A robot/telepes/senki se bujjon el az aszteroidában? (robot/telepes/senki)");
+		Scanner scanner = new Scanner(System.in);
+		String s = scanner.nextLine();
+		scanner.close();
+
+		while(sun.getTimeTillStorm() != 0){
+			sun.tick();
+		}
+
+		switch (s) {
+			case "robot":
+				robot.toggleHide();
+				settler.die();
+
+				if(){
+					System.out.println("A teszt sikeres.");
+					return;
+				}
+				System.out.println("A teszt sikertelen.");
+
+				break;
+			case "telepes":
+				settler.toggleHide();
+				robot.die();
+
+				if(){
+					System.out.println("A teszt sikeres.");
+					return;
+				}
+				System.out.println("A teszt sikertelen.");
+
+				break;
+			case "senki":
+				settler.die();
+				robot.die();
+
+				if(){
+					System.out.println("A teszt sikeres.");
+					return;
+				}
+				System.out.println("A teszt sikertelen.");
+
+				break;		
+			default:
+				throw new Exception("Elirtad Sry! Próbáld újra!");
+		}		
 	}
 
 	public void IceSublimation() {
@@ -493,6 +577,42 @@ class Test {
 
 	public void UraniumExplodes() {
 	}
+
+/*
+Megtelt a tárhelyem,
+Nem fér belém több emlék,
+Érzelemalkalmazás játszik velem,
+S még száz lenne, mit telepítenék.
+.
+Ingyenes vírusirtó tart tisztán.
+Mindent megállít, amit nem kellene,
+S a reklámok a Spotify lejátszási listán
+Zavarnak, de nincs mit tenni ellene.
+.
+Lassulok és gyorsan merülök,
+Ha nem cselekszem gyorsan,
+Az eldobott flopi sorsára kerülök,
+Haszontalanul heverve a porban.
+.
+Visszaállítanám magam a kezdetekre,
+A tudatlan, gyári beállításra,
+De szükségem van az emlékekre,
+Az érzelmekre és semmi másra.
+.
+Emlék, érzés... ezek lassítanak,
+De ezek is tesznek azzá, aki vagyok.
+Az adatok szinte kettéhasítanak,
+Elromlani én nem akarok.
+.
+Minden személyes adat és minden letöltött alkalmazás törlődni fog.
+Helyreállításunkra nem lesz lehetőség...
+.
+.
+Törli mindet?
+.
+.
+Törlés.
+*/
 }
 
 public class App {
