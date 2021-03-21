@@ -198,7 +198,33 @@ class Test {
 		System.out.println("A teszt sikertelen");
 	}
 
-	public void SettlerTriesToHide() {}
+	public void SettlerTriesToHide() {
+		System.out.println("SettlerTriesToHide");
+
+		Settler settler = new Settler();
+		Settler csicska = new Settler();
+		Asteroid a = new Asteroid();
+
+		settler.move(a);
+
+		System.out.print("Az Aszteroida magaj legyen üres? (true/false)");
+		Scanner scanner = new Scanner(System.in);
+		boolean b = scanner.nextBoolean();
+		scanner.close();
+
+		if(!b){
+			csicska.toggleHide();
+		}
+
+		settler.toggleHide();
+
+		if(settler.isHiding() == b){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
+	}
+
 	public void SettlerBuildsGate() {}
 	public void SettlerBuildsBase() {}
 	public void SettlerBuildsRobot() {}
@@ -433,6 +459,30 @@ class Test {
 	}
 
 	public void RobotTriesToHide() {
+		System.out.println("RobotTriesToHide");
+
+		Robot robot = new Robot();
+		Settler csicska = new Settler();
+		Asteroid a = new Asteroid();
+
+		robot.move(a);
+
+		System.out.print("Az Aszteroida magaj legyen üres? (true/false)");
+		Scanner scanner = new Scanner(System.in);
+		boolean b = scanner.nextBoolean();
+		scanner.close();
+
+		if(!b){
+			csicska.toggleHide();
+		}
+
+		robot.toggleHide();
+
+		if(robot.isHiding() == b){
+			System.out.println("A teszt sikeres.");
+			return;
+		}
+		System.out.println("A teszt sikertelen.");
 	}
 
 	public void CreateSolarStrom() {

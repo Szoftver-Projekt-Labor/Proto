@@ -4,7 +4,7 @@ public abstract class Unit implements InCore {
 	protected Controller controller;
 	protected Receiver receiver;
 	protected boolean onAsteroid;
-	protected boolean isHiding = false;
+	protected boolean hiding = false;
 
 	// #region getters and setters
 
@@ -31,6 +31,10 @@ public abstract class Unit implements InCore {
 		return this.onAsteroid ? (Asteroid) this.receiver : null;
 	}
 
+	public boolean isHiding() {
+		return hiding;
+	}
+
 	// #endregion getters and setters
 
 	// #region actions
@@ -55,14 +59,14 @@ public abstract class Unit implements InCore {
 	// TODO: cleanup
 	public void toggleHide() {
 		System.out.println("toggleHide");
-		if (isHiding) {
+		if (hiding) {
 			((Asteroid) this.receiver).ejectCore();
-			this.isHiding = false;
+			this.hiding = false;
 			controller.step();
 			return;
 		}
 		if (onAsteroid && this.insertToCoreOf((Asteroid) this.receiver)) {
-			this.isHiding = true;
+			this.hiding = true;
 			controller.step();
 		}
 	}
@@ -100,15 +104,15 @@ public abstract class Unit implements InCore {
 			return false;
 		}
 
-		this.isHiding = false;
+		this.hiding = false;
 		return true;
 	}
 
 	@Override
 	public boolean insertToCoreOf(Asteroid coreOwner) {
 		System.out.println("Unit.insertToCoreOf");
-		this.isHiding = coreOwner.insertCore(this);
-		return this.isHiding;
+		this.hiding = coreOwner.insertCore(this);
+		return this.hiding;
 	}
 
 	// #endregion InCore implementation
