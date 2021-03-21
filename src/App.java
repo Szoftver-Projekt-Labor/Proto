@@ -35,6 +35,8 @@ class Test {
 
 		Asteroid tomb[] = new Asteroid[]{a2,a3};
 		
+		//A Felhasználótól megkérdezzük hogy melyik szomszédjára szeretné küldeni a telepest
+		//FONTOSS!! 0 v 1 az elvárt input ha eltéveszted, csúnya bünti jár!
 		System.out.print("Az 0-ás vagy 1-es szomszédjára szeretnél menni?");
 		Scanner scanner = new Scanner(System.in);
 		int index = scanner.nextInt();
@@ -42,8 +44,10 @@ class Test {
 		if (index < 0 && index > 1)
 			throw new Exception("Ne légy gyökér!");				
 		
+		//A felhasználó által kapott számú aszteroidára megy a telepes
 		settler.move(tomb[index]);	
 
+		//Ha oda is ér a teszt sikeres és boldogak vagyunk! 
 		if (settler.getAsteroid() == tomb[index]) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -58,8 +62,10 @@ class Test {
 		Settler settler = new Settler();
 		Gate gate = new Gate();
 
+		//A robotot átküldjük a kapu párjára
 		settler.move(gate);
 
+		// Ha a robot a kapu párját kapja jelenlegi helyzetnek a rálépés után a teszt sikeres.
 		if (settler.getReceiver() == gate.getPair()) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -188,6 +194,9 @@ class Test {
 
 		settler.move(a);
 
+		//Megkérdezzük a felhasználótól milyen vastagságú aszteroidát szeretne, 
+		//amit aztán vígán fúrcikázhat :)
+		//FONTOSS!!! Figyelj, hogy jó réteg méretet adsz meg, mert a program csúnyán leszid!
 		System.out.print("Hany rétege legyen az aszteroidanak: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
@@ -195,9 +204,11 @@ class Test {
 		if (layerCount < 1)
 			throw new Exception("Ne légy gyökér!");
 
+		//A megfelelő kéreg beállítás után a robot megfúrja az Aszteroida kérgét
 		a.setLayerCount(layerCount);
 		settler.drill();
 
+		//Megvizsgáljuk, hogy valóban csökkent-e a kéreg szám, döntünk a teszt kimeneteléről.
 		if (a.getLayerCount() == layerCount - 1) {
 			System.out.println("A teszt sikeres");
 			return;
@@ -216,17 +227,22 @@ class Test {
 		settler.move(a);
 		a.setLayerCount(0);
 
+		//A program megkérdezi a felhasználót, hogy mikor megpróbál 
+		//elbújni a telepes akkor a mag legyen-e üres
 		System.out.print("Az Aszteroida magaj legyen üres? (true/false)");
 		Scanner scanner = new Scanner(System.in);
 		boolean b = scanner.nextBoolean();
 		scanner.close();
 
+		//Ha a felhasználó úgy dönt, hogy a mag nem üres, megtöltjük, Semmi probléma :)
 		if(!b){
 			csicska.toggleHide();
 		}
 
+		//Robot megpróbál elbújni
 		settler.toggleHide();
 
+		//Itt vizsgáljuk hogy a robot próbálkozása az elbújásra sikeres-e, döntünk a tesztünk kimeneteléről
 		if(settler.isHiding() == b){
 			System.out.println("A teszt sikeres.");
 			return;
@@ -417,16 +433,19 @@ class Test {
 
 		Asteroid tomb[] = new Asteroid[]{a2,a3,a4,a5};
 		
+		//RAndom választ egy szomszédot az "AI" és oda küldi a robotot.
 		System.out.print("A robot random választ a 4 szomszéd közül.");
-
 		Random random = new Random();
 		int index = random.nextInt(tomb.length);
 				
+		//Ha valami hiba lenne a random generátorral az itt fog megjelenni
 		if (index < 0 && index > 4)
-			throw new Exception("Ne légy gyökér!");				
+			throw new Exception("Hiba");				
 		
+		//A random generátor által kapott számú aszteroidára megy a robot
 		robot.move(tomb[index]);	
 
+		//Ha oda is ér a teszt sikeres és boldogak vagyunk! 
 		if (robot.getAsteroid() == tomb[index]) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -441,8 +460,10 @@ class Test {
 		Robot robot = new Robot();
 		Gate gate = new Gate();
 
+		//A robotot átküldjük a kapu párjára
 		robot.move(gate);
 
+		// Ha a robot a kapu párját kapja jelenlegi helyzetnek a rálépés után a teszt sikeres.
 		if (robot.getReceiver() == gate.getPair()) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -459,6 +480,9 @@ class Test {
 
 		robot.move(a);
 
+		//Megkérdezzük a felhasználótól milyen vastagságú aszteroidát szeretne, 
+		//amit aztán vígán fúrcikázhat :)
+		//FONTOSS!!! Figyelj, hogy jó réteg méretet adsz meg, mert a program csúnyán leszid!
 		System.out.print("Hany rétege legyen az aszteroidanak: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
@@ -466,9 +490,11 @@ class Test {
 		if (layerCount < 1)
 			throw new Exception("Ne légy gyökér!");
 
+		//A megfelelő kéreg beállítás után a robot megfúrja az Aszteroida kérgét
 		a.setLayerCount(layerCount);
 		robot.drill();
 
+		//Megvizsgáljuk, hogy valóban csökkent-e a kéreg szám, döntünk a teszt kimeneteléről.
 		if (a.getLayerCount() == layerCount - 1) {
 			System.out.println("A teszt sikeres");
 			return;
@@ -487,17 +513,22 @@ class Test {
 		robot.move(a);
 		a.setLayerCount(0);
 
+		//A program megkérdezi a felhasználót, hogy mikor megpróbál 
+		//elbújni a robot akkor a mag legyen-e üres
 		System.out.print("Az Aszteroida magja legyen üres? (true/false)");
 		Scanner scanner = new Scanner(System.in);
 		boolean b = scanner.nextBoolean();
 		scanner.close();
 
+		//Ha a felhasználó úgy dönt, hogy a mag nem üres, megtöltjük, Semmi probléma :)
 		if(!b){
 			csicska.toggleHide();
 		}
 
+		//Robot megpróbál elbújni
 		robot.toggleHide();
 
+		//Itt vizsgáljuk hogy a robot próbálkozása az elbújásra sikeres-e, döntünk a tesztünk kimeneteléről
 		if(robot.isHiding() == b){
 			System.out.println("A teszt sikeres.");
 			return;
@@ -509,36 +540,43 @@ class Test {
 		System.out.println("CreateSolarStorm");
 
 		//A teszt esetünk környezetének inicializálása
-		Game game = new Game();
-		Level level = new Level();
 		Sun sun = new Sun();
 		Asteroid a = new Asteroid();
 		Settler settler = new Settler();
 		Robot robot = new Robot();
 
-		//game.
-		level.addThing(a);
-		level.addThing(settler);
-		level.addThing(robot);
-		a.addUnit(settler);
-		a.addUnit(robot);
+		Game.getLevel().addThing(a);
+		Game.getLevel().addThing(settler);
+		Game.getLevel().addThing(robot);
+		settler.move(a);
+		robot.move(a);
+		//Itt már eleve úgy tüntetjük fel, hogy az aszteroidáhpz 
+		//tartozó kéreg szám az 0, mert itt nem az a lényeg.
 		a.setLayerCount(0);
 
+		//Bekér a felhasználótól egy stringet, a stringben a felhasználónak azt kell 
+		//megadnia hogy ki legyen elbújva az aszteroidában a zárójelben látható karakterisztikával.
 		System.out.print("A robot/telepes/senki se bujjon el az aszteroidában? (robot/telepes/senki)");
 		Scanner scanner = new Scanner(System.in);
 		String s = scanner.nextLine();
 		scanner.close();
 
+		//A Nap Vissza számol, hogy mennyi kör múlva lesz napvihar.
 		while(sun.getTimeTillStorm() != 0){
 			sun.tick();
 		}
 
+		//Ha a visszaszámláló 0-hoz ér akkor a felhasználói döntés alapján a következők történhetnek:
+		// a= ha a robot van elbújva, ő túl éli de a telepes meghal
+		// b= ha a telepes van elbújva a robot hal meg a telepes éli túl
+		// c= senki nem bújik el, a robot és a telepes is meghal
+		// EXCEPTION= valamit elírtál, nem követted a karakterisztikát
 		switch (s) {
 			case "robot":
 				robot.toggleHide();
 				settler.die();
 
-				if(){
+				if(Game.getLevel().removeThing(settler)){
 					System.out.println("A teszt sikeres.");
 					return;
 				}
@@ -549,7 +587,7 @@ class Test {
 				settler.toggleHide();
 				robot.die();
 
-				if(){
+				if(Game.getLevel().removeThing(robot)){
 					System.out.println("A teszt sikeres.");
 					return;
 				}
@@ -560,7 +598,7 @@ class Test {
 				settler.die();
 				robot.die();
 
-				if(){
+				if(Game.getLevel().removeThing(settler) && Game.getLevel().removeThing(robot)){
 					System.out.println("A teszt sikeres.");
 					return;
 				}
@@ -663,42 +701,6 @@ class Test {
 		}
 		System.out.println("A teszt sikertelen.");
 	}
-
-/*
-Megtelt a tárhelyem,
-Nem fér belém több emlék,
-Érzelemalkalmazás játszik velem,
-S még száz lenne, mit telepítenék.
-.
-Ingyenes vírusirtó tart tisztán.
-Mindent megállít, amit nem kellene,
-S a reklámok a Spotify lejátszási listán
-Zavarnak, de nincs mit tenni ellene.
-.
-Lassulok és gyorsan merülök,
-Ha nem cselekszem gyorsan,
-Az eldobott flopi sorsára kerülök,
-Haszontalanul heverve a porban.
-.
-Visszaállítanám magam a kezdetekre,
-A tudatlan, gyári beállításra,
-De szükségem van az emlékekre,
-Az érzelmekre és semmi másra.
-.
-Emlék, érzés... ezek lassítanak,
-De ezek is tesznek azzá, aki vagyok.
-Az adatok szinte kettéhasítanak,
-Elromlani én nem akarok.
-.
-Minden személyes adat és minden letöltött alkalmazás törlődni fog.
-Helyreállításunkra nem lesz lehetőség...
-.
-.
-Törli mindet?
-.
-.
-Törlés.
-*/
 }
 
 public class App {
