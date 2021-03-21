@@ -7,6 +7,11 @@ public class Gate extends Receiver implements BuildableItem {
 	private boolean on = false;
 	private boolean placed = false;
 
+	public Gate getPair() {
+		System.out.println("Gate.getPair");
+		return this.pair.get();
+	}
+
 	@Override
 	public void addUnit(Unit unit) {
 		System.out.println("Gate.addUnit");
