@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class Settler extends Unit {
 	private List<Item> inventory = new ArrayList<>(10);
 
-	public Item[] getInventory() {
+	public List<Item> getInventory() {
 		System.out.println("getInventory");
-		return (Item[]) inventory.toArray();
+		return inventory;
 	}
 
 	public void build(String what) {
@@ -24,8 +24,19 @@ public class Settler extends Unit {
 		}
 	}
 
+	public boolean loadCargo(Item[] items) {
+		System.out.println("loadCargo(Item[])");
+		boolean res = this.inventory.size() <= 10 - items.length;
+		if (res) {
+			for (Item item : items) {
+				this.inventory.add(item);
+			}
+		}
+		return res;
+	}
+
 	public boolean loadCargo(Item item) {
-		System.out.println("loadCargo");
+		System.out.println("loadCargo(Item)");
 		boolean res = this.inventory.size() < 10;
 		if (res) {
 			this.inventory.add(item);

@@ -1,7 +1,7 @@
 package com.panzerkampfwagen;
 
 public interface BuildableItem extends Item {
-	public Item[] getBill();
+	public Item[] getBuildCost();
 
 	public BuildableItem[] make();
 }

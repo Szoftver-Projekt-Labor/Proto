@@ -62,7 +62,7 @@ public class Gate extends Receiver implements BuildableItem {
 	}
 
 	@Override
-	public Item[] getBill() {
+	public Item[] getBuildCost() {
 		return new Item[] { new Iron(), new Iron(), new Ice(), new Uranium() };
 	}
 

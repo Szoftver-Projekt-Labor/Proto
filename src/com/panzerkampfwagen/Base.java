@@ -21,8 +21,8 @@ public class Base implements BuildableItem {
 	}
 
 	@Override
-	public Item[] getBill() {
-		System.out.println("Base.getBill");
+	public Item[] getBuildCost() {
+		System.out.println("Base.getBuildCost");
 		return new Item[] { new Struts(), new Struts(), new Struts(), new Struts() };
 	}
 }

@@ -34,8 +34,8 @@ public class Robot extends Unit implements BuildableItem {
 	}
 
 	@Override
-	public Item[] getBill() {
-		System.out.println("Robot.getBill");
+	public Item[] getBuildCost() {
+		System.out.println("Robot.getBuildCost");
 		return new Item[] { new Iron(), new Coal(), new Uranium() };
 	}
 }

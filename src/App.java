@@ -13,8 +13,8 @@ class Test {
 				+ "11\tSettler builds robot\n" + "12\tSettler drops uranium\n" + "13\tSettler drops ice\n"
 				+ "14\tSettler drops coal\n" + "15\tSettler drops iron\n" + "16\tSettler drops robot\n"
 				+ "17\tSettler drops gate\n" + "18\tRobot moves on asteroid\n" + "19\tRobot moves on gate\n"
-				+ "20\tRobot drills\n" + "21\tRobot tries to hide\n" + "22\tCreate solar storm\n"
-				+ "23\tIce sublimates\n" + "24\tUranium explodes\n" + "\n");
+				+ "20\tRobot drills\n" + "21\tRobot tries to hide\n" + "22\tCreate solar storm\n" + "23\tIce sublimates\n"
+				+ "24\tUranium explodes\n" + "\n");
 	}
 
 	public void SettlerMovesOnAsteroid() throws Exception {
@@ -32,21 +32,21 @@ class Test {
 
 		a1.addUnit(settler);
 
-		Asteroid tomb[] = new Asteroid[]{a2,a3};
-		
+		Asteroid tomb[] = new Asteroid[] { a2, a3 };
+
 		System.out.print("Az 0-ás vagy 1-es szomszédjára szeretnél menni?");
 		Scanner scanner = new Scanner(System.in);
 		int index = scanner.nextInt();
-		scanner.close();		
+		scanner.close();
 		if (index < 0 && index > 1)
-			throw new Exception("Ne légy gyökér!");				
-		
-		settler.move(tomb[index]);	
+			throw new Exception("Ne légy gyökér!");
+
+		settler.move(tomb[index]);
 
 		if (settler.getAsteroid() == tomb[index]) {
 			System.out.println("A teszt sikeres.");
 			return;
-		} 
+		}
 		System.out.println("A teszt sikertelen.");
 	}
 
@@ -65,7 +65,7 @@ class Test {
 		System.out.println("A teszt sikertelen.");
 	}
 
-	public void SettlerMinesIce() throws Exception{
+	public void SettlerMinesIce() throws Exception {
 		System.out.println("SettlerMinesIce:");
 
 		Asteroid a = new Asteroid();
@@ -79,20 +79,20 @@ class Test {
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 		scanner.close();
-		if(layerCount<0)
+		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
 
 		s.mine();
 
-		if(a.getCore()==null && s.getInventory()[0]==i){
+		if (a.getCore() == null && s.getInventory().get(0) == i) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
 	}
 
-	public void SettlerMinesCoal() throws Exception{
+	public void SettlerMinesCoal() throws Exception {
 		System.out.println("SettlerMinesCoal:");
 
 		Asteroid a = new Asteroid();
@@ -106,20 +106,20 @@ class Test {
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 		scanner.close();
-		if(layerCount<0)
+		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
 
 		s.mine();
 
-		if(a.getCore()==null && s.getInventory()[0]==c){
+		if (a.getCore() == null && s.getInventory().get(0) == c) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
 	}
 
-	public void SettlerMinesUranium() throws Exception{
+	public void SettlerMinesUranium() throws Exception {
 		System.out.println("SettlerMinesUranium:");
 
 		Asteroid a = new Asteroid();
@@ -133,20 +133,20 @@ class Test {
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 		scanner.close();
-		if(layerCount<0)
+		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
 
 		s.mine();
 
-		if(a.getCore()==null && s.getInventory()[0]==u){
+		if (a.getCore() == null && s.getInventory().get(0) == u) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
 	}
-	
-	public void SettlerMinesIron() throws Exception{
+
+	public void SettlerMinesIron() throws Exception {
 		System.out.println("SettlerMinesIron:");
 
 		Asteroid a = new Asteroid();
@@ -160,19 +160,19 @@ class Test {
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 		scanner.close();
-		if(layerCount<0)
+		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
 
 		s.mine();
 
-		if(a.getCore()==null && s.getInventory()[0]==i){
+		if (a.getCore() == null && s.getInventory().get(0) == i) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
 	}
-	
+
 	public void SettlerDrills() throws Exception {
 		System.out.println("SettlerDrills");
 
@@ -184,7 +184,7 @@ class Test {
 		System.out.print("Hany rétege legyen az aszteroidanak: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
-		scanner.close();	
+		scanner.close();
 		if (layerCount < 1)
 			throw new Exception("Ne légy gyökér!");
 
@@ -194,7 +194,7 @@ class Test {
 		if (a.getLayerCount() == layerCount - 1) {
 			System.out.println("A teszt sikeres");
 			return;
-		} 
+		}
 		System.out.println("A teszt sikertelen");
 	}
 
@@ -212,24 +212,29 @@ class Test {
 		boolean b = scanner.nextBoolean();
 		scanner.close();
 
-		if(!b){
+		if (!b) {
 			csicska.toggleHide();
 		}
 
 		settler.toggleHide();
 
-		if(settler.isHiding() == b){
+		if (settler.isHiding() == b) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
 	}
 
-	public void SettlerBuildsGate() {}
-	public void SettlerBuildsBase() {}
-	public void SettlerBuildsRobot() {}
+	public void SettlerBuildsGate() {
+	}
 
-	public void SettlerDropsUranium(){
+	public void SettlerBuildsBase() {
+	}
+
+	public void SettlerBuildsRobot() {
+	}
+
+	public void SettlerDropsUranium() {
 		System.out.println("SettlerDropsUranium:");
 
 		Settler s = new Settler();
@@ -239,22 +244,22 @@ class Test {
 		s.move(a);
 		s.loadCargo(u);
 
-		if(s.getInventory()[0]!=u){
+		if (s.getInventory().get(0) != u) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
-		
+
 		s.dropCargo(0);
 
-		if(s.getInventory()[0]==null){
+		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
-		System.out.println("A teszt sikertelen.");	
+		System.out.println("A teszt sikertelen.");
 	}
 
-	public void SettlerDropsIce(){
+	public void SettlerDropsIce() {
 		System.out.println("SettlerDropsIce:");
 
 		Settler s = new Settler();
@@ -264,22 +269,22 @@ class Test {
 		s.move(a);
 		s.loadCargo(i);
 
-		if(s.getInventory()[0]!=i){
+		if (s.getInventory().get(0) != i) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
-		
+
 		s.dropCargo(0);
 
-		if(s.getInventory()[0]==null){
+		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
 	}
-	
-	public void SettlerDropsCoal(){
+
+	public void SettlerDropsCoal() {
 		System.out.println("SettlerDropsCoal:");
 
 		Settler s = new Settler();
@@ -289,22 +294,22 @@ class Test {
 		s.move(a);
 		s.loadCargo(c);
 
-		if(s.getInventory()[0]!=c){
+		if (s.getInventory().get(0) != c) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
-		
+
 		s.dropCargo(0);
 
-		if(s.getInventory()[0]==null){
+		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
 	}
 
-	public void SettlerDropsIron(){
+	public void SettlerDropsIron() {
 		System.out.println("SettlerDropsIron:");
 
 		Settler s = new Settler();
@@ -314,22 +319,22 @@ class Test {
 		s.move(a);
 		s.loadCargo(i);
 
-		if(s.getInventory()[0]!=i){
+		if (s.getInventory().get(0) != i) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
-		
+
 		s.dropCargo(0);
 
-		if(s.getInventory()[0]==null){
+		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
 	}
-	
-	public void SettlerDropsRobot(){
+
+	public void SettlerDropsRobot() {
 		System.out.println("SettlerDropsRobot:");
 
 		Settler s = new Settler();
@@ -339,22 +344,22 @@ class Test {
 		s.move(a);
 		s.loadCargo(r);
 
-		if(s.getInventory()[0]!=r){
+		if (s.getInventory().get(0) != r) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
-		
+
 		s.dropCargo(0);
 
-		if(s.getInventory()[0]==null){
+		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
 	}
 
-	public void SettlerDropsGate(){
+	public void SettlerDropsGate() {
 		System.out.println("SettlerDropsGate:");
 
 		Settler s = new Settler();
@@ -364,15 +369,15 @@ class Test {
 		s.move(a);
 		s.loadCargo(g);
 
-		if(s.getInventory()[0]!=g){
+		if (s.getInventory().get(0) != g) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
-		
+
 		s.dropCargo(0);
 
-		if(s.getInventory()[0]==null){
+		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
@@ -399,24 +404,24 @@ class Test {
 		a5.addNeighbour(a1);
 		a1.addUnit(robot);
 
-		Asteroid tomb[] = new Asteroid[]{a2,a3,a4,a5};
-		
+		Asteroid tomb[] = new Asteroid[] { a2, a3, a4, a5 };
+
 		System.out.print("A robot random választ a 4 szomszéd közül.");
 
 		Random random = new Random();
 		int index = random.nextInt(tomb.length);
-				
+
 		if (index < 0 && index > 4)
-			throw new Exception("Ne légy gyökér!");				
-		
-		robot.move(tomb[index]);	
+			throw new Exception("Ne légy gyökér!");
+
+		robot.move(tomb[index]);
 
 		if (robot.getAsteroid() == tomb[index]) {
 			System.out.println("A teszt sikeres.");
 			return;
-		} 
+		}
 		System.out.println("A teszt sikertelen.");
-	}	
+	}
 
 	public void RobotMovesOnGate() {
 		System.out.println("SettlerMovesOnGate:");
@@ -444,7 +449,7 @@ class Test {
 		System.out.print("Hany rétege legyen az aszteroidanak: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
-		scanner.close();	
+		scanner.close();
 		if (layerCount < 1)
 			throw new Exception("Ne légy gyökér!");
 
@@ -454,7 +459,7 @@ class Test {
 		if (a.getLayerCount() == layerCount - 1) {
 			System.out.println("A teszt sikeres");
 			return;
-		} 
+		}
 		System.out.println("A teszt sikertelen");
 	}
 
@@ -472,13 +477,13 @@ class Test {
 		boolean b = scanner.nextBoolean();
 		scanner.close();
 
-		if(!b){
+		if (!b) {
 			csicska.toggleHide();
 		}
 
 		robot.toggleHide();
 
-		if(robot.isHiding() == b){
+		if (robot.isHiding() == b) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}

@@ -10,11 +10,10 @@ public class RecipeBook {
 		items.put("robot", new Robot());
 		items.put("base", new Base());
 		items.put("gate", new Gate());
-		items.put("struts", new Struts());
 	}
 
-	public static BuildableItem getItem(String itemName) {
-		System.out.println("RecipeBook.getItem");
-		return items.get(itemName);
+	public static Bill getBill(String itemName) {
+		System.out.println("RecipeBook.getBill");
+		return new Bill(items.get(itemName));
 	}
 }
