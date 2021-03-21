@@ -9,6 +9,10 @@ public class Sun {
 		System.out.println("Sun");
 		this.setRandomTime();
 	}
+	
+	public int getTimeTillStorm() {
+		return timeTillStorm;
+	}
 
 	public void tick() {
 		System.out.println("Sun.tick");

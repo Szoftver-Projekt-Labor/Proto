@@ -1,7 +1,7 @@
 package com.panzerkampfwagen;
 
 public class Game {
-	private static Level level;
+	private static Level level = new Level();
 	private static boolean gameInProgress = false;
 
 	public static Level getLevel() {

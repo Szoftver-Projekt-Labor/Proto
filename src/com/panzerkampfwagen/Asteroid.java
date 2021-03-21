@@ -7,6 +7,7 @@ public class Asteroid extends Receiver {
 	protected List<Unit> units = new ArrayList<>();
 	private int layerCount;
 	private InCore core;
+	private boolean closeToSun = false;
 
 	// #region getters and setters
 
@@ -25,10 +26,20 @@ public class Asteroid extends Receiver {
 		return core;
 	}
 
+	public void setCore(InCore core) {
+		System.out.println("setCore");
+		this.core = core;
+	}
+
+	public void setCloseToSun(boolean closeToSun) {
+		System.out.println("setCloseToSun");
+		this.closeToSun = closeToSun;
+	}
+
 	public boolean isCloseToSun() {
 		System.out.println("isCloseToSun");
+		return closeToSun;
 		// TODO: Implement
-		return true;
 	}
 
 	// #endregion getters and setters

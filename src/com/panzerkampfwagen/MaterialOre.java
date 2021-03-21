@@ -3,10 +3,15 @@ package com.panzerkampfwagen;
 public class MaterialOre implements InCore {
 	private CoreMaterial content;
 
+	public MaterialOre(CoreMaterial content) {
+		this.content = content;
+	}
+
 	@Override
 	public boolean insertToCoreOf(Asteroid coreOwner) {
 		System.out.println("MaterialCore.insertToCoreOf");
-		return content.insertToCoreOf(coreOwner);
+		content.setAsteroid(coreOwner);
+		return true;
 	}
 
 	@Override
