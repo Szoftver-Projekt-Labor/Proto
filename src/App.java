@@ -87,6 +87,7 @@ public class App {
 		System.out.println("A teszt sikertelen.");
 	}
 
+	// TODO: FIX
 	public void SettlerMovesOnGate() {
 		System.out.println("SettlerMovesOnGate:");
 
@@ -331,7 +332,7 @@ public class App {
 		Settler s2 = new Settler();
 		s.move(a);
 		s2.move(a);
-		s.loadCargo(new Item[] { new Uranium(), new Iron()});
+		s.loadCargo(new Item[] { new Uranium(), new Iron() });
 		s2.loadCargo(new Item[] { new Iron(), new Ice() });
 
 		s.build("gate");
@@ -349,8 +350,8 @@ public class App {
 		Settler s2 = new Settler();
 		s.move(a);
 		s2.move(a);
-		s.loadCargo(new Item[] { new Uranium(), new Coal(), new Uranium(),new Uranium(), new Iron(), new Coal()});
-		s2.loadCargo(new Item[] { new Iron(), new Iron(), new Coal(), new Ice(), new Ice(), new Ice(), new Coal()});
+		s.loadCargo(new Item[] { new Uranium(), new Coal(), new Uranium(), new Uranium(), new Iron(), new Coal() });
+		s2.loadCargo(new Item[] { new Iron(), new Iron(), new Coal(), new Ice(), new Ice(), new Ice(), new Coal() });
 
 		s.build("base");
 
@@ -367,7 +368,7 @@ public class App {
 		Settler s2 = new Settler();
 		s.move(a);
 		s2.move(a);
-		s.loadCargo(new Item[] { new Uranium(), new Iron()});
+		s.loadCargo(new Item[] { new Uranium(), new Iron() });
 		s2.loadCargo(new Item[] { new Coal(), new Uranium() });
 
 		s.build("robot");
@@ -697,6 +698,7 @@ public class App {
 		System.out.println("A teszt sikertelen.");
 	}
 
+	// TODO: fix
 	public void CreateSolarStorm() throws Exception {
 		System.out.println("CreateSolarStorm");
 
@@ -719,56 +721,36 @@ public class App {
 		// megadnia hogy ki legyen elbújva az aszteroidában a zárójelben látható
 		// karakterisztikával.
 		System.out.print("A robot/telepes/senki se bujjon el az aszteroidában? (robot/telepes/senki)");
-		String s = scanner.nextLine();
+		String s = scanner.next();
+
+		// Ha a lejjebi visszaszámláló 0-hoz ér akkor a felhasználói döntés alapján a
+		// következők történhetnek:
+		// a= ha a robot van elbújva, ő túl éli de a telepes meghal
+		// b= ha a telepes van elbújva a robot hal meg a telepes éli túl
+		// c= senki nem bújik el, a robot és a telepes is meghal
+		int res = 1;
+		switch (s) {
+		case "robot":
+			robot.toggleHide();
+			break;
+		case "telepes":
+			settler.toggleHide();
+			break;
+		default:
+			res = 0;
+		}
 
 		// A Nap Vissza számol, hogy mennyi kör múlva lesz napvihar.
 		while (sun.getTimeTillStorm() != 0) {
 			sun.tick();
 		}
 
-		// Ha a visszaszámláló 0-hoz ér akkor a felhasználói döntés alapján a következők
-		// történhetnek:
-		// a= ha a robot van elbújva, ő túl éli de a telepes meghal
-		// b= ha a telepes van elbújva a robot hal meg a telepes éli túl
-		// c= senki nem bújik el, a robot és a telepes is meghal
-		// EXCEPTION= valamit elírtál, nem követted a karakterisztikát
-		switch (s) {
-		case "robot":
-			robot.toggleHide();
-			settler.die();
-
-			if (!Game.getLevel().removeThing(settler)) {
-				System.out.println("A teszt sikeres.");
-				return;
-			}
-			System.out.println("A teszt sikertelen.");
-
-			break;
-		case "telepes":
-			settler.toggleHide();
-			robot.die();
-
-			if (!Game.getLevel().removeThing(robot)) {
-				System.out.println("A teszt sikeres.");
-				return;
-			}
-			System.out.println("A teszt sikertelen.");
-
-			break;
-		case "senki":
-			settler.die();
-			robot.die();
-
-			if (!Game.getLevel().removeThing(settler) && !Game.getLevel().removeThing(robot)) {
-				System.out.println("A teszt sikeres.");
-				return;
-			}
-			System.out.println("A teszt sikertelen.");
-
-			break;
-		default:
-			throw new Exception("Elirtad Sry! Próbáld újra!");
+		System.out.println(Game.getLevel().test_getUnitCount());
+		if (Game.getLevel().test_getUnitCount() == res) {
+			System.out.println("A teszt sikeres.");
+			return;
 		}
+		System.out.println("Fail");
 	}
 
 	public void IceSublimation() throws Exception {
