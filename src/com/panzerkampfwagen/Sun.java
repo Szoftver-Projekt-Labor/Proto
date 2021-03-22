@@ -16,17 +16,15 @@ public class Sun {
 
 	public void tick() {
 		System.out.println("Sun.tick");
+		--this.timeTillStorm;
 		if (timeTillStorm < 2) {
 			System.out.println("! " + timeTillStorm + " kör van napviharig");
 		}
-
 		if (timeTillStorm == 0) {
 			Game.getLevel().solarStormTime();
 			this.setRandomTime();
 			return;
 		}
-
-		--this.timeTillStorm;
 	}
 
 	private void setRandomTime() {

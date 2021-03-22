@@ -11,14 +11,21 @@ public class Level {
 
 	private int settlerCount;
 
+	// TODO: Nobody needs this in prod
+	public int test_getUnitCount() {
+		return units.size();
+	}
+
 	public void tickThings() {
 		System.out.println("tickThings");
+		// TODO: Test concurrency
 		List<Receiver> tempReceivers = List.copyOf(receivers);
 		for (Receiver receiver : tempReceivers)
 			receiver.tick();
 		for (Sun sun : suns)
 			sun.tick();
-		List<Unit> tempUnits = List.copyOf(units);
+		List<Unit> tempUnits = new ArrayList<>();
+		tempUnits.addAll(units);
 		for (Unit unit : tempUnits)
 			unit.tick();
 		List<CoreMaterial> tempCoreMaterial = List.copyOf(coreMaterials);

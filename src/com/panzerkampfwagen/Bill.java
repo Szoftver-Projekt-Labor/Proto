@@ -49,10 +49,16 @@ public class Bill {
 		if (s == null)
 			return false;
 		List<Item> inv = s.getInventory();
-		List<Item> temp = List.copyOf(need);
+
+		List<Item> temp = new ArrayList<>();
+		temp.addAll(need);
+
+		List<Item> inventory = new ArrayList<>();
+		inventory.addAll(inv);
+
 		for (Item neededItem : temp) {
-			for (int i = 0; i < inv.size(); i++) {
-				Item currentItem = inv.get(i);
+			for (int i = 0; i < inventory.size(); i++) {
+				Item currentItem = inventory.get(i);
 				if (currentItem.sameAs(neededItem)) {
 					inv.remove(currentItem);
 					need.remove(neededItem);
