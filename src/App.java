@@ -359,8 +359,11 @@ public class App {
 	public void SettlerBuildsRobot() {
 		Asteroid a = new Asteroid();
 		Settler s = new Settler();
+		Settler s2 = new Settler();
 		s.move(a);
-		s.loadCargo(new Item[] { new Iron(), new Coal(), new Uranium() });
+		s2.move(a);
+		s.loadCargo(new Item[] { new Uranium(), new Iron() });
+		s2.loadCargo(new Item[] { new Coal(), new Uranium() });
 
 		s.build("robot");
 
