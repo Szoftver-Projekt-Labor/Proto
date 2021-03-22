@@ -13,12 +13,17 @@ public class Level {
 
 	public void tickThings() {
 		System.out.println("tickThings");
-		for (Receiver receiver : receivers)
+		List<Receiver> tempReceivers = List.copyOf(receivers);
+		for (Receiver receiver : tempReceivers)
 			receiver.tick();
 		for (Sun sun : suns)
 			sun.tick();
-		for (Unit unit : units)
+		List<Unit> tempUnits = List.copyOf(units);
+		for (Unit unit : tempUnits)
 			unit.tick();
+		List<CoreMaterial> tempCoreMaterial = List.copyOf(coreMaterials);
+		for (CoreMaterial coreMaterial : tempCoreMaterial)
+			coreMaterial.tick();
 	}
 
 	public void solarStormTime() {
