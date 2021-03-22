@@ -13,9 +13,9 @@ public abstract class Receiver {
 
 	public Receiver getNeighbour(int i) {
 		System.out.println("getNeighbour");
-		if(i>=0 && i<neighbours.size())
-			return  neighbours.get(i);
-			return null;
+		if (i >= 0 && i < neighbours.size())
+			return neighbours.get(i);
+		return null;
 	}
 
 	public abstract void addUnit(Unit unit);

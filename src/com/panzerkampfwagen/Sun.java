@@ -11,7 +11,14 @@ public class Sun {
 	}
 
 	public int getTimeTillStorm() {
+		System.out.println("Sun.getTimeTillStorm");
 		return timeTillStorm;
+	}
+
+	// TODO: Remove from prod
+	public void setTimeTillStorm(int rounds) {
+		System.out.println("Sun.setTimeTillStorm");
+		this.timeTillStorm = rounds;
 	}
 
 	public void tick() {

@@ -11,7 +11,7 @@ public class App {
 		int optionNumber;
 		while (true) {
 			App testSuite = new App();
-			TesztMetodusokKiras();
+			TesztMetodusokLista();
 			System.out.print("Melyik teszt fusson? ");
 			optionNumber = scanner.nextInt();
 			if (optionNumber < 1 || optionNumber > 24) {
@@ -37,7 +37,7 @@ public class App {
 
 	// Kíírja az általunk megírt teszt metódusokat és elmagyaráza röviden a
 	// használatott
-	public static void TesztMetodusokKiras() {
+	public static void TesztMetodusokLista() {
 		System.out.println("\nItt lathatoak a tesztesetekhez tartozo sorszamok\n"
 				+ "Futtatáshoz kérjuk a teszt sorszamat beírni a konzolra\n" + "1\tSettler moves on asteroid\n"
 				+ "2\tSettler moves on gate\n" + "3\tSettler mines ice\n" + "4\tSettler mines coal\n"
@@ -87,7 +87,6 @@ public class App {
 		System.out.println("A teszt sikertelen.");
 	}
 
-	// TODO: FIX
 	public void SettlerMovesOnGate() {
 		System.out.println("SettlerMovesOnGate:");
 
@@ -95,10 +94,10 @@ public class App {
 		Asteroid ateroid = new Asteroid();
 		Settler settler = new Settler();
 		settler.move(ateroid);
-		settler.loadCargo(new Item[] { new Iron(), new Iron(), new Ice(), new Uranium()});
+		settler.loadCargo(new Item[] { new Iron(), new Iron(), new Ice(), new Uranium() });
 		settler.build("gate");
-		settler.dropCargo(settler.getInventory().size()-1);
-		settler.dropCargo(settler.getInventory().size()-1);
+		settler.dropCargo(settler.getInventory().size() - 1);
+		settler.dropCargo(settler.getInventory().size() - 1);
 
 		// A robotot átküldjük a kapu párjára
 		Gate targetGate = (Gate) settler.getReceiver().getNeighbour(0);
@@ -617,10 +616,10 @@ public class App {
 		Settler settler = new Settler();
 		Robot robot = new Robot();
 		settler.move(ateroid);
-		settler.loadCargo(new Item[] { new Iron(), new Iron(), new Ice(), new Uranium()});
+		settler.loadCargo(new Item[] { new Iron(), new Iron(), new Ice(), new Uranium() });
 		settler.build("gate");
-		settler.dropCargo(settler.getInventory().size()-1);
-		settler.dropCargo(settler.getInventory().size()-1);
+		settler.dropCargo(settler.getInventory().size() - 1);
+		settler.dropCargo(settler.getInventory().size() - 1);
 
 		// A robotot átküldjük a kapu párjára
 		Gate targetGate = (Gate) settler.getReceiver().getNeighbour(0);
@@ -740,20 +739,19 @@ public class App {
 			res = 0;
 		}
 
-		// A Nap Vissza számol, hogy mennyi kör múlva lesz napvihar.
-		boolean isNotGoingToBeZero = true;
-		while (sun.getTimeTillStorm() != 0 && isNotGoingToBeZero) {
-			if(sun.getTimeTillStorm() == 1)
-				isNotGoingToBeZero = false;
-			sun.tick();
-		}
+		// A Nap 1 körön belül napvihart generál
+		sun.setTimeTillStorm(1);
+		// Most jön a napvihar
+		sun.tick();
 
 		System.out.println(Game.getLevel().test_getUnitCount());
 		if (Game.getLevel().test_getUnitCount() == res) {
 			System.out.println("A teszt sikeres.");
-			return;
+		} else {
+			System.out.println("Fail");
 		}
-		System.out.println("Fail");
+		Game.getLevel().clear();
+		return;
 	}
 
 	public void IceSublimation() throws Exception {
@@ -800,13 +798,14 @@ public class App {
 		}
 		if (Game.getLevel().removeThing(cm)) {
 			System.out.println("A teszt sikeres.");
-			return;
+		} else {
+			System.out.println("A teszt sikertelen.");
 		}
-		System.out.println("A teszt sikertelen.");
+		Game.getLevel().clear();
 	}
 
 	public void UraniumExplodes() throws Exception {
-		System.out.println("SettlerMinesIce:");
+		System.out.println("SettlerMinesUranium:");
 
 		// A teszt esetünk környezetének inicializálása
 		Asteroid a = new Asteroid();
@@ -853,8 +852,9 @@ public class App {
 		}
 		if (Game.getLevel().removeThing(a)) {
 			System.out.println("A teszt sikeres.");
-			return;
+		} else {
+			System.out.println("A teszt sikertelen.");
 		}
-		System.out.println("A teszt sikertelen.");
+		Game.getLevel().clear();
 	}
 }
