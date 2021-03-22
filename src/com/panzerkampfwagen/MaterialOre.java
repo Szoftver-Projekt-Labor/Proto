@@ -12,6 +12,7 @@ public class MaterialOre implements InCore {
 		System.out.println("MaterialCore.insertToCoreOf");
 		if (!coreOwner.insertCore(this))
 			return false;
+		content.setAsteroid(coreOwner);
 		return true;
 	}
 

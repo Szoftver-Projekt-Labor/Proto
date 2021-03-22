@@ -767,7 +767,6 @@ public class App {
 		// A teszt esetünk környezetének inicializálása
 		Asteroid a = new Asteroid();
 		Uranium cm = new Uranium();
-		cm.insertToCoreOf(a);
 		MaterialOre core = new MaterialOre(cm);
 		Settler s = new Settler();
 		Robot r = new Robot();
