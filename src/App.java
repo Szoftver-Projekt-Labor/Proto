@@ -2,7 +2,38 @@ import java.util.Random;
 import java.util.Scanner;
 import com.panzerkampfwagen.*;
 
-class Test {
+public class App {
+	static Scanner scanner = new Scanner(System.in);
+
+	public static void main(String[] args) throws Exception {
+
+		// Teszt esetek kiválasztása
+		int optionNumber;
+		while (true) {
+			App testSuite = new App();
+			TesztMetodusokKiras();
+			System.out.print("Melyik teszt fusson? ");
+			optionNumber = scanner.nextInt();
+			if (optionNumber < 1 || optionNumber > 24) {
+				break;
+			}
+			testSuite.functions[optionNumber - 1].run();
+		}
+		scanner.close();
+	}
+
+	// Teszt eseteket egy lsitába szedtük és index szerűen hivatkozunk rájuk
+	Functions[] functions = new Functions[] { this::SettlerMovesOnAsteroid, this::SettlerMovesOnGate,
+			this::SettlerMinesIce, this::SettlerMinesCoal, this::SettlerMinesUranium, this::SettlerMinesIron,
+			this::SettlerDrills, this::SettlerTriesToHide, this::SettlerBuildsGate, this::SettlerBuildsBase,
+			this::SettlerBuildsRobot, this::SettlerDropsUranium, this::SettlerDropsIce, this::SettlerDropsCoal,
+			this::SettlerDropsIron, this::SettlerDropsRobot, this::SettlerDropsGate, this::RobotMovesOnAsteroid,
+			this::RobotMovesOnGate, this::RobotDrills, this::RobotTriesToHide, this::CreateSolarStorm, this::IceSublimation,
+			this::UraniumExplodes };
+
+	public interface Functions {
+		void run() throws Exception;
+	}
 
 	// Kíírja az általunk megírt teszt metódusokat és elmagyaráza röviden a
 	// használatott
@@ -41,7 +72,6 @@ class Test {
 		// FONTOSS!!! Figyelj, hogy jó indexet adj meg, mert a program csúnyán
 		// leszid!
 		System.out.print("Az 0-ás vagy 1-es szomszédjára szeretnél menni?");
-		Scanner scanner = new Scanner(System.in);
 		int index = scanner.nextInt();
 		if (index < 0 && index > 1)
 			throw new Exception("Ne légy gyökér!");
@@ -92,7 +122,6 @@ class Test {
 		// FONTOSS!! Valós réteg méretet adj meg mert másképp beszól a program
 		// ˘\(°-°)/˘
 		System.out.print("Hány rétege legyen az aszteroidának: ");
-		Scanner scanner = new Scanner(System.in);
 		int layerCount = Integer.parseInt(scanner.nextLine());
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
@@ -130,7 +159,6 @@ class Test {
 		// FONTOSS!! Valós réteg méretet adj meg mert másképp beszól a program
 		// ˘\(°-°)/˘
 		System.out.print("Hány rétege legyen az aszteroidának: ");
-		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
@@ -168,7 +196,6 @@ class Test {
 		// FONTOSS!! Valós réteg méretet adj meg mert másképp beszól a program
 		// ˘\(°-°)/˘
 		System.out.print("Hány rétege legyen az aszteroidának: ");
-		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 
 		if (layerCount < 0)
@@ -207,7 +234,6 @@ class Test {
 		// FONTOSS!! Valós réteg méretet adj meg mert másképp beszól a program
 		// ˘\(°-°)/˘
 		System.out.print("Hány rétege legyen az aszteroidának: ");
-		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 
 		if (layerCount < 0)
@@ -244,7 +270,6 @@ class Test {
 		// FONTOSS!!! Figyelj, hogy jó réteg méretet adsz meg, mert a program csúnyán
 		// leszid!
 		System.out.print("Hany rétege legyen az aszteroidanak: ");
-		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 
 		if (layerCount < 1)
@@ -278,7 +303,6 @@ class Test {
 		// A program megkérdezi a felhasználót, hogy mikor megpróbál
 		// elbújni a telepes akkor a mag legyen-e üres
 		System.out.print("Az Aszteroida magja legyen üres? (true/false)");
-		Scanner scanner = new Scanner(System.in);
 		boolean b = scanner.nextBoolean();
 
 		if (!b) {
@@ -565,7 +589,6 @@ class Test {
 		// FONTOSS!!! Figyelj, hogy jó réteg méretet adsz meg, mert a program csúnyán
 		// leszid!
 		System.out.print("Hany rétege legyen az aszteroidanak: ");
-		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 
 		if (layerCount < 1)
@@ -599,7 +622,6 @@ class Test {
 		// A program megkérdezi a felhasználót, hogy mikor megpróbál
 		// elbújni a robot akkor a mag legyen-e üres
 		System.out.print("Az Aszteroida magja legyen üres? (true/false)");
-		Scanner scanner = new Scanner(System.in);
 		boolean b = scanner.nextBoolean();
 
 		if (!b) {
@@ -638,7 +660,6 @@ class Test {
 		// megadnia hogy ki legyen elbújva az aszteroidában a zárójelben látható
 		// karakterisztikával.
 		System.out.print("A robot/telepes/senki se bujjon el az aszteroidában? (robot/telepes/senki)");
-		Scanner scanner = new Scanner(System.in);
 		String s = scanner.nextLine();
 
 		// A Nap Vissza számol, hogy mennyi kör múlva lesz napvihar.
@@ -707,7 +728,6 @@ class Test {
 		// Az Aszteroida rétegszámát beállítjuk
 		// Ha nem 0 és valid érték lett megadva akkor beállításra kerül
 		System.out.print("Hány rétege legyen az aszteroidának: ");
-		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 
 		if (layerCount < 0)
@@ -717,7 +737,6 @@ class Test {
 		// Megkérdezzük, hogy az Aszteroidánk legyen e napközelben vagy sem,
 		// Dönthet a kedves kolléga erről :)
 		System.out.print("Közel van-e a naphoz az aszteroida?(true/false) ");
-		scanner = new Scanner(System.in);
 		boolean closeToSun = scanner.nextBoolean();
 
 		a.setCloseToSun(closeToSun);
@@ -764,7 +783,6 @@ class Test {
 		// Az Aszteroida rétegszámát beállítjuk
 		// Ha nem 0 és valid érték lett megadva akkor beállításra kerül
 		System.out.print("Hány rétege legyen az aszteroidának: ");
-		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 
 		if (layerCount < 0)
@@ -774,7 +792,6 @@ class Test {
 		// Megkérdezzük, hogy az Aszteroidánk legyen e napközelben vagy sem,
 		// Dönthet a kedves kolléga erről :)
 		System.out.print("Közel van-e a naphoz az aszteroida?(true/false) ");
-		scanner = new Scanner(System.in);
 		boolean closeToSun = scanner.nextBoolean();
 
 		a.setCloseToSun(closeToSun);
@@ -796,39 +813,5 @@ class Test {
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
-	}
-}
-
-public class App {
-	static Test test = new Test();
-
-	public static void main(String[] args) throws Exception {
-
-		// Teszt esetek kiválasztása
-		Scanner scanner = new Scanner(System.in);
-		int optionNumber;
-		while (true) {
-			Test.TesztMetodusokKiras();
-			System.out.print("Melyik teszt fusson? ");
-			optionNumber = Integer.parseInt(scanner.nextLine());
-			if (optionNumber < 1 || optionNumber > 24) {
-				break;
-			}
-			functions[optionNumber - 1].run();
-		}
-		scanner.close();
-	}
-
-	// Teszt eseteket egy lsitába szedtük és index szerűen hivatkozunk rájuk
-	static Functions[] functions = new Functions[] { test::SettlerMovesOnAsteroid, test::SettlerMovesOnGate,
-			test::SettlerMinesIce, test::SettlerMinesCoal, test::SettlerMinesUranium, test::SettlerMinesIron,
-			test::SettlerDrills, test::SettlerTriesToHide, test::SettlerBuildsGate, test::SettlerBuildsBase,
-			test::SettlerBuildsRobot, test::SettlerDropsUranium, test::SettlerDropsIce, test::SettlerDropsCoal,
-			test::SettlerDropsIron, test::SettlerDropsRobot, test::SettlerDropsGate, test::RobotMovesOnAsteroid,
-			test::RobotMovesOnGate, test::RobotDrills, test::RobotTriesToHide, test::CreateSolarStorm, test::IceSublimation,
-			test::UraniumExplodes };
-
-	public interface Functions {
-		void run() throws Exception;
 	}
 }
