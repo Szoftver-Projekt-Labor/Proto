@@ -4,6 +4,7 @@ import com.panzerkampfwagen.*;
 
 class Test {
 
+	//Kíírja az általunk megírt teszt metódusokat és elmagyaráza röviden a használatott
 	public static void TesztMetodusokKiras() {
 		System.out.println("Itt lathatoak a tesztesetekhez tartozo sorszamok\n"
 				+ "Futtatáshoz kérjuk a teszt sorszamat beírni a konzolra\n" + "1\tSettler moves on asteroid\n"
@@ -35,6 +36,9 @@ class Test {
 
 		Asteroid tomb[] = new Asteroid[] { a2, a3 };
 
+		// Megkérdezzük a felhasználótól melyik szomszédos Aszteroidára szeretne menni
+		// FONTOSS!!! Figyelj, hogy jó indexet adj meg, mert a program csúnyán
+		// leszid!
 		System.out.print("Az 0-ás vagy 1-es szomszédjára szeretnél menni?");
 		Scanner scanner = new Scanner(System.in);
 		int index = scanner.nextInt();
@@ -42,6 +46,7 @@ class Test {
 		if (index < 0 && index > 1)
 			throw new Exception("Ne légy gyökér!");
 
+		//A telepes a kiválasztott aszteroidára utazik
 		settler.move(tomb[index]);
 
 		// Ha oda is ér a teszt sikeres és boldogak vagyunk!
@@ -80,18 +85,25 @@ class Test {
 		Ice i = new Ice();
 
 		s.move(a);
+		//Feltöltjük az Aszteroida magját a megfelelő nyersanyaggal
 		a.insertCore(i);
 
+		//Megkérdezzük a felhasználótól milyen vastag kérgű aszteroidát szeretnénk
+		//FONTOSS!! Valós réteg méretet adj meg mert másképp beszól a program 
+		// ˘\(°-°)/˘
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 		scanner.close();
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
+		//Kéreg beállítás
 		a.setLayerCount(layerCount);
-
+		//Bányászat
 		s.mine();
 
+		//Akkor sikeres a tesztünk ha az anyag bekerült az inventoryba
+		// és eltűnt az aszteroida közepéből
 		if (a.getCore() == null && s.getInventory().get(0) == i) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -108,18 +120,25 @@ class Test {
 		Coal c = new Coal();
 
 		s.move(a);
+		//Feltöltjük az Aszteroida magját a megfelelő nyersanyaggal
 		a.insertCore(c);
 
+		//Megkérdezzük a felhasználótól milyen vastag kérgű aszteroidát szeretnénk
+		//FONTOSS!! Valós réteg méretet adj meg mert másképp beszól a program 
+		// ˘\(°-°)/˘
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 		scanner.close();
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
+		//Kéreg beállítás
 		a.setLayerCount(layerCount);
-
+		//Bányászat
 		s.mine();
 
+		//Akkor sikeres a tesztünk ha az anyag bekerült az inventoryba
+		// és eltűnt az aszteroida közepéből
 		if (a.getCore() == null && s.getInventory().get(0) == c) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -136,18 +155,25 @@ class Test {
 		Uranium u = new Uranium();
 
 		s.move(a);
+		//Feltöltjük az Aszteroida magját a megfelelő nyersanyaggal
 		a.insertCore(u);
 
+		//Megkérdezzük a felhasználótól milyen vastag kérgű aszteroidát szeretnénk
+		//FONTOSS!! Valós réteg méretet adj meg mert másképp beszól a program 
+		// ˘\(°-°)/˘
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 		scanner.close();
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
+		//Kéreg beállítás
 		a.setLayerCount(layerCount);
-
+		//Bányászat
 		s.mine();
 
+		//Akkor sikeres a tesztünk ha az anyag bekerült az inventoryba
+		// és eltűnt az aszteroida közepéből
 		if (a.getCore() == null && s.getInventory().get(0) == u) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -164,18 +190,25 @@ class Test {
 		Iron i = new Iron();
 
 		s.move(a);
+		//Feltöltjük az Aszteroida magját a megfelelő nyersanyaggal
 		a.insertCore(i);
 
+		//Megkérdezzük a felhasználótól milyen vastag kérgű aszteroidát szeretnénk
+		//FONTOSS!! Valós réteg méretet adj meg mert másképp beszól a program 
+		// ˘\(°-°)/˘
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
 		scanner.close();
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
+		//Kéreg beállítás
 		a.setLayerCount(layerCount);
-
+		//Bányászat
 		s.mine();
 
+		//Akkor sikeres a tesztünk ha az anyag bekerült az inventoryba
+		// és eltűnt az aszteroida közepéből
 		if (a.getCore() == null && s.getInventory().get(0) == i) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -266,16 +299,21 @@ class Test {
 		Asteroid a = new Asteroid();
 
 		s.move(a);
+		//A LoadCArgo működésének tesztelése
 		s.loadCargo(u);
 
+		//LoadCargo tesztrész ha esetleg hibát dob akkor az itt jelentkezik
 		if (s.getInventory().get(0) != u) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
 
+		//Az kiválasztott Item kidobása az inventoryból
 		s.dropCargo(0);
 
+		//A dropCargo tesztjének vizsgálatának kiértékelése
+		//Sikeres ha az inventorynk üres lesz a teszt végére
 		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -292,16 +330,21 @@ class Test {
 		Asteroid a = new Asteroid();
 
 		s.move(a);
+		//A LoadCArgo működésének tesztelése
 		s.loadCargo(i);
 
+		//LoadCargo tesztrész ha esetleg hibát dob akkor az itt jelentkezik
 		if (s.getInventory().get(0) != i) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
 
+		//Az kiválasztott Item kidobása az inventoryból
 		s.dropCargo(0);
 
+		//A dropCargo tesztjének vizsgálatának kiértékelése
+		//Sikeres ha az inventorynk üres lesz a teszt végére
 		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -318,16 +361,21 @@ class Test {
 		Asteroid a = new Asteroid();
 
 		s.move(a);
+		//A LoadCArgo működésének tesztelése
 		s.loadCargo(c);
 
+		//LoadCargo tesztrész ha esetleg hibát dob akkor az itt jelentkezik
 		if (s.getInventory().get(0) != c) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
 
+		//Az kiválasztott Item kidobása az inventoryból
 		s.dropCargo(0);
 
+		//A dropCargo tesztjének vizsgálatának kiértékelése
+		//Sikeres ha az inventorynk üres lesz a teszt végére
 		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -344,16 +392,21 @@ class Test {
 		Asteroid a = new Asteroid();
 
 		s.move(a);
+		//A LoadCArgo működésének tesztelése
 		s.loadCargo(i);
 
+		//LoadCargo tesztrész ha esetleg hibát dob akkor az itt jelentkezik
 		if (s.getInventory().get(0) != i) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
 
+		//Az kiválasztott Item kidobása az inventoryból
 		s.dropCargo(0);
 
+		//A dropCargo tesztjének vizsgálatának kiértékelése
+		//Sikeres ha az inventorynk üres lesz a teszt végére
 		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -370,16 +423,21 @@ class Test {
 		Asteroid a = new Asteroid();
 
 		s.move(a);
+		//A LoadCArgo működésének tesztelése
 		s.loadCargo(r);
 
+		//LoadCargo tesztrész ha esetleg hibát dob akkor az itt jelentkezik
 		if (s.getInventory().get(0) != r) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
 
+		//Az kiválasztott Item kidobása az inventoryból
 		s.dropCargo(0);
 
+		//A dropCargo tesztjének vizsgálatának kiértékelése
+		//Sikeres ha az inventorynk üres lesz a teszt végére
 		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -396,16 +454,21 @@ class Test {
 		Asteroid a = new Asteroid();
 
 		s.move(a);
+		//A LoadCArgo működésének tesztelése
 		s.loadCargo(g);
 
+		//LoadCargo tesztrész ha esetleg hibát dob akkor az itt jelentkezik
 		if (s.getInventory().get(0) != g) {
 			System.out.println("Az inicializacioval gond van.");
 			return;
 		}
 		System.out.println("Az inicializacio sikeres.");
 
+		//Az kiválasztott Item kidobása az inventoryból
 		s.dropCargo(0);
 
+		//A dropCargo tesztjének vizsgálatának kiértékelése
+		//Sikeres ha az inventorynk üres lesz a teszt végére
 		if (s.getInventory().get(0) == null) {
 			System.out.println("A teszt sikeres.");
 			return;
@@ -436,13 +499,15 @@ class Test {
 
 		Asteroid tomb[] = new Asteroid[] { a2, a3, a4, a5 };
 
+		//Az "AI" kiválasztja az Aszteroida szomszédjai közöl 1-et random
+		// és arra küldi a robotot
 		System.out.print("A robot random választ a 4 szomszéd közül.");
 		Random random = new Random();
 		int index = random.nextInt(tomb.length);
 
 		if (index < 0 && index > 4)
 			throw new Exception("Hiba");
-
+		//A robot a kiválasztott aszteroidára utazik
 		robot.move(tomb[index]);
 
 		// Ha oda is ér a teszt sikeres és boldogak vagyunk!
@@ -616,6 +681,7 @@ class Test {
 	public void IceSublimation() throws Exception {
 		System.out.println("SettlerMinesIce:");
 
+		// A teszt esetünk környezetének inicializálása
 		Asteroid a = new Asteroid();
 		CoreMaterial cm = new Ice();
 		cm.insertToCoreOf(a);
@@ -625,6 +691,8 @@ class Test {
 
 		Game.getLevel().addThing(a);
 
+		//Az Aszteroida rétegszámát beállítjuk
+		//Ha nem 0 és valid érték lett megadva akkor beállításra kerül
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
@@ -633,14 +701,19 @@ class Test {
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
 
+		//Megkérdezzük, hogy az Aszteroidánk legyen e napközelben vagy sem, 
+		//Dönthet a kedves kolléga erről :)
 		System.out.print("Közel van-e a naphoz az aszteroida? ");
 		scanner = new Scanner(System.in);
 		boolean closeToSun = scanner.nextBoolean();
 		scanner.close();
 		a.setCloseToSun(closeToSun);
 
+		//Léptetjük a kátékunkat egy körrel 
+		//ami hatására végbe mennek a változások
 		Game.getLevel().tickThings();
 
+		//Teszt kiértékelése a felhasználó választásai alapján
 		if (layerCount == 0 && closeToSun == true) {
 			if (Game.getLevel().removeThing(cm)) {
 				System.out.println("A teszt sikertelen.");
@@ -659,6 +732,7 @@ class Test {
 	public void UraniumExplodes() throws Exception {
 		System.out.println("SettlerMinesIce:");
 
+		// A teszt esetünk környezetének inicializálása
 		Asteroid a = new Asteroid();
 		CoreMaterial cm = new Uranium();
 		cm.insertToCoreOf(a);
@@ -674,6 +748,8 @@ class Test {
 		Game.getLevel().addThing(s);
 		Game.getLevel().addThing(r);
 
+		//Az Aszteroida rétegszámát beállítjuk
+		//Ha nem 0 és valid érték lett megadva akkor beállításra kerül
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
@@ -682,14 +758,18 @@ class Test {
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
 
+		//Megkérdezzük, hogy az Aszteroidánk legyen e napközelben vagy sem, 
+		//Dönthet a kedves kolléga erről :)
 		System.out.print("Közel van-e a naphoz az aszteroida? ");
 		scanner = new Scanner(System.in);
 		boolean closeToSun = scanner.nextBoolean();
 		scanner.close();
 		a.setCloseToSun(closeToSun);
 
+		//Kibányászuk az Uránt az adott feltételek alapján
 		a.extractCore(s);
 
+		//Teszt kiértékelése a felhasználó választásai alapján
 		if (layerCount == 0 && closeToSun == true) {
 			if (Game.getLevel().removeThing(a)) {
 				System.out.println("A teszt sikertelen.");
@@ -711,6 +791,7 @@ public class App {
 
 	public static void main(String[] args) throws Exception {
 
+	//Teszt esetek kiválasztása
 		Scanner scanner = new Scanner(System.in);
 		int optionNumber;
 		while (true) {
@@ -725,6 +806,7 @@ public class App {
 		scanner.close();
 	}
 
+	//Teszt eseteket egy lsitába szedtük és index szerűen hivatkozunk rájuk
 	static Functions[] functions = new Functions[] { test::SettlerMovesOnAsteroid, test::SettlerMovesOnGate,
 			test::SettlerMinesIce, test::SettlerMinesCoal, test::SettlerMinesUranium, test::SettlerMinesIron,
 			test::SettlerDrills, test::SettlerTriesToHide, test::SettlerBuildsGate, test::SettlerBuildsBase,
