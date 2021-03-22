@@ -5,12 +5,12 @@ public class Game {
 	private static boolean gameInProgress = false;
 
 	public static Level getLevel() {
-		System.out.println("getLevel");		
+		System.out.println("Game.getLevel");
 		return level;
 	}
 
 	public void play() {
-		System.out.println("play");	
+		System.out.println("Game.play");
 		gameInProgress = true;
 		while (gameInProgress) {
 			level.tickThings();
@@ -18,14 +18,14 @@ public class Game {
 	}
 
 	public static void victory() {
-		System.out.println("victory");
+		System.out.println("Game.victory");
 		gameInProgress = false;
 		// TODO: level kinullázása, hogy ne hívogassa a többi tick-et
 		System.out.println("Győztél. Yaay.");
 	}
 
 	public static void defeat() {
-		System.out.println("defeat");
+		System.out.println("Game.defeat");
 		gameInProgress = false;
 		System.out.println("You died.");
 	}

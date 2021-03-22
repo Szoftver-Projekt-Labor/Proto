@@ -11,6 +11,10 @@ public class Asteroid extends Receiver {
 
 	// #region getters and setters
 
+	public List<Unit> getUnits() {
+		return units;
+	}
+
 	public int getLayerCount() {
 		System.out.println("getLayerCount");
 		return layerCount;

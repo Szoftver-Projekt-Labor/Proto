@@ -6,10 +6,10 @@ public class Sun {
 	private int timeTillStorm;
 
 	public Sun() {
-		System.out.println("Sun");
+		System.out.println("Sun.Sun");
 		this.setRandomTime();
 	}
-	
+
 	public int getTimeTillStorm() {
 		return timeTillStorm;
 	}
@@ -30,7 +30,7 @@ public class Sun {
 	}
 
 	private void setRandomTime() {
-		System.out.println("setRandomTime");
+		System.out.println("Sun.setRandomTime");
 		// 10 - 20 kör
 		Random random = new Random();
 		this.timeTillStorm = random.nextInt(11) + 10;
