@@ -122,7 +122,7 @@ public class App {
 		// FONTOSS!! Valós réteg méretet adj meg mert másképp beszól a program
 		// ˘\(°-°)/˘
 		System.out.print("Hány rétege legyen az aszteroidának: ");
-		int layerCount = Integer.parseInt(scanner.nextLine());
+		int layerCount = scanner.nextInt();
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		// Kéreg beállítás
@@ -767,7 +767,7 @@ public class App {
 		// A teszt esetünk környezetének inicializálása
 		Asteroid a = new Asteroid();
 		Uranium cm = new Uranium();
-		//cm.insertToCoreOf(a);
+		cm.insertToCoreOf(a);
 		MaterialOre core = new MaterialOre(cm);
 		Settler s = new Settler();
 		Robot r = new Robot();
