@@ -20,7 +20,7 @@ public class Settler extends Unit {
 		System.out.println("mine");
 		Asteroid a = this.getAsteroid();
 		if (a != null && a.getCore() != null && a.extractCore(this)) {
-			this.controller.step();
+			// controller.step();
 		}
 	}
 

@@ -5,7 +5,7 @@ import com.panzerkampfwagen.*;
 class Test {
 
 	public static void TesztMetodusokKiras() {
-		System.out.println("Itt lathatoak a tesztesetekhez tartozo sorszamok\n"
+		System.out.println("\nItt lathatoak a tesztesetekhez tartozo sorszamok\n"
 				+ "Futtatáshoz kérjuk a teszt sorszamat beírni a konzolra\n" + "1\tSettler moves on asteroid\n"
 				+ "2\tSettler moves on gate\n" + "3\tSettler mines ice\n" + "4\tSettler mines coal\n"
 				+ "5\tSettler mines uranium\n" + "6\tSettler mines iron\n" + "7\tSettler drills\n"
@@ -13,8 +13,8 @@ class Test {
 				+ "11\tSettler builds robot\n" + "12\tSettler drops uranium\n" + "13\tSettler drops ice\n"
 				+ "14\tSettler drops coal\n" + "15\tSettler drops iron\n" + "16\tSettler drops robot\n"
 				+ "17\tSettler drops gate\n" + "18\tRobot moves on asteroid\n" + "19\tRobot moves on gate\n"
-				+ "20\tRobot drills\n" + "21\tRobot tries to hide\n" + "22\tCreate solar storm\n" + "23\tIce sublimates\n"
-				+ "24\tUranium explodes\n" + "\n");
+				+ "20\tRobot drills\n" + "21\tRobot tries to hide\n" + "22\tCreate solar storm\n"
+				+ "23\tIce sublimates\n" + "24\tUranium explodes\n" + "\n");
 	}
 
 	public void SettlerMovesOnAsteroid() throws Exception {
@@ -38,7 +38,6 @@ class Test {
 		System.out.print("Az 0-ás vagy 1-es szomszédjára szeretnél menni?");
 		Scanner scanner = new Scanner(System.in);
 		int index = scanner.nextInt();
-		scanner.close();
 		if (index < 0 && index > 1)
 			throw new Exception("Ne légy gyökér!");
 
@@ -80,12 +79,11 @@ class Test {
 		Ice i = new Ice();
 
 		s.move(a);
-		a.insertCore(i);
+		i.insertToCoreOf(a);
 
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
-		int layerCount = scanner.nextInt();
-		scanner.close();
+		int layerCount = Integer.parseInt(scanner.nextLine());
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
@@ -94,6 +92,10 @@ class Test {
 
 		if (a.getCore() == null && s.getInventory().get(0) == i) {
 			System.out.println("A teszt sikeres.");
+			return;
+		}
+		if (layerCount > 0) {
+			System.out.println("Ugye nem gondoltad, hogy ilyen adatokkal ki fogod bányászni?");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
@@ -108,12 +110,11 @@ class Test {
 		Coal c = new Coal();
 
 		s.move(a);
-		a.insertCore(c);
+		c.insertToCoreOf(a);
 
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
-		scanner.close();
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
@@ -122,6 +123,10 @@ class Test {
 
 		if (a.getCore() == null && s.getInventory().get(0) == c) {
 			System.out.println("A teszt sikeres.");
+			return;
+		}
+		if (layerCount > 0) {
+			System.out.println("Ugye nem gondoltad, hogy ilyen adatokkal ki fogod bányászni?");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
@@ -136,12 +141,12 @@ class Test {
 		Uranium u = new Uranium();
 
 		s.move(a);
-		a.insertCore(u);
+		u.insertToCoreOf(a);
 
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
-		scanner.close();
+
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
@@ -150,6 +155,10 @@ class Test {
 
 		if (a.getCore() == null && s.getInventory().get(0) == u) {
 			System.out.println("A teszt sikeres.");
+			return;
+		}
+		if (layerCount > 0) {
+			System.out.println("Ugye nem gondoltad, hogy ilyen adatokkal ki fogod bányászni?");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
@@ -164,12 +173,12 @@ class Test {
 		Iron i = new Iron();
 
 		s.move(a);
-		a.insertCore(i);
+		i.insertToCoreOf(a);
 
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
-		scanner.close();
+
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
@@ -178,6 +187,10 @@ class Test {
 
 		if (a.getCore() == null && s.getInventory().get(0) == i) {
 			System.out.println("A teszt sikeres.");
+			return;
+		}
+		if (layerCount > 0) {
+			System.out.println("Ugye nem gondoltad, hogy ilyen adatokkal ki fogod bányászni?");
 			return;
 		}
 		System.out.println("A teszt sikertelen.");
@@ -199,7 +212,7 @@ class Test {
 		System.out.print("Hany rétege legyen az aszteroidanak: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
-		scanner.close();
+
 		if (layerCount < 1)
 			throw new Exception("Ne légy gyökér!");
 
@@ -225,20 +238,20 @@ class Test {
 		Asteroid a = new Asteroid();
 
 		settler.move(a);
+		csicska.move(a);
 		a.setLayerCount(0);
 
 		// A program megkérdezi a felhasználót, hogy mikor megpróbál
 		// elbújni a telepes akkor a mag legyen-e üres
-		System.out.print("Az Aszteroida magaj legyen üres? (true/false)");
+		System.out.print("Az Aszteroida magja legyen üres? (true/false)");
 		Scanner scanner = new Scanner(System.in);
 		boolean b = scanner.nextBoolean();
-		scanner.close();
 
 		if (!b) {
 			csicska.toggleHide();
 		}
 
-		// Robot megpróbál elbújni
+		// Settler megpróbál elbújni
 		settler.toggleHide();
 
 		if (settler.isHiding() == b) {
@@ -276,7 +289,7 @@ class Test {
 
 		s.dropCargo(0);
 
-		if (s.getInventory().get(0) == null) {
+		if (s.getInventory().size() == 0) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
@@ -302,7 +315,7 @@ class Test {
 
 		s.dropCargo(0);
 
-		if (s.getInventory().get(0) == null) {
+		if (s.getInventory().size() == 0) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
@@ -328,7 +341,7 @@ class Test {
 
 		s.dropCargo(0);
 
-		if (s.getInventory().get(0) == null) {
+		if (s.getInventory().size() == 0) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
@@ -354,7 +367,7 @@ class Test {
 
 		s.dropCargo(0);
 
-		if (s.getInventory().get(0) == null) {
+		if (s.getInventory().size() == 0) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
@@ -380,7 +393,7 @@ class Test {
 
 		s.dropCargo(0);
 
-		if (s.getInventory().get(0) == null) {
+		if (s.getInventory().size() == 0) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
@@ -406,7 +419,7 @@ class Test {
 
 		s.dropCargo(0);
 
-		if (s.getInventory().get(0) == null) {
+		if (s.getInventory().size() == 0) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
@@ -488,7 +501,7 @@ class Test {
 		System.out.print("Hany rétege legyen az aszteroidanak: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
-		scanner.close();
+
 		if (layerCount < 1)
 			throw new Exception("Ne légy gyökér!");
 
@@ -514,6 +527,7 @@ class Test {
 		Asteroid a = new Asteroid();
 
 		robot.move(a);
+		csicska.move(a);
 		a.setLayerCount(0);
 
 		// A program megkérdezi a felhasználót, hogy mikor megpróbál
@@ -521,7 +535,6 @@ class Test {
 		System.out.print("Az Aszteroida magja legyen üres? (true/false)");
 		Scanner scanner = new Scanner(System.in);
 		boolean b = scanner.nextBoolean();
-		scanner.close();
 
 		if (!b) {
 			csicska.toggleHide();
@@ -561,7 +574,6 @@ class Test {
 		System.out.print("A robot/telepes/senki se bujjon el az aszteroidában? (robot/telepes/senki)");
 		Scanner scanner = new Scanner(System.in);
 		String s = scanner.nextLine();
-		scanner.close();
 
 		// A Nap Vissza számol, hogy mennyi kör múlva lesz napvihar.
 		while (sun.getTimeTillStorm() != 0) {
@@ -579,7 +591,7 @@ class Test {
 			robot.toggleHide();
 			settler.die();
 
-			if (Game.getLevel().removeThing(settler)) {
+			if (!Game.getLevel().removeThing(settler)) {
 				System.out.println("A teszt sikeres.");
 				return;
 			}
@@ -590,7 +602,7 @@ class Test {
 			settler.toggleHide();
 			robot.die();
 
-			if (Game.getLevel().removeThing(robot)) {
+			if (!Game.getLevel().removeThing(robot)) {
 				System.out.println("A teszt sikeres.");
 				return;
 			}
@@ -601,7 +613,7 @@ class Test {
 			settler.die();
 			robot.die();
 
-			if (Game.getLevel().removeThing(settler) && Game.getLevel().removeThing(robot)) {
+			if (!Game.getLevel().removeThing(settler) && !Game.getLevel().removeThing(robot)) {
 				System.out.println("A teszt sikeres.");
 				return;
 			}
@@ -617,7 +629,7 @@ class Test {
 		System.out.println("SettlerMinesIce:");
 
 		Asteroid a = new Asteroid();
-		CoreMaterial cm = new Ice();
+		Ice cm = new Ice();
 		cm.insertToCoreOf(a);
 		MaterialOre core = new MaterialOre(cm);
 
@@ -628,15 +640,15 @@ class Test {
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
-		scanner.close();
+
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
 
-		System.out.print("Közel van-e a naphoz az aszteroida? ");
+		System.out.print("Közel van-e a naphoz az aszteroida?(true/false) ");
 		scanner = new Scanner(System.in);
 		boolean closeToSun = scanner.nextBoolean();
-		scanner.close();
+
 		a.setCloseToSun(closeToSun);
 
 		Game.getLevel().tickThings();
@@ -660,7 +672,7 @@ class Test {
 		System.out.println("SettlerMinesIce:");
 
 		Asteroid a = new Asteroid();
-		CoreMaterial cm = new Uranium();
+		Uranium cm = new Uranium();
 		cm.insertToCoreOf(a);
 		MaterialOre core = new MaterialOre(cm);
 		Settler s = new Settler();
@@ -677,15 +689,15 @@ class Test {
 		System.out.print("Hány rétege legyen az aszteroidának: ");
 		Scanner scanner = new Scanner(System.in);
 		int layerCount = scanner.nextInt();
-		scanner.close();
+
 		if (layerCount < 0)
 			throw new Exception("Ne légy gyökér!");
 		a.setLayerCount(layerCount);
 
-		System.out.print("Közel van-e a naphoz az aszteroida? ");
+		System.out.print("Közel van-e a naphoz az aszteroida?(true/false) ");
 		scanner = new Scanner(System.in);
 		boolean closeToSun = scanner.nextBoolean();
-		scanner.close();
+
 		a.setCloseToSun(closeToSun);
 
 		a.extractCore(s);
@@ -716,7 +728,7 @@ public class App {
 		while (true) {
 			Test.TesztMetodusokKiras();
 			System.out.print("Melyik teszt fusson? ");
-			optionNumber = scanner.nextInt();
+			optionNumber = Integer.parseInt(scanner.nextLine());
 			if (optionNumber < 1 || optionNumber > 24) {
 				break;
 			}
@@ -730,8 +742,8 @@ public class App {
 			test::SettlerDrills, test::SettlerTriesToHide, test::SettlerBuildsGate, test::SettlerBuildsBase,
 			test::SettlerBuildsRobot, test::SettlerDropsUranium, test::SettlerDropsIce, test::SettlerDropsCoal,
 			test::SettlerDropsIron, test::SettlerDropsRobot, test::SettlerDropsGate, test::RobotMovesOnAsteroid,
-			test::RobotMovesOnGate, test::RobotDrills, test::RobotTriesToHide, test::CreateSolarStorm, test::IceSublimation,
-			test::UraniumExplodes };
+			test::RobotMovesOnGate, test::RobotDrills, test::RobotTriesToHide, test::CreateSolarStorm,
+			test::IceSublimation, test::UraniumExplodes };
 
 	public interface Functions {
 		void run() throws Exception;

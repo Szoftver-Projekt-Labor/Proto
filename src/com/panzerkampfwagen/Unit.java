@@ -42,7 +42,7 @@ public abstract class Unit implements InCore {
 	public void die() {
 		System.out.println("die");
 		this.receiver.removeUnit(this);
-		this.controller.unitDied();
+		// this.controller.unitDied();
 		Game.getLevel().removeThing(this);
 	}
 
@@ -51,7 +51,7 @@ public abstract class Unit implements InCore {
 		if (onAsteroid) {
 			Asteroid a = (Asteroid) this.receiver;
 			if (a.drill(1) > 0) {
-				controller.step();
+				// controller.step();
 			}
 		}
 	}
@@ -62,12 +62,12 @@ public abstract class Unit implements InCore {
 		if (hiding) {
 			((Asteroid) this.receiver).ejectCore();
 			this.hiding = false;
-			controller.step();
+			// controller.step();
 			return;
 		}
 		if (onAsteroid && this.insertToCoreOf((Asteroid) this.receiver)) {
 			this.hiding = true;
-			controller.step();
+			// controller.step();
 		}
 	}
 
@@ -82,7 +82,7 @@ public abstract class Unit implements InCore {
 
 	public void tick() {
 		System.out.println("tick");
-		controller.takeTurn();
+		// controller.takeTurn();
 	}
 
 	public abstract void onReceiverDestroyed();
