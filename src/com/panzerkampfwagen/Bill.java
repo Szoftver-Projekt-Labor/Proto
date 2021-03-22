@@ -34,8 +34,9 @@ public class Bill {
 		while (sIt.hasNext() && !tryBuild((Settler) sIt.next()))
 			;
 		if (need.size() == 0) {
-			initer.loadCargo(this.result.make());
-			return true;
+			if (initer.loadCargo(this.result.make())) {
+				return true;
+			}
 		}
 		for (OwnerRecord owr : have) {
 			owr.owner.loadCargo(owr.item);

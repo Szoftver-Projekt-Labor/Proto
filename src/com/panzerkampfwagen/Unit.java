@@ -56,18 +56,15 @@ public abstract class Unit implements InCore {
 		}
 	}
 
-	// TODO: cleanup
 	public void toggleHide() {
 		System.out.println("toggleHide");
 		if (hiding) {
-			((Asteroid) this.receiver).ejectCore();
-			this.hiding = false;
-			controller.step();
+			this.extract(null);
+			// controller.step();
 			return;
 		}
 		if (onAsteroid && this.insertToCoreOf((Asteroid) this.receiver)) {
-			this.hiding = true;
-			controller.step();
+			// controller.step();
 		}
 	}
 
@@ -99,12 +96,13 @@ public abstract class Unit implements InCore {
 	@Override
 	public boolean extract(Settler miner) {
 		System.out.println("Unit.extract");
-		if (miner != this) {
+		if (miner != null) {
 			System.out.println("You can't just shove me into the bunk! I have rights.");
 			return false;
 		}
 
 		this.hiding = false;
+		((Asteroid) this.receiver).ejectCore();
 		return true;
 	}
 

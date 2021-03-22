@@ -12,8 +12,9 @@ public class Settler extends Unit {
 	}
 
 	public void build(String what) {
-		System.out.println("build");
-		// TODO: check inventory
+		if (RecipeBook.getBill(what).startBuild(this)) {
+			// controller.step();
+		}
 	}
 
 	public void mine() {
