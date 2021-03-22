@@ -31,8 +31,9 @@ public class Bill {
 
 		Iterator<Unit> sIt = as.getUnits().stream().filter(u -> u instanceof Settler).iterator();
 		// TODO: Prompt player
-		while (sIt.hasNext() && !tryBuild((Settler) sIt.next()))
-			;
+		while (sIt.hasNext() && !tryBuild((Settler) sIt.next())) {
+			System.out.println("Hellothere");
+		}
 		if (need.size() == 0) {
 			if (initer.loadCargo(this.result.make())) {
 				return true;

@@ -320,9 +320,39 @@ public class App {
 	}
 
 	public void SettlerBuildsGate() {
+		Asteroid a = new Asteroid();
+		Settler s = new Settler();
+		Settler s2 = new Settler();
+		s.move(a);
+		s2.move(a);
+		s.loadCargo(new Item[] { new Uranium(), new Iron()});
+		s2.loadCargo(new Item[] { new Iron(), new Ice() });
+
+		s.build("gate");
+
+		if (s.getInventory().get(0) instanceof Gate) {
+			System.out.println("Sikeres teszt.");
+			return;
+		}
+		System.out.println("Fail.");
 	}
 
 	public void SettlerBuildsBase() {
+		Asteroid a = new Asteroid();
+		Settler s = new Settler();
+		Settler s2 = new Settler();
+		s.move(a);
+		s2.move(a);
+		s.loadCargo(new Item[] { new Uranium(), new Coal(), new Uranium(),new Uranium(), new Iron(), new Coal()});
+		s2.loadCargo(new Item[] { new Iron(), new Iron(), new Coal(), new Ice(), new Ice(), new Ice(), new Coal()});
+
+		s.build("base");
+
+		if (s.getInventory().get(0) instanceof Base) {
+			System.out.println("Sikeres teszt.");
+			return;
+		}
+		System.out.println("Fail.");
 	}
 
 	public void SettlerBuildsRobot() {
