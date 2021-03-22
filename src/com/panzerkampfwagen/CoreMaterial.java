@@ -7,7 +7,7 @@ public abstract class CoreMaterial implements InCore, Item {
 		System.out.println("CoreMaterial.setAsteroid");
 		this.asteroid = asteroid;
 	}
-	
+
 	public boolean onMined(Settler miner) {
 		System.out.println("CoreMaterial.onMined");
 		return this.extract(miner);
@@ -27,7 +27,7 @@ public abstract class CoreMaterial implements InCore, Item {
 	}
 
 	@Override
-	public boolean insertToCoreOf(Asteroid coreOwner) {		
+	public boolean insertToCoreOf(Asteroid coreOwner) {
 		System.out.println("CoreMaterial.insertToCoreOf");
 		if (!coreOwner.insertCore(this))
 			return false;
@@ -41,7 +41,7 @@ public abstract class CoreMaterial implements InCore, Item {
 		return insertToCoreOf(dropper.getAsteroid());
 	}
 
-	public void tick() {		
+	public void tick() {
 		System.out.println("CoreMaterial.tick");
 	}
 }

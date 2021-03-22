@@ -1,6 +1,7 @@
 package com.panzerkampfwagen;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Bill {
@@ -23,16 +24,40 @@ public class Bill {
 		this.need.addAll(List.of(result.getBuildCost()));
 	}
 
-	public void tryBuild(Settler s) {
+	public boolean startBuild(Settler initer) {
+		Asteroid as = initer.getAsteroid();
+		if (as == null)
+			return false;
+
+		Iterator<Unit> sIt = as.getUnits().stream().filter(u -> u instanceof Settler).iterator();
+		// TODO: Prompt player
+		while (sIt.hasNext() && !tryBuild((Settler) sIt.next()))
+			;
+		if (need.size() == 0) {
+			initer.loadCargo(this.result.make());
+			return true;
+		}
+		for (OwnerRecord owr : have) {
+			owr.owner.loadCargo(owr.item);
+		}
+		return false;
+	}
+
+	private boolean tryBuild(Settler s) {
+		if (s == null)
+			return false;
 		List<Item> inv = s.getInventory();
-		for (Item neededItem : need) {
+		List<Item> temp = List.copyOf(need);
+		for (Item neededItem : temp) {
 			for (int i = 0; i < inv.size(); i++) {
 				Item currentItem = inv.get(i);
 				if (currentItem.sameAs(neededItem)) {
 					inv.remove(currentItem);
 					need.remove(neededItem);
+					have.add(new OwnerRecord(currentItem, s));
 				}
 			}
 		}
+		return need.size() == 0;
 	}
 }
