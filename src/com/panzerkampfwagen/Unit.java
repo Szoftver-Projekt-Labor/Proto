@@ -86,7 +86,8 @@ public abstract class Unit implements InCore {
 
 	public void onSolarStorm() {
 		System.out.println("onSolarStorm");
-		this.die();
+		if(!hiding)
+			this.die();
 	}
 
 	// #endregion event handlers

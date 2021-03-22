@@ -741,7 +741,10 @@ public class App {
 		}
 
 		// A Nap Vissza számol, hogy mennyi kör múlva lesz napvihar.
-		while (sun.getTimeTillStorm() != 0) {
+		boolean isNotGoingToBeZero = true;
+		while (sun.getTimeTillStorm() != 0 && isNotGoingToBeZero) {
+			if(sun.getTimeTillStorm() == 1)
+				isNotGoingToBeZero = false;
 			sun.tick();
 		}
 

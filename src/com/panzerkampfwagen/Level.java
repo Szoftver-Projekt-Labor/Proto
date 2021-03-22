@@ -35,7 +35,8 @@ public class Level {
 
 	public void solarStormTime() {
 		System.out.println("solarStormTime");
-		for (Unit unit : units)
+		List<Unit> tempUnits = List.copyOf(units);
+		for (Unit unit : tempUnits)
 			unit.onSolarStorm();
 	}
 
