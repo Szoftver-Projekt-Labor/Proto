@@ -10,7 +10,8 @@ public class MaterialOre implements InCore {
 	@Override
 	public boolean insertToCoreOf(Asteroid coreOwner) {
 		System.out.println("MaterialCore.insertToCoreOf");
-		content.setAsteroid(coreOwner);
+		if (!coreOwner.insertCore(this))
+			return false;
 		return true;
 	}
 
