@@ -87,6 +87,7 @@ public class App {
 		System.out.println("A teszt sikertelen.");
 	}
 
+	// TODO: FIX
 	public void SettlerMovesOnGate() {
 		System.out.println("SettlerMovesOnGate:");
 
@@ -680,6 +681,7 @@ public class App {
 		System.out.println("A teszt sikertelen.");
 	}
 
+	// TODO: fix
 	public void CreateSolarStorm() throws Exception {
 		System.out.println("CreateSolarStorm");
 
