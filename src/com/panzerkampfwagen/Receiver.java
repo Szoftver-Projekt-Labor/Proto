@@ -11,6 +11,13 @@ public abstract class Receiver {
 		return (Receiver[]) neighbours.toArray();
 	}
 
+	public Receiver getNeighbour(int i) {
+		System.out.println("getNeighbour");
+		if(i>=0 && i<neighbours.size())
+			return  neighbours.get(i);
+			return null;
+	}
+
 	public abstract void addUnit(Unit unit);
 
 	public abstract void removeUnit(Unit unit);

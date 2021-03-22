@@ -45,6 +45,9 @@ public class Gate extends Receiver implements BuildableItem {
 			this.pair.get().on = true;
 		}
 		this.tick();
+		//temporary
+		this.addNeighbour(dropper.getReceiver());
+		dropper.getReceiver().addNeighbour(this);
 		return true;
 	}
 

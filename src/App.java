@@ -91,15 +91,21 @@ public class App {
 		System.out.println("SettlerMovesOnGate:");
 
 		// A teszt esetünk környezetének inicializálása
+		Asteroid ateroid = new Asteroid();
 		Settler settler = new Settler();
-		Gate gate = new Gate();
+		settler.move(ateroid);
+		settler.loadCargo(new Item[] { new Iron(), new Iron(), new Ice(), new Uranium()});
+		settler.build("gate");
+		settler.dropCargo(settler.getInventory().size()-1);
+		settler.dropCargo(settler.getInventory().size()-1);
 
 		// A robotot átküldjük a kapu párjára
-		settler.move(gate);
+		Gate targetGate = (Gate) settler.getReceiver().getNeighbour(0);
+		settler.move(targetGate);
 
-		// Ha a robot a kapu párját kapja jelenlegi helyzetnek a rálépés után a teszt
+		// Ha a settler a kapu párját kapja jelenlegi helyzetnek a rálépés után a teszt
 		// sikeres.
-		if (settler.getReceiver() == gate.getPair()) {
+		if (settler.getReceiver() == targetGate.getPair()) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
@@ -605,15 +611,23 @@ public class App {
 		System.out.println("SettlerMovesOnGate:");
 
 		// A teszt esetünk környezetének inicializálása
+		// Mivel a robot nem tud építeni az inicializáláshoz, ezért egy settler fog
+		Asteroid ateroid = new Asteroid();
+		Settler settler = new Settler();
 		Robot robot = new Robot();
-		Gate gate = new Gate();
+		settler.move(ateroid);
+		settler.loadCargo(new Item[] { new Iron(), new Iron(), new Ice(), new Uranium()});
+		settler.build("gate");
+		settler.dropCargo(settler.getInventory().size()-1);
+		settler.dropCargo(settler.getInventory().size()-1);
 
 		// A robotot átküldjük a kapu párjára
-		robot.move(gate);
+		Gate targetGate = (Gate) settler.getReceiver().getNeighbour(0);
+		robot.move(targetGate);
 
 		// Ha a robot a kapu párját kapja jelenlegi helyzetnek a rálépés után a teszt
 		// sikeres.
-		if (robot.getReceiver() == gate.getPair()) {
+		if (robot.getReceiver() == targetGate.getPair()) {
 			System.out.println("A teszt sikeres.");
 			return;
 		}
