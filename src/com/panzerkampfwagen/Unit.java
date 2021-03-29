@@ -42,7 +42,6 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	}
 
 	public void drill() {
-		System.out.println("drill");
 		if (onAsteroid) {
 			Asteroid a = (Asteroid) this.receiver;
 			if (a.drill(1) > 0) {
@@ -52,7 +51,6 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	}
 
 	public void toggleHide() {
-		System.out.println("toggleHide");
 		if (hiding) {
 			this.extract(null);
 			// controller.step();
@@ -73,14 +71,12 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	// #region event handlers
 
 	public void tick() {
-		System.out.println("tick");
 		// controller.takeTurn();
 	}
 
 	public abstract void onReceiverDestroyed();
 
 	public void onSolarStorm() {
-		System.out.println("onSolarStorm");
 		if (!hiding)
 			this.die();
 	}
@@ -91,7 +87,6 @@ public abstract class Unit implements InCore, AllEventCompatible {
 
 	@Override
 	public boolean extract(Miner miner) {
-		System.out.println("Unit.extract");
 		if (miner != null) {
 			System.out.println("You can't just shove me into the bunk! I have rights.");
 			return false;
@@ -104,7 +99,6 @@ public abstract class Unit implements InCore, AllEventCompatible {
 
 	@Override
 	public boolean insertToCoreOf(Asteroid coreOwner) {
-		System.out.println("Unit.insertToCoreOf");
 		this.hiding = coreOwner.insertCore(this);
 		return this.hiding;
 	}

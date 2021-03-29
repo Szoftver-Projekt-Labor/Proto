@@ -13,7 +13,6 @@ public class RecipeBook {
 	}
 
 	public static Bill getBill(String itemName) {
-		System.out.println("RecipeBook.getBill");
 		return new Bill(items.get(itemName));
 	}
 }
