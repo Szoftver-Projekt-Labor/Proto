@@ -16,34 +16,30 @@ public class Asteroid extends Receiver {
 	}
 
 	public int getLayerCount() {
-		System.out.println("getLayerCount");
 		return layerCount;
 	}
 
+	// TODO: move to ctor
 	public void setLayerCount(int layerCount) {
-		System.out.println("setLayerCount");
 		this.layerCount = layerCount;
 	}
 
 	public InCore getCore() {
-		System.out.println("getCore");
 		return core;
 	}
 
+	// TODO: move to ctor
 	public void setCore(InCore core) {
-		System.out.println("setCore");
 		this.core = core;
 	}
 
 	public void setCloseToSun(boolean closeToSun) {
-		System.out.println("setCloseToSun");
 		this.closeToSun = closeToSun;
 	}
 
 	public boolean isCloseToSun() {
-		System.out.println("isCloseToSun");
-		return closeToSun;
 		// TODO: Implement
+		return closeToSun;
 	}
 
 	// #endregion getters and setters
@@ -57,7 +53,6 @@ public class Asteroid extends Receiver {
 	 * @return the number of layers drilled
 	 */
 	public int drill(int nLayers) {
-		System.out.println("drill");
 		if (layerCount >= nLayers) {
 			this.layerCount -= nLayers;
 		} else {
@@ -67,8 +62,7 @@ public class Asteroid extends Receiver {
 		return nLayers;
 	}
 
-	public boolean extractCore(Settler miner) {
-		System.out.println("extractCore");
+	public boolean extractCore(Miner miner) {
 		if (this.layerCount != 0 || this.core == null) {
 			return false;
 		}
@@ -77,13 +71,11 @@ public class Asteroid extends Receiver {
 	}
 
 	public void ejectCore() {
-		System.out.println("ejectCore");
 		// TODO: verify integrity
 		this.core = null;
 	}
 
 	public boolean insertCore(InCore core) {
-		System.out.println("insertCore");
 		if (this.core != null || this.layerCount != 0)
 			return false;
 		this.core = core;
@@ -91,26 +83,28 @@ public class Asteroid extends Receiver {
 	}
 
 	public void destroy() {
-		System.out.println("destroy");
 		for (Unit unit : this.units) {
 			unit.onReceiverDestroyed();
 		}
 		for (Receiver neighbour : this.neighbours) {
 			neighbour.removeNeighbour(this);
 		}
-		Game.getLevel().removeThing(this);
+		Level.unsubscribeTick(this);
 	}
 
 	@Override
 	public void addUnit(Unit unit) {
-		System.out.println("Asteroid.addUnit");
 		this.units.add(unit);
 		unit.setAsteroid(this);
 	}
 
 	@Override
 	public void removeUnit(Unit unit) {
-		System.out.println("Asteroid.removeUnit");
 		this.units.remove(unit);
+	}
+
+	@Override
+	public void tick() {
+		// TODO: Implement
 	}
 }

@@ -1,38 +1,34 @@
 package com.panzerkampfwagen;
 
-public class Ice extends CoreMaterial {
+public class Ice extends CoreMaterial implements Tickable {
 
 	@Override
 	public void tick() {
-		System.out.println("Ice.tick");
 		if (this.asteroid.getLayerCount() == 0 && this.asteroid.isCloseToSun()) {
 			this.asteroid.ejectCore();
 			this.asteroid = null;
-			Game.getLevel().removeThing(this);
+			Level.unsubscribeTick(this);
 		}
 	}
 
 	@Override
-	public boolean extract(Settler miner) {
-		System.out.println("Ice.extract");
+	public boolean extract(Miner miner) {
 		if (!super.extract(miner))
 			return false;
-		Game.getLevel().removeThing(this);
+		Level.unsubscribeTick(this);
 		return true;
 	}
 
 	@Override
 	public boolean insertToCoreOf(Asteroid coreOwner) {
-		System.out.println("Ice.insertToCoreOf");
 		if (!super.insertToCoreOf(coreOwner))
 			return false;
-		Game.getLevel().addThing(this);
+		Level.subscribeTick(this);
 		return true;
 	}
 
 	@Override
 	public boolean sameAs(Item other) {
-		System.out.println("Ice.sameAs");
 		return other instanceof Ice;
 	}
 }

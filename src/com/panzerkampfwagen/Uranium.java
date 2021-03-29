@@ -1,10 +1,8 @@
 package com.panzerkampfwagen;
 
 public class Uranium extends CoreMaterial {
-
 	@Override
-	public boolean onMined(Settler miner) {
-		System.out.println("Uranium.onMined");
+	public boolean onMined(Miner miner) {
 		if (this.asteroid.isCloseToSun())
 			asteroid.destroy();
 		return super.onMined(miner);
@@ -12,7 +10,6 @@ public class Uranium extends CoreMaterial {
 
 	@Override
 	public boolean sameAs(Item other) {
-		System.out.println("Uranium.sameAs");
 		return other instanceof Uranium;
 	}
 }

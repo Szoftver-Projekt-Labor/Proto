@@ -2,19 +2,27 @@ package com.panzerkampfwagen;
 
 import java.lang.ref.WeakReference;
 
-public class Gate extends Receiver implements BuildableItem {
+public class Gate extends Receiver implements BuildableItem, AllEventCompatible {
 	protected WeakReference<Gate> pair;
 	private boolean on = false;
 	private boolean placed = false;
+	private boolean damaged = false;
 
 	public Gate getPair() {
-		System.out.println("Gate.getPair");
 		return this.pair.get();
+	}
+
+	/**
+	 * Anchors this to a random neighboring asteroid
+	 */
+	private void changeAnchor() {
+		Asteroid anchor = (Asteroid) this.neighbours.get(0);
+		this.neighbours.remove(0);
+		this.neighbours.add(anchor.getRandomNeighbour());
 	}
 
 	@Override
 	public void addUnit(Unit unit) {
-		System.out.println("Gate.addUnit");
 		if (this.on) {
 			unit.setReceiver(this.pair.get());
 			return;
@@ -23,37 +31,54 @@ public class Gate extends Receiver implements BuildableItem {
 	}
 
 	@Override
-	public void removeUnit(Unit unit) {
-		System.out.println("Gate.removeUnit");
+	public void removeNeighbour(Receiver receiver) {
+		this.changeAnchor();
 	}
+
+	// #region Event handlers
+
+	@Override
+	public void tick() {
+		if (!this.damaged)
+			return;
+		this.changeAnchor();
+	}
+
+	@Override
+	public void onSolarStorm() {
+		this.damaged = true;
+	}
+
+	// #endregion
 
 	// #region Item & BuildableItem implementations
 
 	@Override
 	public boolean sameAs(Item other) {
-		System.out.println("Gate.sameAs");
 		return other instanceof Gate;
 	}
 
 	@Override
 	public boolean dropItem(Settler dropper) {
-		System.out.println("Gate.dropItem");
-		Game.getLevel().addThing(this);
+		Level.subscribeTick(this);
+		Level.subscribeSolarStorm(this);
 		this.placed = true;
 		if (this.pair.get().placed) {
 			this.on = true;
 			this.pair.get().on = true;
 		}
 		this.tick();
-		// ! temporary
-		this.addNeighbour(dropper.getReceiver());
-		dropper.getReceiver().addNeighbour(this);
+
+		Asteroid anchor = dropper.getAsteroid();
+		if (anchor == null)
+			return false;
+		this.addNeighbour(anchor);
+		anchor.addNeighbour(this);
 		return true;
 	}
 
 	@Override
 	public BuildableItem[] make() {
-		System.out.println("Gate.make");
 		Gate[] pairOfGates = new Gate[2];
 		pairOfGates[0] = new Gate();
 		pairOfGates[1] = new Gate();
@@ -69,5 +94,5 @@ public class Gate extends Receiver implements BuildableItem {
 		return new Item[] { new Iron(), new Iron(), new Ice(), new Uranium() };
 	}
 
-	// #endregion Item & BuildableItem implementations
+	// #endregion
 }

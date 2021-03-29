@@ -1,39 +1,45 @@
 package com.panzerkampfwagen;
 
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
 
-public abstract class Receiver {
+// TODO: No neighbour exception uses
+public abstract class Receiver implements Tickable {
 	protected List<Receiver> neighbours = new ArrayList<>();
 
 	public Receiver[] getNeighbours() {
-		System.out.println("getNeighbours");
 		return (Receiver[]) neighbours.toArray();
 	}
 
 	public Receiver getNeighbour(int i) {
-		System.out.println("getNeighbour");
 		if (i >= 0 && i < neighbours.size())
 			return neighbours.get(i);
 		return null;
 	}
 
-	public abstract void addUnit(Unit unit);
-
-	public abstract void removeUnit(Unit unit);
+	public Receiver getRandomNeighbour() {
+		int nNeighbours = this.neighbours.size();
+		if (nNeighbours == 0)
+			return null;
+		return this.neighbours.get(new Random().nextInt(nNeighbours));
+	}
 
 	public void addNeighbour(Receiver receiver) {
-		System.out.println("addNeighbour");
 		this.neighbours.add(receiver);
 	}
 
 	public void removeNeighbour(Receiver receiver) {
-		System.out.println("removeNeighbour");
 		this.neighbours.remove(receiver);
 	}
 
-	public void tick() {
-		System.out.println("tick");
-		// Recalculate neighbours
+	public abstract void addUnit(Unit unit);
+
+	/**
+	 * Cleans up after the unit leaves. *Doesn't* change the Unit.receiver
+	 * 
+	 * @param unit
+	 */
+	public void removeUnit(Unit unit) {
 	}
 }

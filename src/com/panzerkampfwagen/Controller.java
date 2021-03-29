@@ -1,12 +1,14 @@
 package com.panzerkampfwagen;
 
+import java.lang.ref.WeakReference;
+
 public abstract class Controller {
-	protected Unit unit;
+	protected WeakReference<Unit> unit;
 	protected int steps;
 	protected final int stepsPerTurn = 1;
 
 	public Controller(Unit unit) {
-		this.unit = unit;
+		this.unit = new WeakReference<>(unit);
 	}
 
 	public void takeTurn() {
@@ -16,9 +18,5 @@ public abstract class Controller {
 
 	public void step() {
 		--this.steps;
-	}
-
-	public void unitDied() {
-		this.unit = null;
 	}
 }

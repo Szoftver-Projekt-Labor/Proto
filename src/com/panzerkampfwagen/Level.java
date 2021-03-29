@@ -4,84 +4,68 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
-	private List<Receiver> receivers = new ArrayList<>();
-	private List<Sun> suns = new ArrayList<>();
-	private List<Unit> units = new ArrayList<>();
-	private List<CoreMaterial> coreMaterials = new ArrayList<>();
+	private static List<Tickable> tickables = new ArrayList<>();
+	private static List<SolarSensitive> solarSensitives = new ArrayList<>();
+	private static int settlerCount;
 
-	private int settlerCount;
-
-	// TODO: Nobody needs this in prod
-	public int test_getUnitCount() {
-		return units.size();
+	public static void tickThings() {
+		List<Tickable> tempTickables = List.copyOf(tickables);
+		for (Tickable t : tempTickables)
+			t.tick();
 	}
 
-	public void tickThings() {
-		System.out.println("tickThings");
-		// TODO: Test concurrency
-		List<Receiver> tempReceivers = List.copyOf(receivers);
-		for (Receiver receiver : tempReceivers)
-			receiver.tick();
-		for (Sun sun : suns)
-			sun.tick();
-		List<Unit> tempUnits = new ArrayList<>();
-		tempUnits.addAll(units);
-		for (Unit unit : tempUnits)
-			unit.tick();
-		List<CoreMaterial> tempCoreMaterial = List.copyOf(coreMaterials);
-		for (CoreMaterial coreMaterial : tempCoreMaterial)
-			coreMaterial.tick();
+	/**
+	 * @param from Start angle in radians
+	 * @param to   End angle in radians
+	 */
+	public static void solarStormTime(/* double from, double to */) {
+		List<SolarSensitive> temp = List.copyOf(solarSensitives);
+		for (SolarSensitive s : temp)
+			s.onSolarStorm();
 	}
 
-	public void solarStormTime() {
-		System.out.println("solarStormTime");
-		List<Unit> tempUnits = List.copyOf(units);
-		for (Unit unit : tempUnits)
-			unit.onSolarStorm();
+	public static void addSettler(Settler settler) {
+		subscribeAll(settler);
+		++Level.settlerCount;
 	}
 
-	public void onSettlerDies() {
-		System.out.println("onSettlerDies");
-		if (--this.settlerCount == 0) {
+	/**
+	 * You should call an unsubscribeAll nexto this
+	 */
+	public static void removeSettler() {
+		if (--Level.settlerCount == 0) {
 			Game.defeat();
 		}
 	}
 
-	public boolean removeThing(Receiver receiver) {
-		System.out.println("removeThing(Receiver)");
-		return receivers.remove(receiver);
+	public static void subscribeTick(Tickable thing) {
+		tickables.add(thing);
 	}
 
-	public boolean removeThing(Unit unit) {
-		System.out.println("removeThing(Unit)");
-		return units.remove(unit);
+	public static void unsubscribeTick(Tickable thing) {
+		tickables.remove(thing);
 	}
 
-	public boolean removeThing(CoreMaterial coreMaterial) {
-		System.out.println("removeThing(CoreMaterial)");
-		return coreMaterials.remove(coreMaterial);
+	public static void subscribeSolarStorm(SolarSensitive s) {
+		solarSensitives.add(s);
 	}
 
-	public void addThing(Receiver receiver) {
-		System.out.println("addThing(Receiver)");
-		receivers.add(receiver);
+	public static void unsubscribeSolarStorm(SolarSensitive s) {
+		solarSensitives.remove(s);
 	}
 
-	public void addThing(Unit unit) {
-		System.out.println("addThing(Unit)");
-		units.add(unit);
+	public static void subscribeAll(AllEventCompatible a) {
+		subscribeTick(a);
+		subscribeSolarStorm(a);
 	}
 
-	public void addThing(CoreMaterial coreMaterial) {
-		System.out.println("addThing(CoreMaterial)");
-		coreMaterials.add(coreMaterial);
+	public static void unsubscribeAll(AllEventCompatible a) {
+		unsubscribeTick(a);
+		unsubscribeSolarStorm(a);
 	}
 
-	public void clear() {
-		System.out.println("clear");
-		receivers.clear();
-		suns.clear();
-		units.clear();
-		coreMaterials.clear();
+	public static void clear() {
+		tickables.clear();
+		solarSensitives.clear();
 	}
 }

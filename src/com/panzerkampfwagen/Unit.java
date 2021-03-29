@@ -1,6 +1,6 @@
 package com.panzerkampfwagen;
 
-public abstract class Unit implements InCore {
+public abstract class Unit implements InCore, AllEventCompatible {
 	protected Controller controller;
 	protected Receiver receiver;
 	protected boolean onAsteroid;
@@ -9,25 +9,21 @@ public abstract class Unit implements InCore {
 	// #region getters and setters
 
 	public void setAsteroid(Asteroid receiver) {
-		System.out.println("setAsteroid");
 		this.receiver = receiver;
 		this.onAsteroid = true;
 	}
 
 	public void setReceiver(Receiver receiver) {
-		System.out.println("setReceiver");
 		this.receiver = receiver;
 		this.onAsteroid = false;
 	}
 
 	public Receiver getReceiver() {
-		System.out.println("getReceiver");
 		return receiver;
 	}
 
 	// CoreMat deposit-hoz kell
 	public Asteroid getAsteroid() {
-		System.out.println("getAsteroid");
 		return this.onAsteroid ? (Asteroid) this.receiver : null;
 	}
 
@@ -40,10 +36,9 @@ public abstract class Unit implements InCore {
 	// #region actions
 
 	public void die() {
-		System.out.println("die");
+		// TODO: this.controller.unitDied();
 		this.receiver.removeUnit(this);
-		// this.controller.unitDied();
-		Game.getLevel().removeThing(this);
+		Level.unsubscribeAll(this);
 	}
 
 	public void drill() {
@@ -69,7 +64,7 @@ public abstract class Unit implements InCore {
 	}
 
 	public void move(Receiver to) {
-		System.out.println("move");
+		this.receiver.removeUnit(this);
 		to.addUnit(this);
 	}
 
@@ -95,7 +90,7 @@ public abstract class Unit implements InCore {
 	// #region InCore implementation
 
 	@Override
-	public boolean extract(Settler miner) {
+	public boolean extract(Miner miner) {
 		System.out.println("Unit.extract");
 		if (miner != null) {
 			System.out.println("You can't just shove me into the bunk! I have rights.");

@@ -11,8 +11,8 @@ public class Bill {
 			this.owner = owner;
 		}
 
-		Item item;
-		Settler owner;
+		final Item item;
+		final Settler owner;
 	}
 
 	BuildableItem result;
@@ -25,15 +25,14 @@ public class Bill {
 	}
 
 	public boolean startBuild(Settler initer) {
-		Asteroid as = initer.getAsteroid();
-		if (as == null)
+		Asteroid asteroid = initer.getAsteroid();
+		if (asteroid == null)
 			return false;
 
-		Iterator<Unit> sIt = as.getUnits().stream().filter(u -> u instanceof Settler).iterator();
+		Iterator<Unit> sIt = asteroid.getUnits().stream().filter(u -> u instanceof Settler).iterator();
 		// TODO: Prompt player
-		while (sIt.hasNext() && !tryBuild((Settler) sIt.next())) {
-			System.out.println("Hellothere");
-		}
+		while (sIt.hasNext() && !tryBuild((Settler) sIt.next()))
+			;
 		if (need.size() == 0) {
 			if (initer.loadCargo(this.result.make())) {
 				return true;

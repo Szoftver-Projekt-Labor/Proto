@@ -9,7 +9,6 @@ public class MaterialOre implements InCore {
 
 	@Override
 	public boolean insertToCoreOf(Asteroid coreOwner) {
-		System.out.println("MaterialCore.insertToCoreOf");
 		if (!coreOwner.insertCore(this))
 			return false;
 		content.setAsteroid(coreOwner);
@@ -17,8 +16,7 @@ public class MaterialOre implements InCore {
 	}
 
 	@Override
-	public boolean extract(Settler miner) {
-		System.out.println("MaterialCore.extract");
+	public boolean extract(Miner miner) {
 		boolean res = content.onMined(miner);
 		if (res) {
 			miner.getAsteroid().ejectCore();

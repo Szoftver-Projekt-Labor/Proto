@@ -1,0 +1,178 @@
+// {type:class}
+// {direction:topDown}
+// {generate:true}
+
+// -----------------------------------
+// Contains game state
+[<<static>>;Game|gameInProgress:boolean|play();victory();defeat()]
+
+//*********** Event interfaces ***********
+// -----------------------------------
+[<<interface>>;Tickable|tick()]
+// -----------------------------------
+[<<interface>>;SolarSensitive|onSolarStorm()]
+// -----------------------------------
+[<<interface>>;AllEventCompatible]
+
+//*********** Other interfaces ***********
+// -----------------------------------
+// Responsible for putting stuff in cores and getting them out
+[<<interface>>;InCore|extract(miner:Miner):boolean;insertToCoreOf(coreOwner:Asteroid):boolean]
+// -----------------------------------
+// Makes things eligible for being stored in an inventory
+// and being used as crafting material
+[<<interface>>;Item|sameAs(other:Item):boolean;dropItem(dropper:Settler):boolean]
+// -----------------------------------
+// Makes things craftable
+[<<interface>>;BuildableItem|getBuildCost():Array<Item>;make():Array<BuildableItem>]
+// -----------------------------------
+// Associates (string) names with BuildableItems
+[<<static>>;RecipeBook|getBill(itemName:String):Bill]
+
+
+// -----------------------------------
+// An atomic container for a BuildableItem and
+// its required components
+[Bill|-tryBuild(s:Settler):boolean;startBuild(initer:Settler):boolean]
+// -----------------------------------
+// Pairs items with their owners
+// Only accessible to Bill
+[OwnerRecord]
+// -----------------------------------
+// When this is built the Game ends with a victory
+[Base|sameAs(Item):boolean;dropItem(Settler):boolean;make():Array<Base>;getBuildCost():Array<Item>]
+
+
+// -----------------------------------
+// A thing which controls a Unit (Player/AI)
+[*Controller]
+// -----------------------------------
+[Player]
+// -----------------------------------
+[RoBot]
+// -----------------------------------
+[UFOBot]
+
+// -----------------------------------
+// Contains the sandbox
+[<<static>>;Level|tickables:Array<Tickable>;solarSensitives:Array<SolarSensitive>;settlerCount:int|tickThings();solarStormTime();addSettler(Settler);removeSettler();subscribeTick(Tickable);unsubscribeTick(Tickable);subscribeSolarStorm(SolarSensitive);unsubscribeSolarStorm(SolarSensitive);subscribeAll(AllEventCompatible);unsubscribeAll(AllEventCompatible);clear()]
+// -----------------------------------
+// This makes solar storms
+[Sun|timeTillStorm:int;from:int;diff:int|Sun(from:int,to:int);tick();-setRandomTime()]
+
+
+// -----------------------------------
+// Units can move on these
+// Also maintains its neighborhood connections
+[*Receiver|#neighbours:Array<Receiver>|getNeighbours():Array<Receiver>;getNeighbour(int):Receiver;getRandomNeighbour():Receiver;addNeighbour(receiver:Receiver);removeNeighbour(receiver:Receiver)|abstract;addUnit(unit:Unit)]
+// -----------------------------------
+// A Receiver which can also hide units and
+// can be drilled and mined
+[Asteroid|layerCount:int;closeToSun:boolean|getUnits():Array<Unit>;getLayerCount():int;getCore():InCore;isCloseToSun():boolean;drill(nLayers:int):int;extractCore(Miner):boolean;ejectCore();insertCore(InCore):boolean;destroy();addUnit(Unit);removeUnit(Unit);tick()]
+// -----------------------------------
+// A Receiver which teleports Units to its pair
+// (when active)
+[Gate|pair:Gate;on:boolean;placed:boolean;damaged:boolean|-changeAnchor();getPair():Gate;addUnit(Unit);removeNeighbour(Receiver);tick();onSolarStorm();sameAs(Item):boolean;dropItem(Settler):boolean;make():Array<Gate>;getBuildCost():Array<Item>]
+
+
+// -----------------------------------
+// Things controlled by a Controller (Player/AI)
+[*Unit|controller:Controller;receiver:Receiver;onAsteroid:boolean;hiding:boolean|setAsteroid(Asteroid);setReceiver(Receiver);getAsteroid():Asteroid{nullable};getReceiver():Receiver|abstract;onReceiverDestroyed()]
+// -----------------------------------
+// Units that are able to mine
+[*Miner|mine()|abstract;loadCargo(Item):boolean]
+// -----------------------------------
+// A Unit controlled by the Player
+[Settler|getInventory():Array<Item>;loadCargo(Item):boolean;loadCargo(Array<Item>):boolean;build(String);]
+// -----------------------------------
+// A friendly Unit controlled by the AI
+[Robot|onReceiverDestroyed();make():Array<Robot>;sameAs(Item):boolean;dropItem(Settler):boolean;getBuildCost():Array<Item>]
+// A hostile Unit controlled by the AI
+[UFO|mine();loadCargo(Item):boolean]
+
+
+// -----------------------------------
+// Hides the content from the outside world
+[MaterialOre|MaterialOre(content:CoreMaterial);extract(Miner):boolean;insertToCoreOf(Asteroid):boolean]
+// Children of this class can be mined (through a MaterialOre)
+// -----------------------------------
+[*CoreMaterial|setAsteroid(Asteroid);extract(Miner):boolean;onMined(Miner):boolean;insertToCoreOf(Asteroid):boolean;dropItem(Settler):boolean]
+// -----------------------------------
+// A basic material
+[Coal|sameAs(Item):boolean]
+// -----------------------------------
+// A basic material
+[Iron|sameAs(Item):boolean]
+// -----------------------------------
+// A basic material which can melt when exposed to heat
+[Ice|sameAs(Item):boolean;tick();extract(Miner):boolean;insertToCoreOf(Asteroid):boolean]
+// -----------------------------------
+// A basic material which can explode when mined
+[Uranium|sameAs(Item):boolean;onMined(Miner):boolean]
+
+// *********** Interface implementations ***********
+[<<interface>>;Item]^[<<interface>>;BuildableItem]
+[<<interface>>;Tickable]^[<<interface>>;AllEventCompatible]
+[<<interface>>;SolarSensitive]^[<<interface>>;AllEventCompatible]
+[<<interface>>;InCore]^[*Unit]
+[<<interface>>;InCore]^[*CoreMaterial]
+[<<interface>>;InCore]^[MaterialOre]
+[<<interface>>;Item]^[*CoreMaterial]
+[<<interface>>;BuildableItem]^[Robot]
+[<<interface>>;BuildableItem]^[Gate]
+[<<interface>>;BuildableItem]^[Base]
+[<<interface>>;Tickable]^[*Receiver]
+[<<interface>>;Tickable]^[Sun]
+[<<interface>>;Tickable]^[Ice]
+[<<interface>>;AllEventCompatible]^[*Unit]
+[<<interface>>;AllEventCompatible]^[Gate]
+
+// *********** Class inheritance ***********
+[*Unit]^[*Miner]
+[*Unit]^[Robot]
+[*Miner]^[Settler]
+[*Miner]^[UFO]
+[*Receiver]^[Asteroid]
+[*Receiver]^[Gate]
+[*CoreMaterial]^[Coal]
+[*CoreMaterial]^[Ice]
+[*CoreMaterial]^[Iron]
+[*CoreMaterial]^[Uranium]
+[*Controller]^[Player]
+[*Controller]^[RoBot]
+[*Controller]^[UFOBot]
+[Settler]-[Player]
+[Robot]-[RoBot]
+[UFO]-[UFOBot]
+
+// ************** Dependencies **************
+[<<interface>>;BuildableItem]<-.-[<<static>>;RecipeBook]
+[<<interface>>;AllEventCompatible]<-.-[<<static>>;Level]
+[<<static>>;RecipeBook]-.->[Bill]
+[<<static>>;RecipeBook]<-.-[Settler]
+[<<static>>;Level]<-.->[<<static>>;Game]
+[Bill]-.->[Settler]
+[Base]-.->[Coal]
+[Base]-.->[Ice]
+[Base]-.->[Iron]
+[Base]-.->[Uranium]
+[Robot]-.->[Coal]
+[Robot]-.->[Iron]
+[Robot]-.->[Uranium]
+[Gate]-.->[Ice]
+[Gate]-.->[Iron]
+[Gate]-.->[Uranium]
+[Base]-.->[<<static>>;Game]
+[<<interface>>;Item]-.-[Settler]
+
+// ************** Associations/Aggregations/Compositions ******************
+[MaterialOre]content 1->[*CoreMaterial]
+[*Controller]<#unit 1-#controller 1>[*Unit]
+[Bill]<>have 0..*-[OwnerRecord]
+[Bill]<>need 0..*-[<<interface>>;Item]
+[<<interface>>;BuildableItem]<result 1-[Bill]
+[OwnerRecord]-+item 1 {final}>[<<interface>>;Item]
+[OwnerRecord]-+owner 1 {final}>[Settler]
+[<<static>>;Level]++tickables 0..*-[<<interface>>;Tickable]
+[<<static>>;Level]++solarSensitives 0..*-[<<interface>>;SolarSensitive]
+[<<interface>>;InCore]<asteroid 0..1-core 0..1>[Asteroid]
