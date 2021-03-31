@@ -56,21 +56,19 @@
 
 
 // Things controlled by a Controller (Player/AI)
-[*Unit|controller:Controller;receiver:Receiver;onAsteroid:boolean;hiding:boolean|setAsteroid(Asteroid);setReceiver(Receiver);getAsteroid():Asteroid{nullable};getReceiver():Receiver|abstract;onReceiverDestroyed()]
+[*Unit|onAsteroid:boolean;hiding:boolean|setAsteroid(Asteroid);setReceiver(Receiver);getAsteroid():Asteroid{nullable};getReceiver():Receiver|abstract;onReceiverDestroyed()]
 // Units that are able to mine
 [*Miner|mine()|abstract;loadCargo(Item):boolean]
 // A Unit controlled by the Player
 [Settler|getInventory():Array<Item>;loadCargo(Item):boolean;loadCargo(Array<Item>):boolean;build(String);]
-// A friendly Unit controlled by the AI
-[Robot|onReceiverDestroyed();make():Array<Robot>;sameAs(Item):boolean;dropItem(Settler):boolean;getBuildCost():Array<Item>]
 // A hostile Unit controlled by the AI
 [UFO|mine();loadCargo(Item):boolean]
+// A friendly Unit controlled by the AI
+[Robot|onReceiverDestroyed();make():Array<Robot>;sameAs(Item):boolean;dropItem(Settler):boolean;getBuildCost():Array<Item>]
 
 
-// Hides the content from the outside world
-[MaterialOre|MaterialOre(content:CoreMaterial);extract(Miner):boolean;insertToCoreOf(Asteroid):boolean]
 // Children of this class can be mined (through a MaterialOre)
-[*CoreMaterial|setAsteroid(Asteroid);extract(Miner):boolean;onMined(Miner):boolean;insertToCoreOf(Asteroid):boolean;dropItem(Settler):boolean]
+[*CoreMaterial|setAsteroid(Asteroid);extract(Miner):boolean;insertToCoreOf(Asteroid):boolean;dropItem(Settler):boolean]
 // A basic material
 [Coal|sameAs(Item):boolean]
 // A basic material
@@ -78,7 +76,9 @@
 // A basic material which can melt when exposed to heat
 [Ice|sameAs(Item):boolean;tick();extract(Miner):boolean;insertToCoreOf(Asteroid):boolean]
 // A basic material which can explode when mined
-[Uranium|sameAs(Item):boolean;onMined(Miner):boolean]
+[Uranium|exposures:int|sameAs(Item):boolean;extract(Miner):boolean]
+
+
 
 // *********** Interface implementations ***********
 [<<interface>>;Item]^[<<interface>>;BuildableItem]
@@ -86,7 +86,6 @@
 [<<interface>>;SolarSensitive]^[<<interface>>;AllEventCompatible]
 [<<interface>>;InCore]^[*Unit]
 [<<interface>>;InCore]^[*CoreMaterial]
-[<<interface>>;InCore]^[MaterialOre]
 [<<interface>>;Item]^[*CoreMaterial]
 [<<interface>>;BuildableItem]^[Robot]
 [<<interface>>;BuildableItem]^[Gate]
@@ -129,12 +128,13 @@
 [Gate]-.->[Ice]
 [Gate]-.->[Iron]
 [Gate]-.->[Uranium]
+[<<interface>>;InCore]-.->[*Miner]
 [Base]-.->[<<static>>;Game]
 [<<interface>>;Item]-.-[Settler]
 
 // ************** Associations/Aggregations/Compositions ******************
-[MaterialOre]content 1->[*CoreMaterial]
-[*Controller]<#unit 1-#controller 1>[*Unit]
+[*Unit]#receiver 0..1->[*Receiver]
+[*Controller]<#controller 1-#unit 1>[*Unit]
 [Bill]<>have 0..*-[OwnerRecord]
 [Bill]<>need 0..*-[<<interface>>;Item]
 [<<interface>>;BuildableItem]<result 1-[Bill]
@@ -142,7 +142,7 @@
 [OwnerRecord]-+owner 1 {final}>[Settler]
 [<<static>>;Level]++tickables 0..*-[<<interface>>;Tickable]
 [<<static>>;Level]++solarSensitives 0..*-[<<interface>>;SolarSensitive]
-[<<interface>>;InCore]<asteroid 0..1-core 0..1>[Asteroid]
+[<<interface>>;InCore]-core 0..1>[Asteroid]
 [Settler]-[Player]
 [Robot]-[RoBot]
 [UFO]-[UFOBot]
