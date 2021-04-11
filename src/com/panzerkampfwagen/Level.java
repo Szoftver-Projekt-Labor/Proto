@@ -31,7 +31,7 @@ public class Level {
 	}
 
 	/**
-	 * You should call an unsubscribeAll nexto this
+	 * Unit.die() unsubscribes
 	 */
 	public static void removeSettler() {
 		if (--Level.settlerCount == 0) {

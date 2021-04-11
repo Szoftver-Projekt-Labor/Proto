@@ -22,12 +22,12 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 	}
 
 	@Override
-	public void addUnit(Unit unit) {
+	public boolean addUnit(Unit unit) {
 		if (this.on) {
 			unit.setReceiver(this.pair.get());
-			return;
+			return true;
 		}
-		unit.setReceiver(this);
+		return false;
 	}
 
 	@Override
@@ -63,9 +63,10 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 		Level.subscribeTick(this);
 		Level.subscribeSolarStorm(this);
 		this.placed = true;
-		if (this.pair.get().placed) {
+		Gate pair = this.pair.get();
+		if (pair.placed) {
 			this.on = true;
-			this.pair.get().on = true;
+			pair.on = true;
 		}
 		this.tick();
 

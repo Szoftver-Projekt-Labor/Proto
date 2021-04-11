@@ -88,9 +88,10 @@ public class Asteroid extends Receiver {
 	}
 
 	@Override
-	public void addUnit(Unit unit) {
+	public boolean addUnit(Unit unit) {
 		this.units.add(unit);
 		unit.setAsteroid(this);
+		return true;
 	}
 
 	@Override

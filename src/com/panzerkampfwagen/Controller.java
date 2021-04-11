@@ -6,12 +6,13 @@ public abstract class Controller {
 	protected final int stepsPerTurn = 1;
 
 	public Controller(Unit unit) {
+		unit.setController(this);
 		this.unit = unit;
 	}
 
 	public void takeTurn() {
 		this.steps = stepsPerTurn;
-		// Get input and call possible moves on unit
+		// Get input and call possible moves on unit in child @Override-s
 	}
 
 	public void unitDied() {

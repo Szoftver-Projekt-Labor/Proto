@@ -33,7 +33,7 @@ public abstract class Receiver implements Tickable {
 		this.neighbours.remove(receiver);
 	}
 
-	public abstract void addUnit(Unit unit);
+	public abstract boolean addUnit(Unit unit);
 
 	/**
 	 * Cleans up after the unit leaves. *Doesn't* change the Unit.receiver

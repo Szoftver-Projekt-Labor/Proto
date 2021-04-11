@@ -8,9 +8,18 @@ public abstract class Unit implements InCore, AllEventCompatible {
 
 	// #region getters and setters
 
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+
 	public void setAsteroid(Asteroid receiver) {
 		this.receiver = receiver;
 		this.onAsteroid = true;
+	}
+
+	// CoreMat deposit-hoz kell
+	public Asteroid getAsteroid() {
+		return this.onAsteroid ? (Asteroid) this.receiver : null;
 	}
 
 	public void setReceiver(Receiver receiver) {
@@ -20,11 +29,6 @@ public abstract class Unit implements InCore, AllEventCompatible {
 
 	public Receiver getReceiver() {
 		return receiver;
-	}
-
-	// CoreMat deposit-hoz kell
-	public Asteroid getAsteroid() {
-		return this.onAsteroid ? (Asteroid) this.receiver : null;
 	}
 
 	public boolean isHiding() {
@@ -45,7 +49,7 @@ public abstract class Unit implements InCore, AllEventCompatible {
 		if (onAsteroid) {
 			Asteroid a = (Asteroid) this.receiver;
 			if (a.drill(1) > 0) {
-				// controller.step();
+				controller.step();
 			}
 		}
 	}
@@ -53,17 +57,19 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	public void toggleHide() {
 		if (hiding) {
 			this.extract(null);
-			// controller.step();
+			controller.step();
 			return;
 		}
 		if (onAsteroid && this.insertToCoreOf((Asteroid) this.receiver)) {
-			// controller.step();
+			controller.step();
 		}
 	}
 
 	public void move(Receiver to) {
 		this.receiver.removeUnit(this);
-		to.addUnit(this);
+		if (to.addUnit(this)) {
+			controller.step();
+		}
 	}
 
 	// #endregion actions
@@ -71,7 +77,7 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	// #region event handlers
 
 	public void tick() {
-		// controller.takeTurn();
+		controller.takeTurn();
 	}
 
 	public abstract void onReceiverDestroyed();
