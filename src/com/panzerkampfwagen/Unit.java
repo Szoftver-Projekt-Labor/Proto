@@ -36,7 +36,7 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	// #region actions
 
 	public void die() {
-		// TODO: this.controller.unitDied();
+		this.controller.unitDied();
 		this.receiver.removeUnit(this);
 		Level.unsubscribeAll(this);
 	}

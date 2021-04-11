@@ -9,6 +9,11 @@ public class Asteroid extends Receiver {
 	private InCore core;
 	private boolean closeToSun = false;
 
+	public Asteroid(int layerCount, InCore core) {
+		this.layerCount = layerCount;
+		this.core = core;
+	}
+
 	// #region getters and setters
 
 	public List<Unit> getUnits() {
@@ -19,26 +24,17 @@ public class Asteroid extends Receiver {
 		return layerCount;
 	}
 
-	// TODO: move to ctor
-	public void setLayerCount(int layerCount) {
-		this.layerCount = layerCount;
-	}
-
 	public InCore getCore() {
 		return core;
 	}
 
-	// TODO: move to ctor
-	public void setCore(InCore core) {
-		this.core = core;
-	}
-
+	// TODO: Make dynamic
 	public void setCloseToSun(boolean closeToSun) {
 		this.closeToSun = closeToSun;
 	}
 
+	// TODO: Implement
 	public boolean isCloseToSun() {
-		// TODO: Implement
 		return closeToSun;
 	}
 
@@ -71,7 +67,6 @@ public class Asteroid extends Receiver {
 	}
 
 	public void ejectCore() {
-		// TODO: verify integrity
 		this.core = null;
 	}
 

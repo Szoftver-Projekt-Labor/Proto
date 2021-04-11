@@ -67,7 +67,7 @@
 [Robot|onReceiverDestroyed();make():Array<Robot>;sameAs(Item):boolean;dropItem(Settler):boolean;getBuildCost():Array<Item>]
 
 
-// Children of this class can be mined (through a MaterialOre)
+// Children of this class can be mined
 [*CoreMaterial|setAsteroid(Asteroid);extract(Miner):boolean;insertToCoreOf(Asteroid):boolean;dropItem(Settler):boolean]
 // A basic material
 [Coal|sameAs(Item):boolean]
@@ -76,7 +76,7 @@
 // A basic material which can melt when exposed to heat
 [Ice|sameAs(Item):boolean;tick();extract(Miner):boolean;insertToCoreOf(Asteroid):boolean]
 // A basic material which can explode when mined
-[Uranium|exposures:int|sameAs(Item):boolean;extract(Miner):boolean]
+[Uranium|remainingExposures:int|sameAs(Item):boolean;extract(Miner):boolean]
 
 
 
@@ -129,20 +129,23 @@
 [Gate]-.->[Iron]
 [Gate]-.->[Uranium]
 [<<interface>>;InCore]-.->[*Miner]
+[<<interface>>;InCore]-.->[Asteroid]
 [Base]-.->[<<static>>;Game]
 [<<interface>>;Item]-.-[Settler]
 
 // ************** Associations/Aggregations/Compositions ******************
-[*Unit]#receiver 0..1->[*Receiver]
+[*Unit]-#receiver 0..1>[*Receiver]
 [*Controller]<#controller 1-#unit 1>[*Unit]
-[Bill]<>have 0..*-[OwnerRecord]
-[Bill]<>need 0..*-[<<interface>>;Item]
-[<<interface>>;BuildableItem]<result 1-[Bill]
+[Bill]<>-have 0..*[OwnerRecord]
+[Bill]<>-need 0..*[<<interface>>;Item]
+[Bill]-result 1>[<<interface>>;BuildableItem]
 [OwnerRecord]-+item 1 {final}>[<<interface>>;Item]
 [OwnerRecord]-+owner 1 {final}>[Settler]
-[<<static>>;Level]++tickables 0..*-[<<interface>>;Tickable]
-[<<static>>;Level]++solarSensitives 0..*-[<<interface>>;SolarSensitive]
-[<<interface>>;InCore]-core 0..1>[Asteroid]
+[*CoreMaterial]-#asteroid 0..1>[Asteroid]
+[<<static>>;Level]++-tickables 0..*[<<interface>>;Tickable]
+[<<static>>;Level]++-solarSensitives 0..*[<<interface>>;SolarSensitive]
+[<<interface>>;InCore]<core 0..1-[Asteroid]
+
 [Settler]-[Player]
 [Robot]-[RoBot]
 [UFO]-[UFOBot]

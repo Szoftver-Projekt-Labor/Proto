@@ -7,7 +7,7 @@ public class Base implements BuildableItem {
 	}
 
 	@Override
-	public boolean dropItem(Settler dropper) {
+	public boolean dropItem(Unit dropper) {
 		return false;
 	}
 

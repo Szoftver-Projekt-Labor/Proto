@@ -5,8 +5,7 @@ public class Ice extends CoreMaterial implements Tickable {
 	@Override
 	public void tick() {
 		if (this.asteroid.getLayerCount() == 0 && this.asteroid.isCloseToSun()) {
-			this.asteroid.ejectCore();
-			this.asteroid = null;
+			this.ejectThis();
 			Level.unsubscribeTick(this);
 		}
 	}

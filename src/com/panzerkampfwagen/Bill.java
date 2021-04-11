@@ -11,11 +11,11 @@ public class Bill {
 			this.owner = owner;
 		}
 
-		final Item item;
-		final Settler owner;
+		public final Item item;
+		public final Settler owner;
 	}
 
-	BuildableItem result;
+	private BuildableItem result;
 	private List<Item> need = new ArrayList<>();
 	private List<OwnerRecord> have = new ArrayList<>();
 

@@ -1,11 +1,14 @@
 package com.panzerkampfwagen;
 
 public class Uranium extends CoreMaterial {
+	int remainingExposures = 3;
+
 	@Override
-	public boolean onMined(Miner miner) {
-		if (this.asteroid.isCloseToSun())
-			asteroid.destroy();
-		return super.onMined(miner);
+	public boolean extract(Miner miner) {
+		if (this.asteroid.isCloseToSun() && --remainingExposures < 1) {
+			this.asteroid.destroy();
+		}
+		return super.extract(miner);
 	}
 
 	@Override

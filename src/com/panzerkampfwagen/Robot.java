@@ -17,7 +17,7 @@ public class Robot extends Unit implements BuildableItem {
 	}
 
 	@Override
-	public boolean dropItem(Settler dropper) {
+	public boolean dropItem(Unit dropper) {
 		dropper.getReceiver().addUnit(this);
 		Level.subscribeTick(this);
 		Level.subscribeSolarStorm(this);

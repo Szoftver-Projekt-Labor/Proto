@@ -7,19 +7,19 @@ public abstract class CoreMaterial implements InCore, Item {
 		this.asteroid = asteroid;
 	}
 
-	public boolean onMined(Miner miner) {
-		return this.extract(miner);
-	}
-
 	/**
 	 * Should remove Ticking descendants from Level
 	 */
+	protected void ejectThis() {
+		this.asteroid.ejectCore();
+		this.asteroid = null;
+	}
+
 	@Override
 	public boolean extract(Miner miner) {
 		if (!miner.loadCargo(this))
 			return false;
-		this.asteroid.ejectCore();
-		this.asteroid = null;
+		this.ejectThis();
 		return true;
 	}
 
@@ -32,7 +32,10 @@ public abstract class CoreMaterial implements InCore, Item {
 	}
 
 	@Override
-	public boolean dropItem(Settler dropper) {
-		return insertToCoreOf(dropper.getAsteroid());
+	public boolean dropItem(Unit dropper) {
+		Asteroid a = dropper.getAsteroid();
+		if (a != null)
+			return false;
+		return insertToCoreOf(a);
 	}
 }
