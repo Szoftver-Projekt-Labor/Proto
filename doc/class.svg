@@ -50,7 +50,7 @@
 <polygon fill="none" stroke="#000000" points="327.5746,-1446 327.5746,-1478 430.5746,-1478 430.5746,-1446 327.5746,-1446"/>
 <text text-anchor="start" x="370.1811" y="-1459" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Sun</text>
 <polygon fill="none" stroke="#000000" points="327.5746,-1390 327.5746,-1446 430.5746,-1446 430.5746,-1390 327.5746,-1390"/>
-<text text-anchor="start" x="343.2481" y="-1427" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">timeTillStorm:int</text>
+<text text-anchor="start" x="344.3576" y="-1427" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">timeTilStorm:int</text>
 <text text-anchor="start" x="362.4086" y="-1415" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">from:int</text>
 <text text-anchor="start" x="365.7386" y="-1403" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">diff:int</text>
 <polygon fill="none" stroke="#000000" points="327.5746,-1334 327.5746,-1390 430.5746,-1390 430.5746,-1334 327.5746,-1334"/>

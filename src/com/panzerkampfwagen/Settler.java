@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Settler extends Miner {
 	private List<Item> inventory = new ArrayList<>(10);
+	private List<Gate> gateInventory = new ArrayList<>(3);
 
 	public List<Item> getInventory() {
 		return inventory;
@@ -12,7 +13,7 @@ public class Settler extends Miner {
 
 	public void build(String what) {
 		if (RecipeBook.getBill(what).startBuild(this)) {
-			// controller.step();
+			controller.step();
 		}
 	}
 
@@ -36,6 +37,27 @@ public class Settler extends Miner {
 			Item item = this.inventory.get(slot);
 			if (item.dropItem(this)) {
 				return this.inventory.remove(item);
+			}
+		} catch (IndexOutOfBoundsException e) {
+		}
+		return false;
+	}
+
+	public boolean loadGates(Gate[] gates) {
+		if (gates.length != 2 || gateInventory.size() > 1)
+			return false;
+
+		for (Gate gate : gates)
+			this.gateInventory.add(gate);
+
+		return true;
+	}
+
+	public boolean dropGate(int slot) {
+		try {
+			Gate gate = this.gateInventory.get(slot);
+			if (gate.dropItem(this)) {
+				return this.gateInventory.remove(gate);
 			}
 		} catch (IndexOutOfBoundsException e) {
 		}

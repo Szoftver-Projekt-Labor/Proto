@@ -41,7 +41,7 @@
 // Contains the sandbox
 [<<static>>;Level|tickables:Array<Tickable>;solarSensitives:Array<SolarSensitive>;settlerCount:int|tickThings();solarStormTime();addSettler(Settler);removeSettler();subscribeTick(Tickable);unsubscribeTick(Tickable);subscribeSolarStorm(SolarSensitive);unsubscribeSolarStorm(SolarSensitive);subscribeAll(AllEventCompatible);unsubscribeAll(AllEventCompatible);clear()]
 // This makes solar storms
-[Sun|timeTillStorm:int;from:int;diff:int|Sun(from:int,to:int);tick();-setRandomTime()]
+[Sun|timeTilStorm:int;from:int;diff:int|Sun(from:int,to:int);tick();-setRandomTime()]
 
 
 // Units can move on these

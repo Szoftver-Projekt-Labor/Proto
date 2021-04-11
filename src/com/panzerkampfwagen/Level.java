@@ -15,11 +15,11 @@ public class Level {
 	}
 
 	/**
-	 * @param sun  which sun
-	 * @param from Start angle in radians
-	 * @param to   End angle in radians
+	 * @param source which sun
+	 * @param from   Start angle in radians
+	 * @param to     End angle in radians
 	 */
-	public static void solarStormTime(/* Sun sun, double from, double to */) {
+	public static void solarStormTime(/* Sun source, double from, double to */) {
 		List<SolarSensitive> temp = List.copyOf(solarSensitives);
 		for (SolarSensitive s : temp)
 			s.onSolarStorm();

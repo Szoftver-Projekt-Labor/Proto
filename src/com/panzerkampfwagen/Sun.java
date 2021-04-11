@@ -3,9 +3,14 @@ package com.panzerkampfwagen;
 import java.util.Random;
 
 public class Sun {
-	private int timeTillStorm;
+	private int timeTilStorm;
 	private final int from, diff;
 
+	/**
+	 * 
+	 * @param from Min. number of turns until solar storm
+	 * @param to   Max. number of turns until solar storm
+	 */
 	public Sun(int from, int to) {
 		if (from > to)
 			throw new IllegalArgumentException("Lower bound is higher than the upper bound");
@@ -15,11 +20,11 @@ public class Sun {
 	}
 
 	public void tick() {
-		--this.timeTillStorm;
-		if (timeTillStorm < 2) {
-			System.out.println("! " + timeTillStorm + " kör van napviharig");
+		--this.timeTilStorm;
+		if (timeTilStorm < 2) {
+			System.out.println("! " + timeTilStorm + " kör van napviharig");
 		}
-		if (timeTillStorm <= 0) {
+		if (timeTilStorm <= 0) {
 			Level.solarStormTime();
 			this.setRandomTime();
 			return;
@@ -28,6 +33,6 @@ public class Sun {
 
 	private void setRandomTime() {
 		Random random = new Random();
-		this.timeTillStorm = random.nextInt(diff) + from;
+		this.timeTilStorm = random.nextInt(diff) + from;
 	}
 }
