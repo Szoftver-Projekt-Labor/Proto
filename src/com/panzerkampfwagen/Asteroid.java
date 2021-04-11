@@ -12,6 +12,7 @@ public class Asteroid extends Receiver {
 	public Asteroid(int layerCount, InCore core) {
 		this.layerCount = layerCount;
 		this.core = core;
+		Level.subscribeTick(this);
 	}
 
 	// #region getters and setters

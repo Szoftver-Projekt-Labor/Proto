@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
 
-// TODO: No neighbour exception uses
+// TODO: NoNeighbourException uses
 public abstract class Receiver implements Tickable {
 	protected List<Receiver> neighbours = new ArrayList<>();
 

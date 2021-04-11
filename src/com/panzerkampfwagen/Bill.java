@@ -30,9 +30,9 @@ public class Bill {
 			return false;
 
 		Iterator<Unit> sIt = asteroid.getUnits().stream().filter(u -> u instanceof Settler).iterator();
-		// TODO: Prompt player
-		while (sIt.hasNext() && !tryBuild((Settler) sIt.next()))
-			;
+		while (sIt.hasNext() && !tryBuild((Settler) sIt.next())) {
+			// TODO: Prompt player
+		}
 		if (need.size() == 0) {
 			if (initer.loadCargo(this.result.make())) {
 				return true;

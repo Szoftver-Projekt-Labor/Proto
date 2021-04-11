@@ -60,8 +60,7 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 
 	@Override
 	public boolean dropItem(Unit dropper) {
-		Level.subscribeTick(this);
-		Level.subscribeSolarStorm(this);
+		Level.subscribeAll(this);
 		this.placed = true;
 		Gate pair = this.pair.get();
 		if (pair.placed) {
