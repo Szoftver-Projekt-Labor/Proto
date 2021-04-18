@@ -1,0 +1,23 @@
+Initialization successful
+s1 has built a Gate
+s1 has dropped the item
+s1 has moved to g3
+g3 status:
+	nearbyAsteroid: a1
+	active: false
+s1 has moved to a1
+s1 has moved to a2
+s1 has moved to a3
+s1 has dropped the item
+g3 status:
+	nearbyAsteroid: a1
+	active: true
+g4 status:
+	nearbyAsteroid: a3
+	active: true
+s1 has moved to g4
+s1 status:
+	alive: true
+	position: g3
+	inventory: -
+s1 has moved to a1
