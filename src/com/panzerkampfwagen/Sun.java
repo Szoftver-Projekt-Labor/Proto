@@ -2,14 +2,18 @@ package com.panzerkampfwagen;
 
 import java.util.Random;
 
+/**
+ * Napot reprezentálja, napvihart és napközelséget idézhet elő.
+ */
 public class Sun {
 	private int timeTilStorm;
 	private final int from, diff;
 
 	/**
+	 * Beállítja a minimum és a maximum körszámot, ami a napviharig hátravan.
 	 * 
-	 * @param from Min. number of turns until solar storm
-	 * @param to   Max. number of turns until solar storm
+	 * @param from Minimum körszám , ami a napviharig hátravan.
+	 * @param to   Maximum körszám , ami a napviharig hátravan.
 	 */
 	public Sun(int from, int to) {
 		if (from > to)
@@ -19,6 +23,9 @@ public class Sun {
 		this.setRandomTime();
 	}
 
+	/**
+	 * Csökkenti a timeTilStorm értékét, ha 2-nél kisebb, kiírja, hogy ennyi kör van hátra. 0-nál bekövetkezik a napvihar.
+ 	 */
 	public void tick() {
 		--this.timeTilStorm;
 		if (timeTilStorm < 2) {
@@ -31,6 +38,9 @@ public class Sun {
 		}
 	}
 
+	/**
+	 * Beállítja a timeTilStorm értékét egy véletlen számra.
+ 	 */
 	private void setRandomTime() {
 		Random random = new Random();
 		this.timeTilStorm = random.nextInt(diff) + from;

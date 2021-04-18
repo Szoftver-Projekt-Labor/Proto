@@ -1,8 +1,17 @@
 package com.panzerkampfwagen;
 
+/**
+ * Uránt reprezentál, nyersanyag.
+ */
 public class Uranium extends CoreMaterial {
 	int remainingExposures = 3;
 
+	/**
+	 * Kibányássza a nyersanyagot.
+	 * 
+	 * @param miner aki bányássza ki
+	 * @return sikerült e (true ha igen)
+	 */
 	@Override
 	public boolean extract(Miner miner) {
 		if (this.asteroid.isCloseToSun() && --remainingExposures < 1) {
@@ -11,6 +20,12 @@ public class Uranium extends CoreMaterial {
 		return super.extract(miner);
 	}
 
+	/**
+	 * Megvizsgálja, hogy az adott item amivel összehasonlítjuk, az urán-e.
+	 * 
+	 * @param other a hasonlítandó item
+	 * @return ugyanolyan e (true ha igen)
+	 */
 	@Override
 	public boolean sameAs(Item other) {
 		return other instanceof Uranium;

@@ -1,0 +1,18 @@
+init
+proximity a8
+move s2 a8
+mine s2
+proximity a7
+move s2 a7
+drop s2 0
+status a7
+status s2
+proximity a7
+drop s2 0
+load s2
+proximity a7
+load s2
+drop s2 0
+proximity a7
+status a7
+status s2

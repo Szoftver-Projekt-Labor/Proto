@@ -1,0 +1,30 @@
+Initialization successful
+a8 has been moved to sun proximity
+s2 has moved to a8
+s2 has mined the core
+a7 has been moved to sun proximity
+s2 has moved to a7
+s2 has dropped the item
+a7 status:
+	exist: true
+	layers: 0
+	core: uranium
+s2 status:
+	alive: true
+	position: a7
+	inventory: -
+a7 has been moved to sun proximity
+Drop failed
+s2 has loaded the item
+a7 has been moved to sun proximity
+Load failed
+s2 has dropped the item
+a7 has been moved to sun proximity
+a7 status:
+	exist: false
+	layers: -
+	core: -
+s2 status:
+	alive: false
+	position: -
+	inventory: -

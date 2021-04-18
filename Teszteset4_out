@@ -1,0 +1,30 @@
+Initialization successful
+s2 has moved to a8
+r1 has moved to a8
+a8 has been moved to sun proximity
+a4 has been moved to sun proximity
+a3 has been moved to sun proximity
+a7 has been moved to sun proximity
+s2 status:
+	alive: false
+	position: -
+	inventory: -
+r1 status:
+	alive: true
+	position: a7
+a8 status:
+	exist: false
+	layers: -
+	core: -
+a4 status:
+	exist: true
+	layers: 1
+	core: uranium
+a3 status:
+	exist: true
+	layers: 2
+	core: ice
+a7 status:
+	exist: true
+	layers: 0
+	core: -

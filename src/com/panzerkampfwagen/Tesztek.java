@@ -7,20 +7,21 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Tesztek {
+  static Scanner scanner = new Scanner(System.in);
 /////////////////////////////////////// Változók /////////////////////////////////////////
   private Iron iron;
   private Coal coal;
   private Ice ice;
   private Uranium uranium;
 
-  private Asteroid a1 = new Asteroid();
-  private Asteroid a2 = new Asteroid();
-  private Asteroid a3 = new Asteroid();
-  private Asteroid a4 = new Asteroid();
-  private Asteroid a5 = new Asteroid();
-  private Asteroid a6 = new Asteroid();
-  private Asteroid a7 = new Asteroid();
-  private Asteroid a8 = new Asteroid();
+  private Asteroid a1;
+  private Asteroid a2;
+  private Asteroid a3;
+  private Asteroid a4;
+  private Asteroid a5;
+  private Asteroid a6;
+  private Asteroid a7;
+  private Asteroid a8;
 
   private Gate g1 = new Gate();
   private Gate g2 = new Gate();
@@ -31,7 +32,7 @@ public class Tesztek {
   private UFO u1 = new UFO();
 
 /////////////////////////////////////// File kezelő metódusok /////////////////////////////////////////
-  public static void Create(String teszteset) {
+  public static void Createtxt(String teszteset) {
     try {
       File file = new File(teszteset);
       if (file.createNewFile()) {
@@ -45,7 +46,7 @@ public class Tesztek {
     }
   }
 
-  public static void Read(String teszteset) {
+  public static void Readtxt(String teszteset) {
     try {
 
       File file = new File(teszteset);
@@ -64,7 +65,7 @@ public class Tesztek {
     }
   }
 
-  public static void Write(String teszteset, String sor) {
+  public static void Writetxt(String teszteset, String sor) {
     try {
       FileWriter writer = new FileWriter(teszteset);
       writer.write(sor);
@@ -76,7 +77,7 @@ public class Tesztek {
     }
   }
 
-  public static void Delete(String teszteset) {
+  public static void Deletetxt(String teszteset) {
     File myObj = new File(teszteset);
     if (myObj.delete()) {
       System.out.println("TÖRÖLT FILE: " + myObj.getName());
@@ -119,35 +120,35 @@ public void InIt()
   uranium = new Uranium();
 
   //Aszteroidák
-  a1 = Asteroid(2,iron);  
+  a1 = new Asteroid(2,iron);  
     a1.addNeighbour(a2);
     a1.addNeighbour(a6);    
-	a2 = Asteroid(3,coal);
+	a2 = new Asteroid(3,coal);
     a2.addNeighbour(a1);  
     a2.addNeighbour(a3);  
     a2.addNeighbour(a4);  
     a2.addNeighbour(a5);  
-	a3 = Asteroid(2,ice);
+	a3 = new Asteroid(2,ice);
     a3.addNeighbour(a2);  
     a3.addNeighbour(a4);  
     a3.addNeighbour(a8);  
-  a4 = Asteroid(1,uranium);
+  a4 = new Asteroid(1,uranium);
     a1.addNeighbour(a2);  
     a1.addNeighbour(a3);  
     a1.addNeighbour(a7);  
     a1.addNeighbour(a8);  
-	a5 = Asteroid(3,iron);
+	a5 = new Asteroid(3,iron);
     a1.addNeighbour(a2);  
     a1.addNeighbour(a6);  
-	a6 = Asteroid(2,coal);
+	a6 = new Asteroid(2,coal);
     a1.addNeighbour(a1);  
     a1.addNeighbour(a5);  
     a1.addNeighbour(a7);  
-  a7 = Asteroid(0,ice);
+  a7 = new Asteroid(0,ice);
     a1.addNeighbour(a4);  
     a1.addNeighbour(a6);  
     a1.addNeighbour(a8);  
-	a8 = Asteroid(0,uranium);
+	a8 = new Asteroid(0,uranium);
     a1.addNeighbour(a3);  
     a1.addNeighbour(a4);  
     a1.addNeighbour(a7);  
@@ -300,11 +301,30 @@ public void Teszteset8(){
 }
 
 /////////////////////////////////////// Main /////////////////////////////////////////
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
+
+    //Teszt txt fájlok létrehozása
+    Createtxt("Teszteset1_in");
+    Createtxt("Teszteset2_in");
+    Createtxt("Teszteset3_in");
+    Createtxt("Teszteset4_in");
+    Createtxt("Teszteset5_in");
+    Createtxt("Teszteset6_in");
+    Createtxt("Teszteset7_in");
+    Createtxt("Teszteset8_in");
+    Createtxt("Teszteset1_out");
+    Createtxt("Teszteset2_out");
+    Createtxt("Teszteset3_out");
+    Createtxt("Teszteset4_out");
+    Createtxt("Teszteset5_out");
+    Createtxt("Teszteset6_out");
+    Createtxt("Teszteset7_out");
+    Createtxt("Teszteset8_out");
+
     // Teszt esetek kiválasztása
     int optionNumber;
     while (true) {
-      App testSuite = new App();
+      Tesztek testSuite = new Tesztek();
       TesztMetodusokLista();
       System.out.print("Melyik teszt fusson? ");
       optionNumber = scanner.nextInt();
@@ -314,5 +334,6 @@ public void Teszteset8(){
       testSuite.functions[optionNumber - 1].run();
     }
     scanner.close();
+    
   }
 }

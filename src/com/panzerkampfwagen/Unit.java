@@ -1,5 +1,8 @@
 package com.panzerkampfwagen;
 
+/**
+ * Az egységeket reprezentálja. Lehet telepes, robot vagy UFO.
+ */
 public abstract class Unit implements InCore, AllEventCompatible {
 	protected Controller controller;
 	protected Receiver receiver;
@@ -8,29 +11,59 @@ public abstract class Unit implements InCore, AllEventCompatible {
 
 	// #region getters and setters
 
+	/**
+	 * Beállítja a controllert.
+	 * 
+	 * @param controller a beállítandó controller
+	 */
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
 
+	/**
+	 * Beállítja, hogy melyik aszteroidán van.
+	 * 
+	 * @param receiver a beállítandó aszteroida
+	 */
 	public void setAsteroid(Asteroid receiver) {
 		this.receiver = receiver;
 		this.onAsteroid = true;
 	}
 
 	// CoreMat deposit-hoz kell
+	/**
+	 * Visszaadja az aszteroidát, amin van.
+	 * 
+	 * @return az aszteroida (vagy null ha nincs)
+	 */
 	public Asteroid getAsteroid() {
 		return this.onAsteroid ? (Asteroid) this.receiver : null;
 	}
 
+	/**
+	 * Beállítja a receiver értékét.
+	 * 
+	 * @param receiver a beállítandó receiver
+	 */
 	public void setReceiver(Receiver receiver) {
 		this.receiver = receiver;
 		this.onAsteroid = false;
 	}
 
+	/**
+	 * Visszaadja a receivert.
+	 * 
+	 * @return a receiver (vagy null ha nincs)
+	 */
 	public Receiver getReceiver() {
 		return receiver;
 	}
 
+	/**
+	 * Visszaadja, hogy elbújt-e.
+	 * 
+	 * @return elbújt e (true ha igen)
+	 */
 	public boolean isHiding() {
 		return hiding;
 	}
@@ -39,12 +72,18 @@ public abstract class Unit implements InCore, AllEventCompatible {
 
 	// #region actions
 
+	/**
+	 * Meghal a unit.
+	 */
 	public void die() {
 		this.controller.unitDied();
 		this.receiver.removeUnit(this);
 		Level.unsubscribeAll(this);
 	}
 
+	/**
+	 * Kifúr egy réteget a köpenyből.
+	 */
 	public void drill() {
 		if (onAsteroid) {
 			Asteroid a = (Asteroid) this.receiver;
@@ -54,6 +93,9 @@ public abstract class Unit implements InCore, AllEventCompatible {
 		}
 	}
 
+	/**
+	 * Ha már elbújt, akkor már nem lesz elbújva. De ha nem, akkor elbújik.
+	 */
 	public void toggleHide() {
 		if (hiding) {
 			this.extract(null);
@@ -65,6 +107,11 @@ public abstract class Unit implements InCore, AllEventCompatible {
 		}
 	}
 
+	/**
+	 * Átmozog egy másik receiverre.
+	 * 
+	 * @param receiver a cél receiver
+	 */
 	public void move(Receiver to) {
 		this.receiver.removeUnit(this);
 		if (to.addUnit(this)) {
@@ -76,12 +123,21 @@ public abstract class Unit implements InCore, AllEventCompatible {
 
 	// #region event handlers
 
+	/**
+	 * Tick hatására a meghívja a controller takeTurn függvényét.
+	 */
 	public void tick() {
 		controller.takeTurn();
 	}
 
+	/**
+	 * A felelősség megvalósításáért felel, ezt implementálja a többi osztály.
+	 */
 	public abstract void onReceiverDestroyed();
 
+	/**
+	 * Ha nincs elbújva, akkor meghal. Napviharba kerül.
+	 */
 	public void onSolarStorm() {
 		if (!hiding)
 			this.die();
@@ -91,6 +147,12 @@ public abstract class Unit implements InCore, AllEventCompatible {
 
 	// #region InCore implementation
 
+	/**
+	 * Kibányássza a nyersanyagot.
+	 * 
+	 * @param miner aki bányássza ki
+	 * @return sikerült e (true ha igen)
+	 */
 	@Override
 	public boolean extract(Miner miner) {
 		if (miner != null) {
@@ -103,6 +165,12 @@ public abstract class Unit implements InCore, AllEventCompatible {
 		return true;
 	}
 
+	/**
+	 * Unit belemegy a magba.
+	 * 
+	 * @param coreOwner a cél aszteroida
+	 * @return sikerül e (true ha igen)
+	 */
 	@Override
 	public boolean insertToCoreOf(Asteroid coreOwner) {
 		this.hiding = coreOwner.insertCore(this);
