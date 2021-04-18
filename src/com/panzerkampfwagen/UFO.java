@@ -23,6 +23,10 @@ public class UFO extends Miner {
 		return true;
 	}
 
+	/**
+	 * Megakadályozza, hogy a szülő osztály onSolarStorm-ja miatt meghaljon.
+	 * Teljesen üres.
+	 */
 	@Override
 	public void onSolarStorm() {
 	}
