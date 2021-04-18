@@ -10,4 +10,8 @@ public class UFO extends Miner {
 	public boolean loadCargo(Item item) {
 		return true;
 	}
+
+	@Override
+	public void onSolarStorm() {
+	}
 }
