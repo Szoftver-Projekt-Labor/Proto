@@ -3,12 +3,21 @@ package com.panzerkampfwagen;
 import java.util.List;
 import java.util.ArrayList;
 
+
+/**
+* Mezőt reprezentál, erre léphetnek a játékosok, robotok, UFO-k.
+*/
 public class Asteroid extends Receiver {
 	protected List<Unit> units = new ArrayList<>();
 	private int layerCount;
 	private InCore core;
 	private boolean closeToSun = false;
 
+	/**
+	 * Az aszteroida konstruktora
+	 * @param layerCount az aszteroida köpenyének rétegszáma
+	 * @param core az aszteroida magjában lévő objektum
+	 */
 	public Asteroid(int layerCount, InCore core) {
 		this.layerCount = layerCount;
 		this.core = core;
@@ -16,25 +25,44 @@ public class Asteroid extends Receiver {
 	}
 
 	// #region getters and setters
-
+    /**
+     * Visszaadja az aszteroidán lévő egységek listáját.
+     * @return lista az aszteroidán levő Unitok-ról
+     */
 	public List<Unit> getUnits() {
 		return units;
 	}
 
+    /**
+     * Visszaadja az aszteroida kéregeinek a számát
+     * @return az aszteroida kérgeinek száma
+     */
 	public int getLayerCount() {
 		return layerCount;
 	}
 
+	/**
+     * Visszaadja az aszteroidához tartozó magot.
+     * @return az aszteroida magja
+     */
 	public InCore getCore() {
 		return core;
 	}
 
 	// TODO: Make dynamic
+	/**
+     * Beállítja az aszteroida closeToSun attribútumát az adott értékre.
+     * @param closeToSun az aszteroida napközelségének értéke (true=napközelben van, false=nincs napközelben)
+     */
 	public void setCloseToSun(boolean closeToSun) {
 		this.closeToSun = closeToSun;
 	}
 
 	// TODO: Implement
+	/**
+     * Visszaadja az aszteroida napközelségének értékét
+     * @return closeToSun (true=napközelben van, false=nincs napközelben)
+     */
 	public boolean isCloseToSun() {
 		return closeToSun;
 	}
@@ -42,12 +70,10 @@ public class Asteroid extends Receiver {
 	// #endregion getters and setters
 
 	/**
-	 * Drills nLayers off the asteroid
+	 * A paraméterben megadott értékkel csökkenti az aszteroida köpenyét, ha az érték nem nagyobb, mint a rétegszám. 
 	 * 
-	 * Allows multiple layers in case we have to implement nukes
-	 * 
-	 * @param nLayers number of layers to drill
-	 * @return the number of layers drilled
+	 * @param nLayers kifúrandó rétegek száma
+	 * @return kifúrt rétegek száma
 	 */
 	public int drill(int nLayers) {
 		if (layerCount >= nLayers) {
@@ -59,6 +85,12 @@ public class Asteroid extends Receiver {
 		return nLayers;
 	}
 
+	/**
+	 * Ha a kéregszám 0, akkor kiszedi a magot és a paraméterben megadott minernek adja. 
+	 * 
+	 * @param miner a telepes, aki megkapja a magot
+	 * @return a művelet sikeressége (false=nem sikerült kiszedni a magot)
+	 */
 	public boolean extractCore(Miner miner) {
 		if (this.layerCount != 0 || this.core == null) {
 			return false;
@@ -67,10 +99,19 @@ public class Asteroid extends Receiver {
 		return this.core.extract(miner);
 	}
 
+	/**
+	 * Üregessé teszi a magot. 
+	 */
 	public void ejectCore() {
 		this.core = null;
 	}
 
+	/**
+	 * Ha az aszteroida üreges és nincs kérge, akkor a paraméterben megadott típust behelyezi az aszteroidába.
+	 * 
+	 * @param core a magba helyezendő típus
+	 * @return a művelet sikeressége (false=nem sikerült)
+	 */
 	public boolean insertCore(InCore core) {
 		if (this.core != null || this.layerCount != 0)
 			return false;
@@ -78,6 +119,9 @@ public class Asteroid extends Receiver {
 		return true;
 	}
 
+	/**
+	 * Elpusztítja az aszteroidát és törli a level listájából. 
+	 */
 	public void destroy() {
 		for (Unit unit : this.units) {
 			unit.onReceiverDestroyed();
@@ -88,6 +132,12 @@ public class Asteroid extends Receiver {
 		Level.unsubscribeTick(this);
 	}
 
+	/**
+	 * Hozzáad egy egységet az aszteroidához.
+	 * 
+	 * @param unit az aszteroidához adandó egység
+	 * @return a művelet sikeressége (false=nem sikerült)
+	 */
 	@Override
 	public boolean addUnit(Unit unit) {
 		this.units.add(unit);
@@ -95,11 +145,22 @@ public class Asteroid extends Receiver {
 		return true;
 	}
 
+
+	
+	/**
+	 *  Eltávolít egy egységet az aszteroidáról.
+	 * 
+	 * @param unit az aszteroidáról törlendő egység
+	 */
 	@Override
 	public void removeUnit(Unit unit) {
 		this.units.remove(unit);
 	}
 
+	
+	/**
+	 * Aszteroidán a Tick eseményt valósítja meg.
+	 */
 	@Override
 	public void tick() {
 		// TODO: Implement
