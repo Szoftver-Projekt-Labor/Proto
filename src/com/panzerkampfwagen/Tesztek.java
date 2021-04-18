@@ -32,7 +32,7 @@ public class Tesztek {
   private UFO u1 = new UFO();
 
 /////////////////////////////////////// File kezelő metódusok /////////////////////////////////////////
-  public static void Create(String teszteset) {
+  public static void Createtxt(String teszteset) {
     try {
       File file = new File(teszteset);
       if (file.createNewFile()) {
@@ -46,7 +46,7 @@ public class Tesztek {
     }
   }
 
-  public static void Read(String teszteset) {
+  public static void Readtxt(String teszteset) {
     try {
 
       File file = new File(teszteset);
@@ -65,7 +65,7 @@ public class Tesztek {
     }
   }
 
-  public static void Write(String teszteset, String sor) {
+  public static void Writetxt(String teszteset, String sor) {
     try {
       FileWriter writer = new FileWriter(teszteset);
       writer.write(sor);
@@ -77,7 +77,7 @@ public class Tesztek {
     }
   }
 
-  public static void Delete(String teszteset) {
+  public static void Deletetxt(String teszteset) {
     File myObj = new File(teszteset);
     if (myObj.delete()) {
       System.out.println("TÖRÖLT FILE: " + myObj.getName());
@@ -302,6 +302,24 @@ public void Teszteset8(){
 
 /////////////////////////////////////// Main /////////////////////////////////////////
   public static void main(String[] args) throws Exception {
+
+    Createtxt("Teszteset1_in");
+    Createtxt("Teszteset2_in");
+    Createtxt("Teszteset3_in");
+    Createtxt("Teszteset4_in");
+    Createtxt("Teszteset5_in");
+    Createtxt("Teszteset6_in");
+    Createtxt("Teszteset7_in");
+    Createtxt("Teszteset8_in");
+    Createtxt("Teszteset1_out");
+    Createtxt("Teszteset2_out");
+    Createtxt("Teszteset3_out");
+    Createtxt("Teszteset4_out");
+    Createtxt("Teszteset5_out");
+    Createtxt("Teszteset6_out");
+    Createtxt("Teszteset7_out");
+    Createtxt("Teszteset8_out");
+
     // Teszt esetek kiválasztása
     int optionNumber;
     while (true) {
@@ -315,5 +333,6 @@ public void Teszteset8(){
       testSuite.functions[optionNumber - 1].run();
     }
     scanner.close();
+    
   }
 }
