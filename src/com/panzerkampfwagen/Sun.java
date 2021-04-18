@@ -24,8 +24,9 @@ public class Sun {
 	}
 
 	/**
-	 * Csökkenti a timeTilStorm értékét, ha 2-nél kisebb, kiírja, hogy ennyi kör van hátra. 0-nál bekövetkezik a napvihar.
- 	 */
+	 * Csökkenti a timeTilStorm értékét, ha 2-nél kisebb, kiírja, hogy ennyi kör van
+	 * hátra. 0-nál bekövetkezik a napvihar.
+	 */
 	public void tick() {
 		--this.timeTilStorm;
 		if (timeTilStorm < 2) {
@@ -40,7 +41,7 @@ public class Sun {
 
 	/**
 	 * Beállítja a timeTilStorm értékét egy véletlen számra.
- 	 */
+	 */
 	private void setRandomTime() {
 		Random random = new Random();
 		this.timeTilStorm = random.nextInt(diff) + from;

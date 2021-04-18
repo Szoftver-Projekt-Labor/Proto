@@ -8,7 +8,8 @@ import java.util.Scanner;
 
 public class Tesztek {
   static Scanner scanner = new Scanner(System.in);
-/////////////////////////////////////// Változók /////////////////////////////////////////
+  /////////////////////////////////////// Változók
+  /////////////////////////////////////// /////////////////////////////////////////
   private Iron iron;
   private Coal coal;
   private Ice ice;
@@ -31,7 +32,8 @@ public class Tesztek {
   private Robot r1 = new Robot();
   private UFO u1 = new UFO();
 
-/////////////////////////////////////// File kezelő metódusok /////////////////////////////////////////
+  /////////////////////////////////////// File kezelő metódusok
+  /////////////////////////////////////// /////////////////////////////////////////
   public static void Createtxt(String teszteset) {
     try {
       File file = new File(teszteset);
@@ -86,7 +88,8 @@ public class Tesztek {
     }
   }
 
-/////////////////////////////////////// Információs /////////////////////////////////////////
+  /////////////////////////////////////// Információs
+  /////////////////////////////////////// /////////////////////////////////////////
 
   public static void TesztMetodusokLista() {
     System.out.println("\nItt lathatoak a tesztesetekhez tartozo sorszamok\n"
@@ -109,56 +112,56 @@ public class Tesztek {
     void run() throws Exception;
   }
 
-/////////////////////////////////////// InIt /////////////////////////////////////////
+  /////////////////////////////////////// InIt
+  /////////////////////////////////////// /////////////////////////////////////////
 
-public void InIt() 
-{
-  //Magtipusok
-  iron = new Iron();
-  coal = new Coal();
-  ice = new Ice();
-  uranium = new Uranium();
+  public void InIt() {
+    // Magtipusok
+    iron = new Iron();
+    coal = new Coal();
+    ice = new Ice();
+    uranium = new Uranium();
 
-  //Aszteroidák
-  a1 = new Asteroid(2,iron);  
+    // Aszteroidák
+    a1 = new Asteroid(2, iron);
     a1.addNeighbour(a2);
-    a1.addNeighbour(a6);    
-	a2 = new Asteroid(3,coal);
-    a2.addNeighbour(a1);  
-    a2.addNeighbour(a3);  
-    a2.addNeighbour(a4);  
-    a2.addNeighbour(a5);  
-	a3 = new Asteroid(2,ice);
-    a3.addNeighbour(a2);  
-    a3.addNeighbour(a4);  
-    a3.addNeighbour(a8);  
-  a4 = new Asteroid(1,uranium);
-    a1.addNeighbour(a2);  
-    a1.addNeighbour(a3);  
-    a1.addNeighbour(a7);  
-    a1.addNeighbour(a8);  
-	a5 = new Asteroid(3,iron);
-    a1.addNeighbour(a2);  
-    a1.addNeighbour(a6);  
-	a6 = new Asteroid(2,coal);
-    a1.addNeighbour(a1);  
-    a1.addNeighbour(a5);  
-    a1.addNeighbour(a7);  
-  a7 = new Asteroid(0,ice);
-    a1.addNeighbour(a4);  
-    a1.addNeighbour(a6);  
-    a1.addNeighbour(a8);  
-	a8 = new Asteroid(0,uranium);
-    a1.addNeighbour(a3);  
-    a1.addNeighbour(a4);  
-    a1.addNeighbour(a7);  
+    a1.addNeighbour(a6);
+    a2 = new Asteroid(3, coal);
+    a2.addNeighbour(a1);
+    a2.addNeighbour(a3);
+    a2.addNeighbour(a4);
+    a2.addNeighbour(a5);
+    a3 = new Asteroid(2, ice);
+    a3.addNeighbour(a2);
+    a3.addNeighbour(a4);
+    a3.addNeighbour(a8);
+    a4 = new Asteroid(1, uranium);
+    a1.addNeighbour(a2);
+    a1.addNeighbour(a3);
+    a1.addNeighbour(a7);
+    a1.addNeighbour(a8);
+    a5 = new Asteroid(3, iron);
+    a1.addNeighbour(a2);
+    a1.addNeighbour(a6);
+    a6 = new Asteroid(2, coal);
+    a1.addNeighbour(a1);
+    a1.addNeighbour(a5);
+    a1.addNeighbour(a7);
+    a7 = new Asteroid(0, ice);
+    a1.addNeighbour(a4);
+    a1.addNeighbour(a6);
+    a1.addNeighbour(a8);
+    a8 = new Asteroid(0, uranium);
+    a1.addNeighbour(a3);
+    a1.addNeighbour(a4);
+    a1.addNeighbour(a7);
 
-  //Teleport kapuk 
-  a1.addNeighbour(g1);
-  a8.addNeighbour(g2);
+    // Teleport kapuk
+    a1.addNeighbour(g1);
+    a8.addNeighbour(g2);
 
-  //Unitok
-  Settler s1 = new Settler();
+    // Unitok
+    Settler s1 = new Settler();
     s1.move(a1);
     s1.loadCargo(iron);
     s1.loadCargo(iron);
@@ -167,143 +170,145 @@ public void InIt()
     s2.move(a3);
     r1.move(a7);
     u1.move(a6);
-}
+  }
 
-/////////////////////////////////////// Tesztek /////////////////////////////////////////
+  /////////////////////////////////////// Tesztek
+  /////////////////////////////////////// /////////////////////////////////////////
 
-public void Teszteset1(){
-  InIt();
+  public void Teszteset1() {
+    InIt();
 
-  s1.move(a2);
-  s2.move(a1);
-  r1.move(a8);
-  u1.move(a7);
-}
+    s1.move(a2);
+    s2.move(a1);
+    r1.move(a8);
+    u1.move(a7);
+  }
 
-public void Teszteset2(){
-  InIt();
+  public void Teszteset2() {
+    InIt();
 
-  s1.drill();
-  r1.drill();
-}
+    s1.drill();
+    r1.drill();
+  }
 
-public void Teszteset3(){
-  InIt();
+  public void Teszteset3() {
+    InIt();
 
-  s1.drill();
-  s1.drill();
-  s1.mine();
-  u1.move(a1);
-  u1.mine();
-  s2.mine();
-}
+    s1.drill();
+    s1.drill();
+    s1.mine();
+    u1.move(a1);
+    u1.mine();
+    s2.mine();
+  }
 
-public void Teszteset4(){
-  InIt();
+  public void Teszteset4() {
+    InIt();
 
-  s2.move(a8);
-  r1.move(a8);
-  a8.setCloseToSun(true);
-  a4.setCloseToSun(true);
-  a3.setCloseToSun(true);
-  a7.setCloseToSun(true);
-  //statusz s2
-  //statusz r1
-  //statusz a8
-  //statusz a1
-  //statusz a4
-  //statusz a7
-}
+    s2.move(a8);
+    r1.move(a8);
+    a8.setCloseToSun(true);
+    a4.setCloseToSun(true);
+    a3.setCloseToSun(true);
+    a7.setCloseToSun(true);
+    // statusz s2
+    // statusz r1
+    // statusz a8
+    // statusz a1
+    // statusz a4
+    // statusz a7
+  }
 
-public void Teszteset5(){
-  InIt(); 
+  public void Teszteset5() {
+    InIt();
 
-  s1.move(g1);
-  s1.move(a8);
-  r1.move(a8);
-  u1.move(a7);
-  u1.move(a8);
-  s1.toggleHide();
-  s1.mine();
-  s1.toggleHide();
-  //storm g1
-  //storm a8
-  //statusz g1
-  //statusz s1
-  //statusz r1
-  //statusz u1
-  //statusz a8
-}
+    s1.move(g1);
+    s1.move(a8);
+    r1.move(a8);
+    u1.move(a7);
+    u1.move(a8);
+    s1.toggleHide();
+    s1.mine();
+    s1.toggleHide();
+    // storm g1
+    // storm a8
+    // statusz g1
+    // statusz s1
+    // statusz r1
+    // statusz u1
+    // statusz a8
+  }
 
-public void Teszteset6(){
-  InIt();
+  public void Teszteset6() {
+    InIt();
 
-  s1.build("Robot");
-  s2.build("Robot");
-  s1.drill();
-  s2.move(a4);
-  r1.move(a4);
-  s1.drill();
-  r1.drill();
-  s2.mine();
-  s1.mine();
-  s2.move(a2);
-  s2.drill();
-  s1.move(a2);
-  s2.drill();
-  s1.drill();
-  s2.mine();
-  //statusz s1
-  //statusz s2
-  s1.build("Robot");
-  //statusz s1
-  //statusz s2
-}
+    s1.build("Robot");
+    s2.build("Robot");
+    s1.drill();
+    s2.move(a4);
+    r1.move(a4);
+    s1.drill();
+    r1.drill();
+    s2.mine();
+    s1.mine();
+    s2.move(a2);
+    s2.drill();
+    s1.move(a2);
+    s2.drill();
+    s1.drill();
+    s2.mine();
+    // statusz s1
+    // statusz s2
+    s1.build("Robot");
+    // statusz s1
+    // statusz s2
+  }
 
-public void Teszteset7(){
-  InIt();
+  public void Teszteset7() {
+    InIt();
 
-  a8.setCloseToSun(true);
-  s2.move(a8);
-  s2.mine();
-  a7.setCloseToSun(true);
-  s2.move(a7);
-  s2.dropCargo(0);
-  //statusz a7
-  //statusz s2
-  a7.setCloseToSun(false);
-  s2.dropCargo(0);
-  s2.loadCargo(uranium);
-  a7.setCloseToSun(true);  
-  s2.loadCargo(uranium);
-  s2.dropCargo(0);
-  a7.setCloseToSun(true);  
-  //statusz a7
-  //statusz s2
-}
+    a8.setCloseToSun(true);
+    s2.move(a8);
+    s2.mine();
+    a7.setCloseToSun(true);
+    s2.move(a7);
+    s2.dropCargo(0);
+    // statusz a7
+    // statusz s2
+    a7.setCloseToSun(false);
+    s2.dropCargo(0);
+    s2.loadCargo(uranium);
+    a7.setCloseToSun(true);
+    s2.loadCargo(uranium);
+    s2.dropCargo(0);
+    a7.setCloseToSun(true);
+    // statusz a7
+    // statusz s2
+  }
 
-public void Teszteset8(){
-  InIt();
+  public void Teszteset8() {
+    InIt();
 
-  s1.build("gate");
-  s1.dropGate(0);
-  s1.move(g3);
-  //statusz g3
-  s1.move(a1);
-  s1.move(a2);
-  s1.move(a3);
-  s1.dropGate(1);
-  //statusz g3
-  //statusz g4
-  s1.move(g4);
-  //statusz s1
-  s1.move(a1);
-}
+    s1.build("gate");
+    s1.dropGate(0);
+    s1.move(g3);
+    // statusz g3
+    s1.move(a1);
+    s1.move(a2);
+    s1.move(a3);
+    s1.dropGate(1);
+    // statusz g3
+    // statusz g4
+    s1.move(g4);
+    // statusz s1
+    s1.move(a1);
+  }
 
-/////////////////////////////////////// Main /////////////////////////////////////////
+  /////////////////////////////////////// Main
+  /////////////////////////////////////// /////////////////////////////////////////
   public static void main(String[] args) throws Exception {
 
-    //Teszt txt fájlok létrehozása
+    // Teszt txt fájlok létrehozása
     Createtxt("Teszteset1_in");
     Createtxt("Teszteset2_in");
     Createtxt("Teszteset3_in");
@@ -334,6 +339,6 @@ public void Teszteset8(){
       testSuite.functions[optionNumber - 1].run();
     }
     scanner.close();
-    
+
   }
 }

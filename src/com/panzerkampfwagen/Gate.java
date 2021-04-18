@@ -3,9 +3,9 @@ package com.panzerkampfwagen;
 import java.lang.ref.WeakReference;
 
 /**
-* Egy olyan speciális mezőt reprezentál, amire
-* ha rálépünk, akkor egy másikon találjuk magunkat.
-*/
+ * Egy olyan speciális mezőt reprezentál, amire ha rálépünk, akkor egy másikon
+ * találjuk magunkat.
+ */
 public class Gate extends Receiver implements BuildableItem, AllEventCompatible {
 	protected WeakReference<Gate> pair;
 	private boolean on = false;
@@ -13,9 +13,10 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 	private boolean damaged = false;
 
 	/**
-	* Visszaadja a kapu párját.
-	* @return a kapu párja
-	*/
+	 * Visszaadja a kapu párját.
+	 * 
+	 * @return a kapu párja
+	 */
 	public Gate getPair() {
 		return this.pair.get();
 	}
@@ -28,12 +29,13 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 		this.neighbours.remove(0);
 		this.neighbours.add(anchor.getRandomNeighbour());
 	}
-	
+
 	/**
-	* Ha a kapu be van kapcsolva, akkor rálép az egység.
-	* @param unit egy egység amit hozzáad
-	* @return igaz, ha van rajta unit
-	*/
+	 * Ha a kapu be van kapcsolva, akkor rálép az egység.
+	 * 
+	 * @param unit egy egység amit hozzáad
+	 * @return igaz, ha van rajta unit
+	 */
 	@Override
 	public boolean addUnit(Unit unit) {
 		if (this.on) {
@@ -42,11 +44,12 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 		}
 		return false;
 	}
-	
+
 	/**
-	* Eltávolítja a paraméterben megadott szomszédját.
-	* @param receiver kapu vagy aszteroida, amit eltávolítunk
-	*/
+	 * Eltávolítja a paraméterben megadott szomszédját.
+	 * 
+	 * @param receiver kapu vagy aszteroida, amit eltávolítunk
+	 */
 	@Override
 	public void removeNeighbour(Receiver receiver) {
 		this.changeAnchor();
@@ -55,8 +58,8 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 	// #region Event handlers
 
 	/**
-	* Ha sérült a kapu, akkor folyamatosan változtatja a szomszédját.
-	*/
+	 * Ha sérült a kapu, akkor folyamatosan változtatja a szomszédját.
+	 */
 	@Override
 	public void tick() {
 		if (!this.damaged)
@@ -65,8 +68,8 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 	}
 
 	/**
-	* Átállítja a damaged attribútomot true-ra
-	*/
+	 * Átállítja a damaged attribútomot true-ra
+	 */
 	@Override
 	public void onSolarStorm() {
 		this.damaged = true;
@@ -76,23 +79,23 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 
 	// #region Item & BuildableItem implementations
 
-
 	/**
-	* Gate típusú-e a paraméterben megadott item.
-	* @param other item, amivel összehasonlítja
-	* @return igaz, ha egyezés van
-	*/
+	 * Gate típusú-e a paraméterben megadott item.
+	 * 
+	 * @param other item, amivel összehasonlítja
+	 * @return igaz, ha egyezés van
+	 */
 	@Override
 	public boolean sameAs(Item other) {
 		return other instanceof Gate;
 	}
-	
-	
+
 	/**
-	* Lehelyezi a kaput.
-	* @param dropper az az egység, amelyik lehelyezi
-	* @return igaz, ha sikerült letenni
-	*/
+	 * Lehelyezi a kaput.
+	 * 
+	 * @param dropper az az egység, amelyik lehelyezi
+	 * @return igaz, ha sikerült letenni
+	 */
 	@Override
 	public boolean dropItem(Unit dropper) {
 		Level.subscribeAll(this);
@@ -112,11 +115,11 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 		return true;
 	}
 
-
 	/**
-	* Készít egy kapupárt.
-	* @return a kapupár, amit legyártott
-	*/
+	 * Készít egy kapupárt.
+	 * 
+	 * @return a kapupár, amit legyártott
+	 */
 	@Override
 	public BuildableItem[] make() {
 		Gate[] pairOfGates = new Gate[2];
@@ -129,11 +132,11 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 		return pairOfGates;
 	}
 
-
 	/**
-	* Szükséges nyersanyagokat adja meg az építéshez.
-	* @return a szükséges nyersanyagok
-	*/
+	 * Szükséges nyersanyagokat adja meg az építéshez.
+	 * 
+	 * @return a szükséges nyersanyagok
+	 */
 	@Override
 	public Item[] getBuildCost() {
 		return new Item[] { new Iron(), new Iron(), new Ice(), new Uranium() };

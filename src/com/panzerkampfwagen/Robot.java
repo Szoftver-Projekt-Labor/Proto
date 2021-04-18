@@ -4,9 +4,17 @@ package com.panzerkampfwagen;
  * Robotot reprezentál. Képes mozogni, fúrni. Telepes megépítheti őt.
  */
 public class Robot extends Unit implements BuildableItem {
+
 	/**
- 	 * Ha felrobban a receiver amin van, átkerül egy véletlen szomszédra.
- 	 */
+	 * @param r A Receiver amin az egység indul
+	 */
+	public Robot(Receiver r) {
+		super(r);
+	}
+
+	/**
+	 * Ha felrobban a receiver amin van, átkerül egy véletlen szomszédra.
+	 */
 	@Override
 	public void onReceiverDestroyed() {
 		this.move(this.receiver.getRandomNeighbour());
@@ -19,7 +27,7 @@ public class Robot extends Unit implements BuildableItem {
 	 */
 	@Override
 	public BuildableItem[] make() {
-		return new Robot[] { new Robot() };
+		return new Robot[] { new Robot(null) };
 	}
 
 	/**

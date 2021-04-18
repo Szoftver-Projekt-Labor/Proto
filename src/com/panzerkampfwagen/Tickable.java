@@ -5,7 +5,7 @@ package com.panzerkampfwagen;
  */
 public interface Tickable {
 	/**
- 	* A felelősség megvalósításáért felel, ezt implementálja a többi osztály
- 	*/
+	 * A felelősség megvalósításáért felel, ezt implementálja a többi osztály
+	 */
 	public void tick();
 }

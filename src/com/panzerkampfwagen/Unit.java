@@ -9,7 +9,12 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	protected boolean onAsteroid;
 	protected boolean hiding = false;
 
-	// #region getters and setters
+	/**
+	 * @param r A Receiver amin az egység indul
+	 */
+	public Unit(Receiver r) {
+		this.receiver = r;
+	}
 
 	/**
 	 * Beállítja a controllert.
@@ -30,7 +35,6 @@ public abstract class Unit implements InCore, AllEventCompatible {
 		this.onAsteroid = true;
 	}
 
-	// CoreMat deposit-hoz kell
 	/**
 	 * Visszaadja az aszteroidát, amin van.
 	 * 
@@ -67,10 +71,6 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	public boolean isHiding() {
 		return hiding;
 	}
-
-	// #endregion getters and setters
-
-	// #region actions
 
 	/**
 	 * Meghal a unit.

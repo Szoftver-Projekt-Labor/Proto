@@ -4,12 +4,20 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Telepest reprezentál. Képes mozogni, fúrni, bányászni, építeni. 
- * Játékos irányítja. Ha az aszteroida felrobban, vagy nem bújik el napvihar elől, akkor meghal.
+ * Telepest reprezentál. Képes mozogni, fúrni, bányászni, építeni. Játékos
+ * irányítja. Ha az aszteroida felrobban, vagy nem bújik el napvihar elől, akkor
+ * meghal.
  */
 public class Settler extends Miner {
 	private List<Item> inventory = new ArrayList<>(10);
 	private List<Gate> gateInventory = new ArrayList<>(3);
+
+	/**
+	 * @param r A Receiver amin az egység indul
+	 */
+	public Settler(Receiver r) {
+		super(r);
+	}
 
 	/**
 	 * Visszaadja az inventory tartalmát.
@@ -109,16 +117,16 @@ public class Settler extends Miner {
 	}
 
 	/**
- 	 * A telepes halála felrobbant receiver miatt.
- 	 */
+	 * A telepes halála felrobbant receiver miatt.
+	 */
 	@Override
 	public void onReceiverDestroyed() {
 		this.die();
 	}
 
 	/**
- 	 * A telepes halála esetén töröljük a levelről.
- 	 */
+	 * A telepes halála esetén töröljük a levelről.
+	 */
 	@Override
 	public void die() {
 		super.die();

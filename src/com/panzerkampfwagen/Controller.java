@@ -9,8 +9,7 @@ public abstract class Controller {
 	protected final int stepsPerTurn = 1;
 
 	/**
-	 * A Controller konstruktora
-	 * Beállítja a unitot.
+	 * A Controller konstruktora Beállítja a unitot.
 	 * 
 	 * @param unit az irányítandó egység
 	 */

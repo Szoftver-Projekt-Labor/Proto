@@ -4,6 +4,15 @@ package com.panzerkampfwagen;
  * UFO-t reprezentál. Képes mozgásra meg bányászásra.
  */
 public class UFO extends Miner {
+
+	/**
+	 * @param r A Receiver amin az egység indul
+	 */
+	public UFO(Receiver r) {
+		super(r);
+		Level.subscribeTick(this);
+	}
+
 	/**
 	 * Ha elpusztított receiveren van, akkor egy véletlen szomszédra kerül át.
 	 */
@@ -21,13 +30,5 @@ public class UFO extends Miner {
 	@Override
 	public boolean loadCargo(Item item) {
 		return true;
-	}
-
-	/**
-	 * Megakadályozza, hogy a szülő osztály onSolarStorm-ja miatt meghaljon.
-	 * Teljesen üres.
-	 */
-	@Override
-	public void onSolarStorm() {
 	}
 }

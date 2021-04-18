@@ -10,10 +10,10 @@ public class RecipeBook {
 	private static Map<String, BuildableItem> items = new HashMap<String, BuildableItem>();
 
 	/**
- 	 * Inicalizálja a mapet.
- 	 */
+	 * Inicalizálja a mapet.
+	 */
 	static {
-		items.put("robot", new Robot());
+		items.put("robot", new Robot(null));
 		items.put("base", new Base());
 		items.put("gate", new Gate());
 	}

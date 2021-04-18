@@ -3,10 +3,9 @@ package com.panzerkampfwagen;
 import java.util.List;
 import java.util.ArrayList;
 
-
 /**
-* Mezőt reprezentál, erre léphetnek a játékosok, robotok, UFO-k.
-*/
+ * Mezőt reprezentál, erre léphetnek a játékosok, robotok, UFO-k.
+ */
 public class Asteroid extends Receiver {
 	protected List<Unit> units = new ArrayList<>();
 	private int layerCount;
@@ -15,8 +14,9 @@ public class Asteroid extends Receiver {
 
 	/**
 	 * Az aszteroida konstruktora
+	 * 
 	 * @param layerCount az aszteroida köpenyének rétegszáma
-	 * @param core az aszteroida magjában lévő objektum
+	 * @param core       az aszteroida magjában lévő objektum
 	 */
 	public Asteroid(int layerCount, InCore core) {
 		this.layerCount = layerCount;
@@ -24,45 +24,49 @@ public class Asteroid extends Receiver {
 		Level.subscribeTick(this);
 	}
 
-	// #region getters and setters
-    /**
-     * Visszaadja az aszteroidán lévő egységek listáját.
-     * @return lista az aszteroidán levő Unitok-ról
-     */
+	/**
+	 * Visszaadja az aszteroidán lévő egységek listáját.
+	 * 
+	 * @return lista az aszteroidán levő Unitok-ról
+	 */
 	public List<Unit> getUnits() {
 		return units;
 	}
 
-    /**
-     * Visszaadja az aszteroida kéregeinek a számát
-     * @return az aszteroida kérgeinek száma
-     */
+	/**
+	 * Visszaadja az aszteroida kéregeinek a számát
+	 * 
+	 * @return az aszteroida kérgeinek száma
+	 */
 	public int getLayerCount() {
 		return layerCount;
 	}
 
 	/**
-     * Visszaadja az aszteroidához tartozó magot.
-     * @return az aszteroida magja
-     */
+	 * Visszaadja az aszteroidához tartozó magot.
+	 * 
+	 * @return az aszteroida magja
+	 */
 	public InCore getCore() {
 		return core;
 	}
 
 	// TODO: Make dynamic
 	/**
-     * Beállítja az aszteroida closeToSun attribútumát az adott értékre.
-     * @param closeToSun az aszteroida napközelségének értéke (true=napközelben van, false=nincs napközelben)
-     */
+	 * Beállítja az aszteroida closeToSun attribútumát az adott értékre.
+	 * 
+	 * @param closeToSun az aszteroida napközelségének értéke (true=napközelben van,
+	 *                   false=nincs napközelben)
+	 */
 	public void setCloseToSun(boolean closeToSun) {
 		this.closeToSun = closeToSun;
 	}
 
-	// TODO: Implement
 	/**
-     * Visszaadja az aszteroida napközelségének értékét
-     * @return closeToSun (true=napközelben van, false=nincs napközelben)
-     */
+	 * Visszaadja az aszteroida napközelségének értékét
+	 * 
+	 * @return closeToSun (true=napközelben van, false=nincs napközelben)
+	 */
 	public boolean isCloseToSun() {
 		return closeToSun;
 	}
@@ -70,7 +74,8 @@ public class Asteroid extends Receiver {
 	// #endregion getters and setters
 
 	/**
-	 * A paraméterben megadott értékkel csökkenti az aszteroida köpenyét, ha az érték nem nagyobb, mint a rétegszám. 
+	 * A paraméterben megadott értékkel csökkenti az aszteroida köpenyét, ha az
+	 * érték nem nagyobb, mint a rétegszám.
 	 * 
 	 * @param nLayers kifúrandó rétegek száma
 	 * @return kifúrt rétegek száma
@@ -86,7 +91,8 @@ public class Asteroid extends Receiver {
 	}
 
 	/**
-	 * Ha a kéregszám 0, akkor kiszedi a magot és a paraméterben megadott minernek adja. 
+	 * Ha a kéregszám 0, akkor kiszedi a magot és a paraméterben megadott minernek
+	 * adja.
 	 * 
 	 * @param miner a telepes, aki megkapja a magot
 	 * @return a művelet sikeressége (false=nem sikerült kiszedni a magot)
@@ -100,14 +106,15 @@ public class Asteroid extends Receiver {
 	}
 
 	/**
-	 * Üregessé teszi a magot. 
+	 * Üregessé teszi a magot.
 	 */
 	public void ejectCore() {
 		this.core = null;
 	}
 
 	/**
-	 * Ha az aszteroida üreges és nincs kérge, akkor a paraméterben megadott típust behelyezi az aszteroidába.
+	 * Ha az aszteroida üreges és nincs kérge, akkor a paraméterben megadott típust
+	 * behelyezi az aszteroidába.
 	 * 
 	 * @param core a magba helyezendő típus
 	 * @return a művelet sikeressége (false=nem sikerült)
@@ -120,7 +127,7 @@ public class Asteroid extends Receiver {
 	}
 
 	/**
-	 * Elpusztítja az aszteroidát és törli a level listájából. 
+	 * Elpusztítja az aszteroidát és törli a level listájából.
 	 */
 	public void destroy() {
 		for (Unit unit : this.units) {
@@ -145,10 +152,8 @@ public class Asteroid extends Receiver {
 		return true;
 	}
 
-
-	
 	/**
-	 *  Eltávolít egy egységet az aszteroidáról.
+	 * Eltávolít egy egységet az aszteroidáról.
 	 * 
 	 * @param unit az aszteroidáról törlendő egység
 	 */
@@ -157,7 +162,6 @@ public class Asteroid extends Receiver {
 		this.units.remove(unit);
 	}
 
-	
 	/**
 	 * Aszteroidán a Tick eseményt valósítja meg.
 	 */

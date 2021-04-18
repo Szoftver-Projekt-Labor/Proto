@@ -5,7 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * A legyártható tárgyak receptjéért felel. Kör végén megszűnik, ha nem sikerül összegyűjteni a hozzávalókat.
+ * A legyártható tárgyak receptjéért felel. Kör végén megszűnik, ha nem sikerül
+ * összegyűjteni a hozzávalókat.
  */
 public class Bill {
 	class OwnerRecord {
@@ -23,8 +24,7 @@ public class Bill {
 	private List<OwnerRecord> have = new ArrayList<>();
 
 	/**
-	 * A Bill konstruktora
-	 * beállítja a result és a need értékét.
+	 * A Bill konstruktora beállítja a result és a need értékét.
 	 * 
 	 * @param result a megépítendő item
 	 */
@@ -60,7 +60,8 @@ public class Bill {
 	}
 
 	/**
-	 * Ha aszteroidán van és megvannak az alapanyagok az építéshez és van elég helye az inventory-jában, akkor legyártja az itemet.
+	 * Ha aszteroidán van és megvannak az alapanyagok az építéshez és van elég helye
+	 * az inventory-jában, akkor legyártja az itemet.
 	 * 
 	 * @param s az építéssel próbálkozó telepes
 	 * @return a művelet sikeressége (false=nem sikerült)

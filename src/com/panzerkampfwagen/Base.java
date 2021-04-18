@@ -17,7 +17,7 @@ public class Base implements BuildableItem {
 	}
 
 	/**
-	 * Törli a bázishoz kellő alapanyagokat
+	 * Lerakná a bázist, de nincs értelme.
 	 * 
 	 * @param dropper aki eldobja a bázist
 	 * @return false
