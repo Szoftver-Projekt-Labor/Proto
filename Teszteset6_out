@@ -1,0 +1,33 @@
+Initialization successful
+Build Failed
+Build Failed
+s1 has drilled a layer
+s2 has moved to a4
+r1 has moved to a4
+s1 has drilled a layer
+r1 has drilled a layer
+s2 has mined the core
+s1 has mined the core
+s2 has moved to a2
+s2 has drilled a layer
+s1 has moved to a2
+s2 has drilled a layer
+s1 has drilled a layer
+s2 has mined the core
+s1 status:
+	alive: true
+	position: a2
+	inventory: iron
+s2 status:
+	alive: true
+	position: a2
+	inventory: uranium, coal
+s1 has built a Robot
+s1 status:
+	alive: true
+	position: a2
+	inventory: robot
+s2 status:
+	alive: true
+	position: a2
+	inventory: -

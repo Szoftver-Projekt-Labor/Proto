@@ -1,0 +1,14 @@
+init
+build s1 gate
+drop s1 0
+move s1 g3
+status g3
+move s1 a1
+move s1 a2
+move s1 a3
+drop s1 1
+status g3
+status g4
+move s1 g4
+status s1
+move s1 a1

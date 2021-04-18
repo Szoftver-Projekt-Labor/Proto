@@ -1,0 +1,28 @@
+Initialization successful
+s1 has moved to g1
+s1 has moved to a8
+r1 has moved to a8
+u1 has moved to a7
+u1 has moved to a8
+Hiding failed
+s1 has mined the core
+s1 has hid in the core of a8
+Solarstorm has been created on g1
+Solarstorm has been created on a8
+g1 status:
+	nearbyAsteroid: a6
+	active: true
+s1 status:
+	alive: true
+	position: a8
+	inventory: -
+r1 status:
+	alive: false
+	position: -
+u1 status:
+	alive: true
+	position: a8
+a8 status:
+	exist: true
+	layers: 0
+	core: s1

@@ -1,0 +1,21 @@
+init
+build s1 robot
+build s2 robot
+drill s1
+move s2 a4
+move r1 a4
+drill s1
+drill r1
+mine s2
+mine s1
+move s2 a2
+drill s2
+move s1 a2
+drill s2
+drill s1
+mine s2
+status s1
+status s2
+build s1 robot
+status s1
+status s2

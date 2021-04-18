@@ -1,0 +1,13 @@
+init
+move s2 a8
+move r1 a8
+proximity a8
+proximity a4
+proximity a3
+proximity a7
+status s2
+status r1
+status a8
+status a1
+status a4
+status a7

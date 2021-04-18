@@ -1,0 +1,7 @@
+init
+drill s1
+drill s1
+mine s1
+move u1 a1
+mine u1
+mine s2

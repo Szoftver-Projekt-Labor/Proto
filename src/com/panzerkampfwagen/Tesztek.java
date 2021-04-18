@@ -303,6 +303,7 @@ public void Teszteset8(){
 /////////////////////////////////////// Main /////////////////////////////////////////
   public static void main(String[] args) throws Exception {
 
+    //Teszt txt fájlok létrehozása
     Createtxt("Teszteset1_in");
     Createtxt("Teszteset2_in");
     Createtxt("Teszteset3_in");

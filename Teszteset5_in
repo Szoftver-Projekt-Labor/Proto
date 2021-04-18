@@ -1,0 +1,16 @@
+init
+move s1 g1
+move s1 a8
+move r1 a8
+move u1 a7
+move u1 a8
+hide s1
+mine s1
+hide s1
+storm g1
+storm a8
+status g1
+status s1
+status r1
+status u1
+status a8
