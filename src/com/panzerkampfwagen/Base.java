@@ -33,7 +33,7 @@ public class Base implements BuildableItem {
 	 * @return a felépített bázis
 	 */
 	@Override
-	public BuildableItem[] make() {
+	public Base[] make() {
 		Game.victory();
 		return new Base[] { new Base() };
 	}

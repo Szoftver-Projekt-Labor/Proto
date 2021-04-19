@@ -4,6 +4,12 @@ package com.panzerkampfwagen;
  * Interface, a magba kerülhető dolgokat reprezentálja.
  */
 public interface InCore {
+	/**
+	 * Jellemzően az implementáló osztályok egy adattagját állítaná be
+	 * 
+	 * @param asteroid Az aszteroida amin az InCore van
+	 */
+	public void setAsteroid(Asteroid asteroid);
 
 	/**
 	 * A felelősség megvalósításáért felel, ezt implementálja a többi osztály

@@ -121,7 +121,7 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 	 * @return a kapupár, amit legyártott
 	 */
 	@Override
-	public BuildableItem[] make() {
+	public Gate[] make() {
 		Gate[] pairOfGates = new Gate[2];
 		pairOfGates[0] = new Gate();
 		pairOfGates[1] = new Gate();

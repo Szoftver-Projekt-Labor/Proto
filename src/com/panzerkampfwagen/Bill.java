@@ -45,9 +45,8 @@ public class Bill {
 			return false;
 
 		Iterator<Unit> sIt = asteroid.getUnits().stream().filter(u -> u instanceof Settler).iterator();
-		while (sIt.hasNext() && !tryBuild((Settler) sIt.next())) {
-			// TODO: Prompt player
-		}
+		while (sIt.hasNext() && !tryBuild((Settler) sIt.next()))
+			;
 		if (need.size() == 0) {
 			if (initer.loadCargo(this.result.make())) {
 				return true;
@@ -67,7 +66,7 @@ public class Bill {
 	 * @return a művelet sikeressége (false=nem sikerült)
 	 */
 	private boolean tryBuild(Settler s) {
-		if (s == null)
+		if (s == null || !s.controller.prompt("Szia testvér! Kéne egy kis nyers_anyag buszjegyre."))
 			return false;
 		List<Item> inv = s.getInventory();
 

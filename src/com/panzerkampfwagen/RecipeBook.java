@@ -13,7 +13,7 @@ public class RecipeBook {
 	 * Inicalizálja a mapet.
 	 */
 	static {
-		items.put("robot", new Robot(null));
+		items.put("robot", new Robot(null, null));
 		items.put("base", new Base());
 		items.put("gate", new Gate());
 	}

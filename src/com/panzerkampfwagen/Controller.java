@@ -4,17 +4,34 @@ package com.panzerkampfwagen;
  * Absztrakt, egy egységet irányít.
  */
 public abstract class Controller {
-	protected Unit unit;
+	static final int defaultStepsPerTurn = 1;
+	protected final int stepsPerTurn;
 	protected int steps;
-	protected final int stepsPerTurn = 1;
+	protected Unit unit;
 
 	/**
-	 * A Controller konstruktora Beállítja a unitot.
-	 * 
-	 * @param unit az irányítandó egység
+	 * Paraméter nélküli konstruktor Beállítja a stepsPerTurn-t az
+	 * alapértelmezettre.
 	 */
-	public Controller(Unit unit) {
-		unit.setController(this);
+	public Controller() {
+		this.stepsPerTurn = defaultStepsPerTurn;
+	}
+
+	/**
+	 * Controller konstruktor. Beállítja a stepsPerTurn-t a paraméterre.
+	 * 
+	 * @param stepsPerTurn this.stepsPerTurn = stepsPerTurn
+	 */
+	public Controller(int stepsPerTurn) {
+		this.stepsPerTurn = stepsPerTurn;
+	}
+
+	/**
+	 * Beállítja az irányítandó egységet.
+	 * 
+	 * @param unit Az irányítandó egység.
+	 */
+	public void setUnit(Unit unit) {
 		this.unit = unit;
 	}
 
@@ -31,7 +48,7 @@ public abstract class Controller {
 	 */
 	public void unitDied() {
 		this.unit = null;
-		System.out.println("You died");
+		System.out.println(this.unit + " died");
 	}
 
 	/**

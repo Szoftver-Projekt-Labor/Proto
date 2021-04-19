@@ -21,6 +21,7 @@ public class Asteroid extends Receiver {
 	public Asteroid(int layerCount, InCore core) {
 		this.layerCount = layerCount;
 		this.core = core;
+		core.setAsteroid(this);
 		Level.subscribeTick(this);
 	}
 

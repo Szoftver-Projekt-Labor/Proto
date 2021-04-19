@@ -12,7 +12,7 @@
 
 //*********** Other interfaces ***********
 // Responsible for putting stuff in cores and getting them out
-[<<interface>>;InCore|extract(miner:Miner):boolean;insertToCoreOf(coreOwner:Asteroid):boolean]
+[<<interface>>;InCore|setAsteroid(asteroid:Asteroid);extract(miner:Miner):boolean;insertToCoreOf(coreOwner:Asteroid):boolean]
 // Makes things eligible for being stored in an inventory
 // and being used as crafting material
 [<<interface>>;Item|sameAs(other:Item):boolean;dropItem(dropper:Settler):boolean]
@@ -33,10 +33,10 @@
 
 
 // A thing which controls a Unit (Player/AI)
-[*Controller]
-[Player]
-[RoBot]
-[UFOBot]
+[*Controller|unit:Unit]
+[Player|unit:Settler]
+[AI_RoBot|unit:Robot]
+[AI_Alien|unit:UFO]
 
 // Contains the sandbox
 [<<static>>;Level|tickables:Array<Tickable>;solarSensitives:Array<SolarSensitive>;settlerCount:int|tickThings();solarStormTime();addSettler(Settler);removeSettler();subscribeTick(Tickable);unsubscribeTick(Tickable);subscribeSolarStorm(SolarSensitive);unsubscribeSolarStorm(SolarSensitive);subscribeAll(AllEventCompatible);unsubscribeAll(AllEventCompatible);clear()]
@@ -108,8 +108,8 @@
 [*CoreMaterial]^[Iron]
 [*CoreMaterial]^[Uranium]
 [*Controller]^[Player]
-[*Controller]^[RoBot]
-[*Controller]^[UFOBot]
+[*Controller]^[AI_RoBot]
+[*Controller]^[AI_Alien]
 
 // ************** Dependencies **************
 [<<interface>>;BuildableItem]<-.-[<<static>>;RecipeBook]
@@ -135,7 +135,6 @@
 
 // ************** Associations/Aggregations/Compositions ******************
 [*Unit]-#receiver 0..1>[*Receiver]
-[*Controller]<#controller 1-#unit 1>[*Unit]
 [Bill]<>-have 0..*[OwnerRecord]
 [Bill]<>-need 0..*[<<interface>>;Item]
 [Bill]-result 1>[<<interface>>;BuildableItem]
@@ -146,6 +145,7 @@
 [<<static>>;Level]++-solarSensitives 0..*[<<interface>>;SolarSensitive]
 [<<interface>>;InCore]<core 0..1-[Asteroid]
 
-[Settler]-[Player]
-[Robot]-[RoBot]
-[UFO]-[UFOBot]
+[*Unit]#unit 1-#controller 0..1[*Controller]
+[Settler]#unit 1-#controller 0..1[Player]
+[Robot]#unit 1-#controller 0..1[AI_RoBot]
+[UFO]#unit 1-#controller 0..1[AI_Alien]

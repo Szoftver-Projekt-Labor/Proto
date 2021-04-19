@@ -4,12 +4,13 @@ package com.panzerkampfwagen;
  * Robotot reprezentál. Képes mozogni, fúrni. Telepes megépítheti őt.
  */
 public class Robot extends Unit implements BuildableItem {
+	protected AI_RoBot controller;
 
 	/**
 	 * @param r A Receiver amin az egység indul
 	 */
-	public Robot(Receiver r) {
-		super(r);
+	public Robot(AI_RoBot c, Receiver r) {
+		super(c, r);
 	}
 
 	/**
@@ -26,8 +27,8 @@ public class Robot extends Unit implements BuildableItem {
 	 * @return új robot
 	 */
 	@Override
-	public BuildableItem[] make() {
-		return new Robot[] { new Robot(null) };
+	public Robot[] make() {
+		return new Robot[] { new Robot(null, null) };
 	}
 
 	/**
@@ -51,6 +52,8 @@ public class Robot extends Unit implements BuildableItem {
 	public boolean dropItem(Unit dropper) {
 		dropper.getReceiver().addUnit(this);
 		Level.subscribeAll(this);
+		this.controller = new AI_RoBot();
+		this.controller.setUnit(this);
 		return true;
 	}
 

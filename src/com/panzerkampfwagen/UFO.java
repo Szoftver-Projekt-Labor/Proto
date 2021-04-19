@@ -4,12 +4,13 @@ package com.panzerkampfwagen;
  * UFO-t reprezentál. Képes mozgásra meg bányászásra.
  */
 public class UFO extends Miner {
+	protected AI_Alien controller;
 
 	/**
 	 * @param r A Receiver amin az egység indul
 	 */
-	public UFO(Receiver r) {
-		super(r);
+	public UFO(AI_Alien c, Receiver r) {
+		super(c, r);
 		Level.subscribeTick(this);
 	}
 

@@ -11,12 +11,14 @@ import java.util.ArrayList;
 public class Settler extends Miner {
 	private List<Item> inventory = new ArrayList<>(10);
 	private List<Gate> gateInventory = new ArrayList<>(3);
+	protected Player controller;
 
 	/**
 	 * @param r A Receiver amin az egység indul
 	 */
-	public Settler(Receiver r) {
-		super(r);
+	public Settler(Player c, Receiver r) {
+		super(c, r);
+		Level.addSettler(this);
 	}
 
 	/**

@@ -12,8 +12,12 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	/**
 	 * @param r A Receiver amin az egység indul
 	 */
-	public Unit(Receiver r) {
+	public Unit(Controller c, Receiver r) {
 		this.receiver = r;
+		this.controller = c;
+		if (c != null) {
+			c.setUnit(this);
+		}
 	}
 
 	/**
@@ -23,16 +27,6 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	 */
 	public void setController(Controller controller) {
 		this.controller = controller;
-	}
-
-	/**
-	 * Beállítja, hogy melyik aszteroidán van.
-	 * 
-	 * @param receiver a beállítandó aszteroida
-	 */
-	public void setAsteroid(Asteroid receiver) {
-		this.receiver = receiver;
-		this.onAsteroid = true;
 	}
 
 	/**
@@ -146,6 +140,16 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	// #endregion event handlers
 
 	// #region InCore implementation
+
+	/**
+	 * Beállítja, hogy melyik aszteroidán van.
+	 * 
+	 * @param receiver a beállítandó aszteroida
+	 */
+	public void setAsteroid(Asteroid asteroid) {
+		this.receiver = asteroid;
+		this.onAsteroid = true;
+	}
 
 	/**
 	 * Kibányássza a nyersanyagot.

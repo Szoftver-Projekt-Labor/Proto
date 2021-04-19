@@ -8,8 +8,8 @@ public abstract class Miner extends Unit {
 	/**
 	 * @param r A Receiver amin az egység indul
 	 */
-	public Miner(Receiver r) {
-		super(r);
+	public Miner(Controller c, Receiver r) {
+		super(c, r);
 	}
 
 	/**
