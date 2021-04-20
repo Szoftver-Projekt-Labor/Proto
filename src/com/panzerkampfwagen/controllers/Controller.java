@@ -49,8 +49,8 @@ public abstract class Controller {
 	 * Jelzi a Controllernek, hogy halott az egyég. Unit.die() hívja meg.
 	 */
 	public void unitDied() {
-		this.unit = null;
 		System.out.println(this.unit + " died");
+		this.unit = null;
 	}
 
 	/**
