@@ -73,4 +73,11 @@ public class Robot extends Unit implements BuildableItem {
 	public Item[] getBuildCost() {
 		return new Item[] { new Iron(), new Coal(), new Uranium() };
 	}
+
+	@Override
+	public boolean extract(Miner miner) {
+		this.hiding = false;
+		((Asteroid) this.receiver).ejectCore();
+		return true;
+	}
 }
