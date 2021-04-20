@@ -133,6 +133,7 @@ public class Tesztek {
 
 	public void Init() {
 		sun = new Sun(10, 10);
+		sun.status();
 
 		// Magtipusok
 		iron1 = new Iron();
