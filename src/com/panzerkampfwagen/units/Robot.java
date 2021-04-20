@@ -1,13 +1,13 @@
 package com.panzerkampfwagen.units;
 
 import com.panzerkampfwagen.BuildableItem;
-import com.panzerkampfwagen.Coal;
-import com.panzerkampfwagen.Iron;
 import com.panzerkampfwagen.Item;
 import com.panzerkampfwagen.Level;
 import com.panzerkampfwagen.Receiver;
-import com.panzerkampfwagen.Uranium;
 import com.panzerkampfwagen.controllers.AI_RoBot;
+import com.panzerkampfwagen.resources.Coal;
+import com.panzerkampfwagen.resources.Iron;
+import com.panzerkampfwagen.resources.Uranium;
 
 /**
  * Robotot reprezentál. Képes mozogni, fúrni. Telepes megépítheti őt.

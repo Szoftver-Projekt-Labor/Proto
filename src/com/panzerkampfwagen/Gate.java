@@ -2,6 +2,9 @@ package com.panzerkampfwagen;
 
 import java.lang.ref.WeakReference;
 
+import com.panzerkampfwagen.resources.Ice;
+import com.panzerkampfwagen.resources.Iron;
+import com.panzerkampfwagen.resources.Uranium;
 import com.panzerkampfwagen.units.Unit;
 
 /**
@@ -45,6 +48,10 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void removeUnit(Unit unit) {
 	}
 
 	/**
@@ -145,4 +152,12 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 	}
 
 	// #endregion
+
+	/**
+	 * @return the status of the object
+	 */
+	@Override
+	public String status() {
+		return super.status() + "\n\tpair: " + pair + "\n\ton: " + on + "\n\tplaced: " + placed + "\n\tdamaged: " + damaged;
+	}
 }

@@ -5,15 +5,15 @@ import java.util.Random;
 /**
  * Napot reprezentálja, napvihart és napközelséget idézhet elő.
  */
-public class Sun {
+public class Sun implements Tickable {
 	private int timeTilStorm;
 	private final int from, diff;
 
 	/**
 	 * Beállítja a minimum és a maximum körszámot, ami a napviharig hátravan.
 	 * 
-	 * @param from Minimum körszám , ami a napviharig hátravan.
-	 * @param to   Maximum körszám , ami a napviharig hátravan.
+	 * @param from Minimum körszám ami a napviharig hátravan.
+	 * @param to   Maximum körszám ami a napviharig hátravan.
 	 */
 	public Sun(int from, int to) {
 		if (from > to)
@@ -45,5 +45,10 @@ public class Sun {
 	private void setRandomTime() {
 		Random random = new Random();
 		this.timeTilStorm = random.nextInt(diff) + from;
+	}
+
+	@Override
+	public String status() {
+		return this + ":\n\ttimeTilStorm: " + timeTilStorm + "\n\t from-to: [" + from + "," + from + (diff - 1) + "]";
 	}
 }

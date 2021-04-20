@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.panzerkampfwagen.units.Settler;
 import com.panzerkampfwagen.units.Unit;
+import com.panzerkampfwagen.controllers.Player;
 
 /**
  * A legyártható tárgyak receptjéért felel. Kör végén megszűnik, ha nem sikerül
@@ -69,7 +70,7 @@ public class Bill {
 	 * @return a művelet sikeressége (false=nem sikerült)
 	 */
 	private boolean tryBuild(Settler s) {
-		if (s == null || !s.controller.prompt("Szia testvér! Kéne egy kis nyers_anyag buszjegyre."))
+		if (s == null || !((Player) s.getController()).prompt("Szia testvér! Kéne egy kis nyers_anyag buszjegyre."))
 			return false;
 		List<Item> inv = s.getInventory();
 

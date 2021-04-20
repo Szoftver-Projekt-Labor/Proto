@@ -1,5 +1,6 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.resources;
 
+import com.panzerkampfwagen.Item;
 import com.panzerkampfwagen.units.Miner;
 
 /**
@@ -31,5 +32,10 @@ public class Uranium extends CoreMaterial {
 	@Override
 	public boolean sameAs(Item other) {
 		return other instanceof Uranium;
+	}
+
+	@Override
+	public String status() {
+		return super.status() + "\n\tremainingExposures: " + remainingExposures;
 	}
 }

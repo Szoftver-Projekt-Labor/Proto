@@ -9,8 +9,6 @@ import com.panzerkampfwagen.controllers.AI_Alien;
  * UFO-t reprezentál. Képes mozgásra meg bányászásra.
  */
 public class UFO extends Miner {
-	protected AI_Alien controller;
-
 	/**
 	 * @param r A Receiver amin az egység indul
 	 */
@@ -31,7 +29,7 @@ public class UFO extends Miner {
 	 * Felveszi a nyersanyagot és az megszűnik létezni.
 	 * 
 	 * @param item a felvett item
-	 * @return sikerült e (true ha igen)
+	 * @return sikerült-e (spoiler: igen)
 	 */
 	@Override
 	public boolean loadCargo(Item item) {

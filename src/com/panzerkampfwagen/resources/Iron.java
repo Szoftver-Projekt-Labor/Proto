@@ -1,4 +1,6 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.resources;
+
+import com.panzerkampfwagen.Item;
 
 /**
  * Vasat reprezentál, nyersanyag.

@@ -1,7 +1,6 @@
 package com.panzerkampfwagen;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.panzerkampfwagen.units.Miner;
 import com.panzerkampfwagen.units.Unit;
@@ -57,7 +56,7 @@ public class Asteroid extends Receiver {
 		return core;
 	}
 
-	// TODO: Make dynamic
+	// TODO: Implement for graphic version
 	/**
 	 * Beállítja az aszteroida closeToSun attribútumát az adott értékre.
 	 * 
@@ -176,9 +175,12 @@ public class Asteroid extends Receiver {
 		// TODO: Implement for graphic version
 	}
 
+	/**
+	 * @return the status of the object
+	 */
 	@Override
 	public String status() {
-		return super.toString() + "\n  units: "
-				+ units.stream().map(e -> e.toString()).collect(Collectors.joining(",", "[", "]"));
+		return super.status() + "\n\tlayerCount: " + layerCount + "\n\tcore: " + core + "\n\tcloseToSun: " + closeToSun
+				+ "\n\tunits: " + Utils.joinList(units);
 	}
 }

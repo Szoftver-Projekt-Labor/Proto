@@ -6,9 +6,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Tesztek {
-	static Scanner scanner = new Scanner(System.in);
+import com.panzerkampfwagen.controllers.AI_Alien;
+import com.panzerkampfwagen.controllers.AI_RoBot;
+import com.panzerkampfwagen.controllers.Player;
+import com.panzerkampfwagen.resources.Coal;
+import com.panzerkampfwagen.resources.Ice;
+import com.panzerkampfwagen.resources.Iron;
+import com.panzerkampfwagen.resources.Uranium;
+import com.panzerkampfwagen.units.Robot;
+import com.panzerkampfwagen.units.Settler;
+import com.panzerkampfwagen.units.UFO;
 
+public class Tesztek {
 	// #region Fields
 	private Iron iron1;
 	private Iron iron2;
@@ -182,13 +191,13 @@ public class Tesztek {
 		a8.addNeighbour(a7);
 
 		// Unitok
-		s1 = new Settler(new Player(), a1);
+		s1 = new Settler(new Player("Móricka"), a1);
 		s1.loadCargo(new Iron());
 		s1.loadCargo(new Iron());
 		s1.loadCargo(new Ice());
 		s1.loadCargo(new Uranium());
 		// A g2 kaput valakinek le kell dobni
-		s2 = new Settler(new Player(), a8);
+		s2 = new Settler(new Player("Béla"), a8);
 		r1 = new Robot(new AI_RoBot(), a7);
 		u1 = new UFO(new AI_Alien(), a6);
 
@@ -368,12 +377,12 @@ public class Tesztek {
 			Tesztek testSuite = new Tesztek();
 			TesztMetodusokLista();
 			System.out.print("Melyik teszt fusson? ");
-			optionNumber = scanner.nextInt();
+			optionNumber = Utils.scanner.nextInt();
 			if (optionNumber < 1 || optionNumber > 8) {
 				break;
 			}
 			testSuite.functions[optionNumber - 1].run();
 		}
-		scanner.close();
+		Utils.scanner.close();
 	}
 }

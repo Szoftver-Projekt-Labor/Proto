@@ -22,7 +22,7 @@ public class Level {
 			t.tick();
 	}
 
-	// TODO: implement
+	// TODO: Implement for graphic version
 	/**
 	 * Meghívja azon Napvihar érzékeny objektumokon az onSolarStormot, amik
 	 * beleesnek a from-to szög intervallumba a Nap körül.

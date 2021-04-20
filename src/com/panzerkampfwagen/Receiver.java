@@ -71,10 +71,17 @@ public abstract class Receiver implements Tickable {
 	public abstract boolean addUnit(Unit unit);
 
 	/**
-	 * Cleans up after the unit leaves. *Doesn't* change the Unit.receiver
+	 * Cleans up after the unit leaves.
 	 * 
 	 * @param unit
 	 */
-	public void removeUnit(Unit unit) {
+	public abstract void removeUnit(Unit unit);
+
+	/**
+	 * @return the status of the object
+	 */
+	@Override
+	public String status() {
+		return this + ":\n\tneighbours: " + Utils.joinList(neighbours);
 	}
 }

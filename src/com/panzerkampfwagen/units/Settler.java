@@ -7,6 +7,7 @@ import com.panzerkampfwagen.Item;
 import com.panzerkampfwagen.Level;
 import com.panzerkampfwagen.Receiver;
 import com.panzerkampfwagen.RecipeBook;
+import com.panzerkampfwagen.Utils;
 import com.panzerkampfwagen.controllers.Player;
 
 import java.util.ArrayList;
@@ -147,6 +148,7 @@ public class Settler extends Miner {
 	 */
 	@Override
 	public String status() {
-		return toString() + ":\n" + "controller: " + controller + "\n" + super.toString();
+		return super.status() + "\n\tinventory: " + Utils.joinList(inventory) + "\n\tGate inventory: "
+				+ Utils.joinList(gateInventory);
 	}
 }

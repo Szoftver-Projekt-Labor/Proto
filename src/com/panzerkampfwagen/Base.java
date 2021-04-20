@@ -1,5 +1,9 @@
 package com.panzerkampfwagen;
 
+import com.panzerkampfwagen.resources.Coal;
+import com.panzerkampfwagen.resources.Ice;
+import com.panzerkampfwagen.resources.Iron;
+import com.panzerkampfwagen.resources.Uranium;
 import com.panzerkampfwagen.units.Unit;
 
 /**
@@ -49,5 +53,10 @@ public class Base implements BuildableItem {
 	public Item[] getBuildCost() {
 		return new Item[] { new Coal(), new Coal(), new Coal(), new Ice(), new Ice(), new Ice(), new Iron(), new Iron(),
 				new Iron(), new Uranium(), new Uranium(), new Uranium() };
+	}
+
+	@Override
+	public String status() {
+		return "You shouldn't see this.";
 	}
 }

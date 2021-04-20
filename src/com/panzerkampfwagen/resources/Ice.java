@@ -1,5 +1,9 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.resources;
 
+import com.panzerkampfwagen.Asteroid;
+import com.panzerkampfwagen.Item;
+import com.panzerkampfwagen.Level;
+import com.panzerkampfwagen.Tickable;
 import com.panzerkampfwagen.units.Miner;
 
 /**

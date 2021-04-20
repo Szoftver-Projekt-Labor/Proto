@@ -3,7 +3,7 @@ package com.panzerkampfwagen;
 import com.panzerkampfwagen.units.Miner;
 
 /**
- * Interface, a magba kerülhető dolgokat reprezentálja.
+ * Interface, az aszeroidák magjába kerülhető dolgokat reprezentálja.
  */
 public interface InCore {
 	/**

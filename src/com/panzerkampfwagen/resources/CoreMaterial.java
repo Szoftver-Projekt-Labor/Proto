@@ -1,5 +1,8 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.resources;
 
+import com.panzerkampfwagen.Asteroid;
+import com.panzerkampfwagen.InCore;
+import com.panzerkampfwagen.Item;
 import com.panzerkampfwagen.units.Miner;
 import com.panzerkampfwagen.units.Unit;
 
@@ -7,6 +10,10 @@ import com.panzerkampfwagen.units.Unit;
  * Absztrakt, a magban lévő nyersanyagot reprezentálja.
  */
 public abstract class CoreMaterial implements InCore, Item {
+	/**
+	 * Az aszteroida aminek a magjában van a nyersanyag. <code>null</code>, ha
+	 * jelenleg nincs aszeroidában.
+	 */
 	protected Asteroid asteroid;
 
 	/**
@@ -66,5 +73,10 @@ public abstract class CoreMaterial implements InCore, Item {
 		if (a != null)
 			return false;
 		return insertToCoreOf(a);
+	}
+
+	@Override
+	public String status() {
+		return this + ":\n\tasteroid: " + asteroid;
 	}
 }

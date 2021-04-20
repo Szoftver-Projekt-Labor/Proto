@@ -28,6 +28,13 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	}
 
 	/**
+	 * @return the controller
+	 */
+	public Controller getController() {
+		return controller;
+	}
+
+	/**
 	 * Beállítja a controllert.
 	 * 
 	 * @param controller a beállítandó controller
@@ -191,12 +198,10 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	// #endregion InCore implementation
 
 	/**
-	 * Request status. Implemented from "Thing".
+	 * @return the status of the object
 	 */
 	@Override
 	public String status() {
-		return toString() + ":\n" 
-				+ "  controller: " + controller + "\n" 
-				+ "  receiver  : " + receiver + "\n";
+		return this + ":\n\tcontroller: " + controller + "\n\treceiver: " + receiver + "\n\thiding: " + hiding;
 	}
 }
