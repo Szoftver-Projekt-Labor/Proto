@@ -2,6 +2,7 @@ package com.panzerkampfwagen.units;
 
 import java.util.List;
 
+import com.panzerkampfwagen.Bill;
 import com.panzerkampfwagen.Gate;
 import com.panzerkampfwagen.Item;
 import com.panzerkampfwagen.Level;
@@ -53,7 +54,8 @@ public class Settler extends Miner {
 	 * @param what a megépítendő item neve
 	 */
 	public void build(String what) {
-		if (RecipeBook.getBill(what).startBuild(this)) {
+		Bill bill = RecipeBook.getBill(what);
+		if (bill != null && bill.startBuild(this)) {
 			controller.step();
 		}
 	}
