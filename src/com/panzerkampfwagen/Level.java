@@ -2,6 +2,7 @@ package com.panzerkampfwagen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.panzerkampfwagen.units.Settler;
 
@@ -32,9 +33,11 @@ public class Level {
 	 * @param to   Ezáró szög radiánban
 	 */
 	public static void solarStormTime(/* Sun sun, double from, double to */) {
+		Random random = new Random();
 		List<SolarSensitive> temp = List.copyOf(solarSensitives);
 		for (SolarSensitive s : temp)
-			s.onSolarStorm();
+			if (random.nextDouble() < 0.5)
+				s.onSolarStorm();
 	}
 
 	/**
