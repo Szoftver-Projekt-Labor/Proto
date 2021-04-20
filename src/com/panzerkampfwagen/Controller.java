@@ -36,7 +36,7 @@ public abstract class Controller {
 	}
 
 	/**
-	 * Step értékét beállítja a stepPerTurn-re. Kiadja a unitnak a parancsokat.
+	 * Step értékét beállítja a stepsPerTurn-re. Kiadja a unitnak a parancsokat.
 	 */
 	public void takeTurn() {
 		this.steps = stepsPerTurn;

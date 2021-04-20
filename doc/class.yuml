@@ -2,6 +2,8 @@
 // {direction:topDown}
 // {generate:true}
 
+// TODO: Thing implementations
+
 // Contains game state
 [<<static>>;Game|gameInProgress:boolean|play();victory();defeat()]
 
@@ -11,6 +13,7 @@
 [<<interface>>;AllEventCompatible]
 
 //*********** Other interfaces ***********
+[<<interface>>;Thing|status():String]
 // Responsible for putting stuff in cores and getting them out
 [<<interface>>;InCore|setAsteroid(asteroid:Asteroid);extract(miner:Miner):boolean;insertToCoreOf(coreOwner:Asteroid):boolean]
 // Makes things eligible for being stored in an inventory
@@ -33,10 +36,10 @@
 
 
 // A thing which controls a Unit (Player/AI)
-[*Controller|unit:Unit]
-[Player|unit:Settler]
-[AI_RoBot|unit:Robot]
-[AI_Alien|unit:UFO]
+[*Controller|setUnit(Unit);takeTurn();unitDied();step()]
+[Player|setUnit(Settler);takeTurn()]
+[AI_RoBot|setUnit(Robot);takeTurn()]
+[AI_Alien|setUnit(UFO);takeTurn()]
 
 // Contains the sandbox
 [<<static>>;Level|tickables:Array<Tickable>;solarSensitives:Array<SolarSensitive>;settlerCount:int|tickThings();solarStormTime();addSettler(Settler);removeSettler();subscribeTick(Tickable);unsubscribeTick(Tickable);subscribeSolarStorm(SolarSensitive);unsubscribeSolarStorm(SolarSensitive);subscribeAll(AllEventCompatible);unsubscribeAll(AllEventCompatible);clear()]
@@ -80,7 +83,10 @@
 
 
 
-// *********** Interface implementations ***********
+// *********** Interface implementations and Inheritance ***********
+[<<interface>>;Thing]^[<<interface>>;Item]
+[<<interface>>;Thing]^[<<interface>>;Tickable]
+[<<interface>>;Thing]^[<<interface>>;SolarSensitive]
 [<<interface>>;Item]^[<<interface>>;BuildableItem]
 [<<interface>>;Tickable]^[<<interface>>;AllEventCompatible]
 [<<interface>>;SolarSensitive]^[<<interface>>;AllEventCompatible]

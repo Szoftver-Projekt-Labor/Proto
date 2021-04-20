@@ -3,7 +3,7 @@ package com.panzerkampfwagen;
 /**
  * Interface, egy itemet reprezentál.
  */
-public interface Item {
+public interface Item extends Thing {
 
 	/**
 	 * A felelősség megvalósításáért felel, ezt implementálja a többi osztály.

@@ -10,10 +10,14 @@ public class Tesztek {
 	static Scanner scanner = new Scanner(System.in);
 
 	// #region Fields
-	private Iron iron;
-	private Coal coal;
-	private Ice ice;
-	private Uranium uranium;
+	private Iron iron1;
+	private Iron iron2;
+	private Coal coal1;
+	private Coal coal2;
+	private Ice ice1;
+	private Ice ice2;
+	private Uranium uranium1;
+	private Uranium uranium2;
 
 	private Asteroid a1;
 	private Asteroid a2;
@@ -41,11 +45,12 @@ public class Tesztek {
 			File file = new File(teszteset);
 			if (file.createNewFile()) {
 				System.out.println("File created: " + file.getName());
-			} else {
-				System.out.println("A File már létezik.");
+				return;
 			}
+			System.out.println("A File már létezik.");
+			return;
 		} catch (IOException e) {
-			System.out.println("Hiba keletkezett a keletkezésnél!");
+			System.out.println("Hiba keletkezett egy fájl létrehozásánál!");
 			e.printStackTrace();
 		}
 	}
@@ -107,7 +112,7 @@ public class Tesztek {
 				+ "Teszteset8\tEgy telepes épít egy teleportkapu párt, majd elhelyezi a két kaput és átmegy rajta.\n" + "\n");
 	}
 
-	// Teszt eseteket egy lsitába szedtük és index szerűen hivatkozunk rájuk
+	// Teszt eseteket egy listába szedtük és index szerűen hivatkozunk rájuk
 	Functions[] functions = new Functions[] { this::Teszteset1, this::Teszteset2, this::Teszteset3, this::Teszteset4,
 			this::Teszteset5, this::Teszteset6, this::Teszteset7, this::Teszteset8 };
 
@@ -121,20 +126,24 @@ public class Tesztek {
 
 	public void Init() {
 		// Magtipusok
-		iron = new Iron();
-		coal = new Coal();
-		ice = new Ice();
-		uranium = new Uranium();
+		iron1 = new Iron();
+		iron2 = new Iron();
+		coal1 = new Coal();
+		coal2 = new Coal();
+		ice1 = new Ice();
+		ice2 = new Ice();
+		uranium1 = new Uranium();
+		uranium2 = new Uranium();
 
 		// Aszteroidák
-		a1 = new Asteroid(2, iron);
-		a2 = new Asteroid(3, coal);
-		a3 = new Asteroid(2, ice);
-		a4 = new Asteroid(1, uranium);
-		a5 = new Asteroid(3, iron);
-		a6 = new Asteroid(2, coal);
-		a7 = new Asteroid(0, ice);
-		a8 = new Asteroid(0, uranium);
+		a1 = new Asteroid(2, iron1);
+		a2 = new Asteroid(3, coal1);
+		a3 = new Asteroid(2, ice1);
+		a4 = new Asteroid(1, uranium1);
+		a5 = new Asteroid(3, iron2);
+		a6 = new Asteroid(2, coal2);
+		a7 = new Asteroid(0, ice2);
+		a8 = new Asteroid(0, uranium2);
 
 		a1.addNeighbour(a2);
 		a2.addNeighbour(a1);
@@ -174,10 +183,10 @@ public class Tesztek {
 
 		// Unitok
 		s1 = new Settler(new Player(), a1);
-		s1.loadCargo(iron);
-		s1.loadCargo(iron);
-		s1.loadCargo(ice);
-		s1.loadCargo(uranium);
+		s1.loadCargo(new Iron());
+		s1.loadCargo(new Iron());
+		s1.loadCargo(new Ice());
+		s1.loadCargo(new Uranium());
 		// A g2 kaput valakinek le kell dobni
 		s2 = new Settler(new Player(), a8);
 		r1 = new Robot(new AI_RoBot(), a7);
@@ -234,12 +243,12 @@ public class Tesztek {
 		a4.setCloseToSun(true);
 		a3.setCloseToSun(true);
 		a7.setCloseToSun(true);
-		// statusz s2
-		// statusz r1
-		// statusz a8
-		// statusz a1
-		// statusz a4
-		// statusz a7
+		// status s2
+		// status r1
+		// status a8
+		// status a1
+		// status a4
+		// status a7
 	}
 
 	public void Teszteset5() {
@@ -255,11 +264,11 @@ public class Tesztek {
 		s1.toggleHide();
 		// storm g1
 		// storm a8
-		// statusz g1
-		// statusz s1
-		// statusz r1
-		// statusz u1
-		// statusz a8
+		// status g1
+		// status s1
+		// status r1
+		// status u1
+		// status a8
 	}
 
 	public void Teszteset6() {
@@ -280,11 +289,11 @@ public class Tesztek {
 		s2.drill();
 		s1.drill();
 		s2.mine();
-		// statusz s1
-		// statusz s2
+		// status s1
+		// status s2
 		s1.build("Robot");
-		// statusz s1
-		// statusz s2
+		// status s1
+		// status s2
 	}
 
 	public void Teszteset7() {
@@ -296,17 +305,18 @@ public class Tesztek {
 		a7.setCloseToSun(true);
 		s2.move(a7);
 		s2.dropCargo(0);
-		// statusz a7
-		// statusz s2
+		// status a7
+		// status s2
 		a7.setCloseToSun(false);
 		s2.dropCargo(0);
-		s2.loadCargo(uranium);
-		a7.setCloseToSun(true);
-		s2.loadCargo(uranium);
+		s2.mine();
 		s2.dropCargo(0);
 		a7.setCloseToSun(true);
-		// statusz a7
-		// statusz s2
+		s2.mine();
+		s2.dropCargo(0);
+		a7.setCloseToSun(true);
+		// status a7
+		// status s2
 	}
 
 	public void Teszteset8() {
@@ -317,22 +327,23 @@ public class Tesztek {
 		Receiver ns1[] = s1.getAsteroid().getNeighbours();
 		Gate g3 = (Gate) ns1[ns1.length - 1];
 		s1.move(g3);
-		// statusz g3
+		// status g3
 		s1.move(a1);
 		s1.move(a2);
 		s1.move(a3);
 		s1.dropGate(1);
-		// statusz g3
+		// status g3
 		Receiver ns2[] = s1.getAsteroid().getNeighbours();
 		Gate g4 = (Gate) ns2[ns2.length - 1];
-		// statusz g4
+		// status g4
 		s1.move(g4);
-		// statusz s1
+		// status s1
 		s1.move(a1);
 	}
 
-	public static void main(String[] args) throws Exception {
+	// #endregion
 
+	public static void main(String[] args) throws Exception {
 		// Teszt txt fájlok létrehozása
 		Createtxt("Teszteset1_in");
 		Createtxt("Teszteset2_in");
@@ -364,6 +375,5 @@ public class Tesztek {
 			testSuite.functions[optionNumber - 1].run();
 		}
 		scanner.close();
-
 	}
 }
