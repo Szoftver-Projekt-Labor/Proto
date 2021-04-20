@@ -40,8 +40,17 @@ public class Player extends Controller {
 	}
 
 	// #region commands
+	@FunctionalInterface
+	interface Command {
+		void execute(String... params);
+	}
+	protected Command commands[] = new Command[] {
+		this::status,
+		this::move,
+		this::toggleHide, mine, drop, build, list
+	};
 	private void status(String... params) {
-		
+		System.out.println(unit.status());
 	}
 
 	private void move(String... params) {
