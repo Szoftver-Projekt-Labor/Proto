@@ -1,11 +1,18 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.units;
+
+import com.panzerkampfwagen.BuildableItem;
+import com.panzerkampfwagen.Coal;
+import com.panzerkampfwagen.Iron;
+import com.panzerkampfwagen.Item;
+import com.panzerkampfwagen.Level;
+import com.panzerkampfwagen.Receiver;
+import com.panzerkampfwagen.Uranium;
+import com.panzerkampfwagen.controllers.AI_RoBot;
 
 /**
  * Robotot reprezentál. Képes mozogni, fúrni. Telepes megépítheti őt.
  */
 public class Robot extends Unit implements BuildableItem {
-	protected AI_RoBot controller;
-
 	/**
 	 * @param r A Receiver amin az egység indul
 	 */

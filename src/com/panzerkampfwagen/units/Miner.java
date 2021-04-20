@@ -1,4 +1,9 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.units;
+
+import com.panzerkampfwagen.Asteroid;
+import com.panzerkampfwagen.Item;
+import com.panzerkampfwagen.Receiver;
+import com.panzerkampfwagen.controllers.Controller;
 
 /**
  * Bányászni tudó egységeket reprezentálja.

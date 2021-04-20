@@ -1,4 +1,6 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.controllers;
+
+import com.panzerkampfwagen.units.Settler;
 
 public class Player extends Controller {
 	protected Settler unit;

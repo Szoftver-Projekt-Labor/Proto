@@ -1,5 +1,8 @@
 package com.panzerkampfwagen;
 
+import com.panzerkampfwagen.units.Miner;
+import com.panzerkampfwagen.units.Unit;
+
 /**
  * Absztrakt, a magban lévő nyersanyagot reprezentálja.
  */

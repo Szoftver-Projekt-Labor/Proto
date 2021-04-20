@@ -1,6 +1,11 @@
 package com.panzerkampfwagen;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.panzerkampfwagen.units.Miner;
+import com.panzerkampfwagen.units.Unit;
+
 import java.util.ArrayList;
 
 /**
@@ -168,6 +173,12 @@ public class Asteroid extends Receiver {
 	 */
 	@Override
 	public void tick() {
-		// TODO: Implement
+		// TODO: Implement for graphic version
+	}
+
+	@Override
+	public String status() {
+		return super.toString() + "\n  units: "
+				+ units.stream().map(e -> e.toString()).collect(Collectors.joining(",", "[", "]"));
 	}
 }

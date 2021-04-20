@@ -3,6 +3,8 @@ package com.panzerkampfwagen;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.panzerkampfwagen.units.Settler;
+
 /**
  * Pályáért felel és az azon lévő objektumokért.
  */

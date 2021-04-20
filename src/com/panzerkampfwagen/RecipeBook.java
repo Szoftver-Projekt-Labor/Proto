@@ -1,6 +1,9 @@
 package com.panzerkampfwagen;
 
 import java.util.Map;
+
+import com.panzerkampfwagen.units.Robot;
+
 import java.util.HashMap;
 
 /**
@@ -10,7 +13,7 @@ public class RecipeBook {
 	private static Map<String, BuildableItem> items = new HashMap<String, BuildableItem>();
 
 	/**
-	 * Inicalizálja a mapet.
+	 * Inicalizálja az items-t.
 	 */
 	static {
 		items.put("robot", new Robot(null, null));

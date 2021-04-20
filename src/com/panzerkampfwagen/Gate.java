@@ -2,6 +2,8 @@ package com.panzerkampfwagen;
 
 import java.lang.ref.WeakReference;
 
+import com.panzerkampfwagen.units.Unit;
+
 /**
  * Egy olyan speciális mezőt reprezentál, amire ha rálépünk, akkor egy másikon
  * találjuk magunkat.

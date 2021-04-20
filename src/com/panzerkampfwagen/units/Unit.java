@@ -1,4 +1,11 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.units;
+
+import com.panzerkampfwagen.AllEventCompatible;
+import com.panzerkampfwagen.Asteroid;
+import com.panzerkampfwagen.InCore;
+import com.panzerkampfwagen.Level;
+import com.panzerkampfwagen.Receiver;
+import com.panzerkampfwagen.controllers.Controller;
 
 /**
  * Az egységeket reprezentálja. Lehet telepes, robot vagy UFO.
@@ -182,4 +189,14 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	}
 
 	// #endregion InCore implementation
+
+	/**
+	 * Request status. Implemented from "Thing".
+	 */
+	@Override
+	public String status() {
+		return toString() + ":\n" 
+				+ "  controller: " + controller + "\n" 
+				+ "  receiver  : " + receiver + "\n";
+	}
 }

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.panzerkampfwagen.units.Settler;
+import com.panzerkampfwagen.units.Unit;
+
 /**
  * A legyártható tárgyak receptjéért felel. Kör végén megszűnik, ha nem sikerül
  * összegyűjteni a hozzávalókat.

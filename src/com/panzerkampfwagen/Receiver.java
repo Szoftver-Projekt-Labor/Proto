@@ -2,6 +2,9 @@ package com.panzerkampfwagen;
 
 import java.util.List;
 import java.util.Random;
+
+import com.panzerkampfwagen.units.Unit;
+
 import java.util.ArrayList;
 
 // TODO: NoNeighbourException uses

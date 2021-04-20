@@ -1,4 +1,6 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.controllers;
+
+import com.panzerkampfwagen.units.Unit;
 
 /**
  * Absztrakt, egy egységet irányít.

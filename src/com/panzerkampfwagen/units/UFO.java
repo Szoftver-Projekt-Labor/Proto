@@ -1,4 +1,9 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.units;
+
+import com.panzerkampfwagen.Item;
+import com.panzerkampfwagen.Level;
+import com.panzerkampfwagen.Receiver;
+import com.panzerkampfwagen.controllers.AI_Alien;
 
 /**
  * UFO-t reprezentál. Képes mozgásra meg bányászásra.

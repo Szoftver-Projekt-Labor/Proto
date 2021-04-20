@@ -1,5 +1,7 @@
 package com.panzerkampfwagen;
 
+import com.panzerkampfwagen.units.Miner;
+
 /**
  * Interface, a magba kerülhető dolgokat reprezentálja.
  */

@@ -1,6 +1,14 @@
-package com.panzerkampfwagen;
+package com.panzerkampfwagen.units;
 
 import java.util.List;
+
+import com.panzerkampfwagen.Gate;
+import com.panzerkampfwagen.Item;
+import com.panzerkampfwagen.Level;
+import com.panzerkampfwagen.Receiver;
+import com.panzerkampfwagen.RecipeBook;
+import com.panzerkampfwagen.controllers.Player;
+
 import java.util.ArrayList;
 
 /**
@@ -11,7 +19,6 @@ import java.util.ArrayList;
 public class Settler extends Miner {
 	private List<Item> inventory = new ArrayList<>(10);
 	private List<Gate> gateInventory = new ArrayList<>(3);
-	protected Player controller;
 
 	/**
 	 * @param r A Receiver amin az egység indul
@@ -133,5 +140,13 @@ public class Settler extends Miner {
 	public void die() {
 		super.die();
 		Level.removeSettler();
+	}
+
+	/**
+	 * Request status. Implemented from "Thing".
+	 */
+	@Override
+	public String status() {
+		return toString() + ":\n" + "controller: " + controller + "\n" + super.toString();
 	}
 }
