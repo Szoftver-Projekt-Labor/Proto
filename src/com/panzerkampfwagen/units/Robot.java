@@ -1,6 +1,7 @@
 package com.panzerkampfwagen.units;
 
 import com.panzerkampfwagen.BuildableItem;
+import com.panzerkampfwagen.Asteroid;
 import com.panzerkampfwagen.Item;
 import com.panzerkampfwagen.Level;
 import com.panzerkampfwagen.Receiver;
