@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 import com.panzerkampfwagen.controllers.AI_Alien;
@@ -45,24 +46,20 @@ public class Tesztek {
 	private Robot r1;
 	private UFO u1;
 
+	private Sun sun;
+
 	// #endregion
 
 	// #region File kezelés
 
-	public static void Createtxt(String teszteset) {
-		try {
-			File file = new File(teszteset);
-			if (file.createNewFile()) {
-				System.out.println("File created: " + file.getName());
-				return;
-			}
-			System.out.println("A File már létezik.");
-			return;
-		} catch (IOException e) {
-			System.out.println("Hiba keletkezett egy fájl létrehozásánál!");
-			e.printStackTrace();
-		}
-	}
+	/*
+	 * public static void Createtxt(String teszteset) { try { File file = new
+	 * File(teszteset); if (file.createNewFile()) {
+	 * System.out.println("File created: " + file.getName()); return; }
+	 * System.out.println("A File már létezik."); return; } catch (IOException e) {
+	 * System.out.println("Hiba keletkezett egy fájl létrehozásánál!");
+	 * e.printStackTrace(); } }
+	 */
 
 	public static void Readtxt(String teszteset) {
 		try {
@@ -118,12 +115,13 @@ public class Tesztek {
 				+ "Teszteset5\tNapvihar éri az egyik aszteroidát és teleportkaput, az aszteroidán levő egységeket elkapja a napvihar, ha nem bújtak el. A teleportkapu megkergül és a visszafelé utazó telepest nem ugyanoda teszi ki, ahonnan előtte indult.\n"
 				+ "Teszteset6\tA telepesek és egy robot együttes erővel összegyűjtenek elegendő nyersanyagot egy újabb robot megépítésére.\n"
 				+ "Teszteset7\tEgy telepes, kibányászik egy urániumot, majd addig dobálja, amíg fel nem robban.\n"
-				+ "Teszteset8\tEgy telepes épít egy teleportkapu párt, majd elhelyezi a két kaput és átmegy rajta.\n" + "\n");
+				+ "Teszteset8\tEgy telepes épít egy teleportkapu párt, majd elhelyezi a két kaput és átmegy rajta.\n"
+				+ "Teszteset9 (sandbox)\t játék\n");
 	}
 
 	// Teszt eseteket egy listába szedtük és index szerűen hivatkozunk rájuk
 	Functions[] functions = new Functions[] { this::Teszteset1, this::Teszteset2, this::Teszteset3, this::Teszteset4,
-			this::Teszteset5, this::Teszteset6, this::Teszteset7, this::Teszteset8 };
+			this::Teszteset5, this::Teszteset6, this::Teszteset7, this::Teszteset8, this::Teszteset_sandbox };
 
 	public interface Functions {
 		void run() throws Exception;
@@ -134,6 +132,8 @@ public class Tesztek {
 	// #region Init
 
 	public void Init() {
+		sun = new Sun(10, 10);
+
 		// Magtipusok
 		iron1 = new Iron();
 		iron2 = new Iron();
@@ -283,8 +283,8 @@ public class Tesztek {
 	public void Teszteset6() {
 		Init();
 
-		s1.build("Robot");
-		s2.build("Robot");
+		s1.build("robot");
+		s2.build("robot");
 		s1.drill();
 		s2.move(a4);
 		r1.move(a4);
@@ -300,7 +300,7 @@ public class Tesztek {
 		s2.mine();
 		// status s1
 		// status s2
-		s1.build("Robot");
+		s1.build("robot");
 		// status s1
 		// status s2
 	}
@@ -332,44 +332,43 @@ public class Tesztek {
 		Init();
 
 		s1.build("gate");
-		s1.dropGate(0);
-		Receiver ns1[] = s1.getAsteroid().getNeighbours();
-		Gate g3 = (Gate) ns1[ns1.length - 1];
+		s1.dropCargo(0);
+		List<Receiver> ns1 = s1.getAsteroid().getNeighbours();
+		Gate g3 = (Gate) ns1.get(ns1.size() - 1);
 		s1.move(g3);
 		// status g3
 		s1.move(a1);
 		s1.move(a2);
 		s1.move(a3);
-		s1.dropGate(1);
+		s1.dropCargo(0);
 		// status g3
-		Receiver ns2[] = s1.getAsteroid().getNeighbours();
-		Gate g4 = (Gate) ns2[ns2.length - 1];
+		List<Receiver> ns2 = s1.getAsteroid().getNeighbours();
+		Gate g4 = (Gate) ns2.get(ns2.size() - 1);
 		// status g4
 		s1.move(g4);
 		// status s1
 		s1.move(a1);
 	}
 
+	public void Teszteset_sandbox() {
+		Init();
+		Game.play();
+	}
+
 	// #endregion
 
 	public static void main(String[] args) throws Exception {
 		// Teszt txt fájlok létrehozása
-		Createtxt("Teszteset1_in");
-		Createtxt("Teszteset2_in");
-		Createtxt("Teszteset3_in");
-		Createtxt("Teszteset4_in");
-		Createtxt("Teszteset5_in");
-		Createtxt("Teszteset6_in");
-		Createtxt("Teszteset7_in");
-		Createtxt("Teszteset8_in");
-		Createtxt("Teszteset1_out");
-		Createtxt("Teszteset2_out");
-		Createtxt("Teszteset3_out");
-		Createtxt("Teszteset4_out");
-		Createtxt("Teszteset5_out");
-		Createtxt("Teszteset6_out");
-		Createtxt("Teszteset7_out");
-		Createtxt("Teszteset8_out");
+		/*
+		 * Createtxt("Teszteset1_in"); Createtxt("Teszteset2_in");
+		 * Createtxt("Teszteset3_in"); Createtxt("Teszteset4_in");
+		 * Createtxt("Teszteset5_in"); Createtxt("Teszteset6_in");
+		 * Createtxt("Teszteset7_in"); Createtxt("Teszteset8_in");
+		 * Createtxt("Teszteset1_out"); Createtxt("Teszteset2_out");
+		 * Createtxt("Teszteset3_out"); Createtxt("Teszteset4_out");
+		 * Createtxt("Teszteset5_out"); Createtxt("Teszteset6_out");
+		 * Createtxt("Teszteset7_out"); Createtxt("Teszteset8_out");
+		 */
 
 		// Teszt esetek kiválasztása
 		int optionNumber;
@@ -378,7 +377,8 @@ public class Tesztek {
 			TesztMetodusokLista();
 			System.out.print("Melyik teszt fusson? ");
 			optionNumber = Utils.scanner.nextInt();
-			if (optionNumber < 1 || optionNumber > 8) {
+			Utils.scanner.nextLine();
+			if (optionNumber < 1 || optionNumber > 9) {
 				break;
 			}
 			testSuite.functions[optionNumber - 1].run();

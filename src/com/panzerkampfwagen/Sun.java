@@ -21,6 +21,7 @@ public class Sun implements Tickable {
 		this.from = from;
 		this.diff = to - from + 1;
 		this.setRandomTime();
+		Level.subscribeTick(this);
 	}
 
 	/**

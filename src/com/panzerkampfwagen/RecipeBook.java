@@ -28,6 +28,9 @@ public class RecipeBook {
 	 * @return új recept az itemről
 	 */
 	public static Bill getBill(String itemName) {
-		return new Bill(items.get(itemName));
+		BuildableItem bi = items.get(itemName);
+		if (bi == null)
+			return null;
+		return new Bill(bi);
 	}
 }

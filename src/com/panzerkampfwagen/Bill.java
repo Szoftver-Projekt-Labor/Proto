@@ -49,7 +49,7 @@ public class Bill {
 			return false;
 
 		Iterator<Unit> sIt = asteroid.getUnits().stream().filter(u -> u instanceof Settler).iterator();
-		while (sIt.hasNext() && !tryBuild((Settler) sIt.next()))
+		while (sIt.hasNext() && !tryBuild(initer, (Settler) sIt.next()))
 			;
 		if (need.size() == 0) {
 			if (initer.loadCargo(this.result.make())) {
@@ -69,8 +69,9 @@ public class Bill {
 	 * @param s az építéssel próbálkozó telepes
 	 * @return a művelet sikeressége (false=nem sikerült)
 	 */
-	private boolean tryBuild(Settler s) {
-		if (s == null || !((Player) s.getController()).prompt("Szia testvér! Kéne egy kis nyers_anyag buszjegyre."))
+	private boolean tryBuild(Settler initer, Settler s) {
+		if (s != initer
+				&& (s == null || !((Player) s.getController()).prompt("Szia testvér! Kéne egy kis nyers_anyag buszjegyre.")))
 			return false;
 		List<Item> inv = s.getInventory();
 

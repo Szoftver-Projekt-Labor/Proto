@@ -11,7 +11,7 @@ public class Game {
 	 * gameInProgress-t true-ra állítja, amíg ez true, meghívja a Level.tickThings()
 	 * függvényt. Level inicializálásért is felel.
 	 */
-	public void play() {
+	public static void play() {
 		gameInProgress = true;
 		while (gameInProgress) {
 			Level.tickThings();

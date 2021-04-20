@@ -19,8 +19,8 @@ public abstract class Receiver implements Tickable {
 	 * 
 	 * @return receiver szomszédainak a listája
 	 */
-	public Receiver[] getNeighbours() {
-		return (Receiver[]) neighbours.toArray();
+	public List<Receiver> getNeighbours() {
+		return neighbours;
 	}
 
 	/**
