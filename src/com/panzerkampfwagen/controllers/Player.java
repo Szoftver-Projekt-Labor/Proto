@@ -4,11 +4,14 @@ import com.panzerkampfwagen.Utils;
 import com.panzerkampfwagen.units.Settler;
 
 public class Player extends Controller {
-	protected Settler unit;
 	protected String name;
 
 	public Player(String name) {
 		this.name = name;
+	}
+
+	private void cliPrompt() {
+		System.out.print(name + ">");
 	}
 
 	public boolean prompt(String question) {
@@ -18,7 +21,25 @@ public class Player extends Controller {
 		return answer.equals("y");
 	}
 
-	private void cliPrompt() {
-		System.out.print(name + ">");
+	@Override
+	public void takeTurn() {
+		super.takeTurn();
+		String answer;
+		do {
+			cliPrompt();
+			answer = Utils.scanner.nextLine();
+
+		} while (this.steps > 0);
 	}
+
+	// TODO: remove this from the graphic version
+	@Override
+	public void step() {
+	}
+
+	// #region commands
+	private void status(String... params) {
+
+	}
+	// #endregion
 }
