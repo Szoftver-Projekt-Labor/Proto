@@ -252,12 +252,12 @@ public class Tesztek {
 		a4.setCloseToSun(true);
 		a3.setCloseToSun(true);
 		a7.setCloseToSun(true);
-		// status s2
-		// status r1
-		// status a8
-		// status a1
-		// status a4
-		// status a7
+		s2.status();
+		r1.status();
+		a8.status();
+		a1.status();
+		a4.status();
+		a7.status();
 	}
 
 	public void Teszteset5() {
@@ -271,13 +271,11 @@ public class Tesztek {
 		s1.toggleHide();
 		s1.mine();
 		s1.toggleHide();
-		// storm g1
-		// storm a8
-		// status g1
-		// status s1
-		// status r1
-		// status u1
-		// status a8
+		g1.status();
+		s1.status();
+		r1.status();
+		u1.status();
+		a8.status();
 	}
 
 	public void Teszteset6() {
@@ -298,11 +296,11 @@ public class Tesztek {
 		s2.drill();
 		s1.drill();
 		s2.mine();
-		// status s1
-		// status s2
+		s1.status();
+		s2.status();
 		s1.build("robot");
-		// status s1
-		// status s2
+		s1.status();
+		s2.status();
 	}
 
 	public void Teszteset7() {
@@ -314,8 +312,8 @@ public class Tesztek {
 		a7.setCloseToSun(true);
 		s2.move(a7);
 		s2.dropCargo(0);
-		// status a7
-		// status s2
+		a7.status();
+		s2.status();
 		a7.setCloseToSun(false);
 		s2.dropCargo(0);
 		s2.mine();
@@ -324,8 +322,8 @@ public class Tesztek {
 		s2.mine();
 		s2.dropCargo(0);
 		a7.setCloseToSun(true);
-		// status a7
-		// status s2
+		a7.status();
+		s2.status();
 	}
 
 	public void Teszteset8() {
@@ -336,17 +334,17 @@ public class Tesztek {
 		List<Receiver> ns1 = s1.getAsteroid().getNeighbours();
 		Gate g3 = (Gate) ns1.get(ns1.size() - 1);
 		s1.move(g3);
-		// status g3
+		g3.status();
 		s1.move(a1);
 		s1.move(a2);
 		s1.move(a3);
 		s1.dropCargo(0);
-		// status g3
+		g3.status();
 		List<Receiver> ns2 = s1.getAsteroid().getNeighbours();
 		Gate g4 = (Gate) ns2.get(ns2.size() - 1);
-		// status g4
+		g4.status();
 		s1.move(g4);
-		// status s1
+		s1.status();
 		s1.move(a1);
 	}
 
