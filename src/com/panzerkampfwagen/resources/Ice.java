@@ -22,6 +22,12 @@ public class Ice extends CoreMaterial implements Tickable {
 		}
 	}
 
+	@Override
+	public void setAsteroid(Asteroid asteroid) {
+		super.setAsteroid(asteroid);
+		Level.subscribeTick(this);
+	}
+
 	/**
 	 * Kibányássza a nyersanyagot a miner.
 	 * 

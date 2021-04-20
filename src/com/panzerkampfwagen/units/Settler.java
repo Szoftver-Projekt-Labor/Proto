@@ -32,10 +32,19 @@ public class Settler extends Miner {
 	/**
 	 * Visszaadja az inventory tartalmát.
 	 * 
-	 * @return az inventory tartalma
+	 * @return a inventory tartalma
 	 */
 	public List<Item> getInventory() {
 		return inventory;
+	}
+
+	/**
+	 * Visszaadja a gateInventory tartalmát.
+	 * 
+	 * @return a gateInventory tartalma
+	 */
+	public List<Gate> getGateInventory() {
+		return gateInventory;
 	}
 
 	/**
