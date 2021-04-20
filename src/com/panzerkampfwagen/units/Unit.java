@@ -25,6 +25,10 @@ public abstract class Unit implements InCore, AllEventCompatible {
 		if (c != null) {
 			c.setUnit(this);
 		}
+
+		if (r != null) {
+			r.addUnit(this);
+		}
 	}
 
 	/**
