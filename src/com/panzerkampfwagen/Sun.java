@@ -50,6 +50,6 @@ public class Sun implements Tickable {
 
 	@Override
 	public String status() {
-		return this + ":\n\ttimeTilStorm: " + timeTilStorm + "\n\t from-to: [" + from + "," + from + (diff - 1) + "]";
+		return this + ":\n\ttimeTilStorm: " + timeTilStorm + "\n\t from-to: [" + from + "," + (from + diff - 1) + "]";
 	}
 }
