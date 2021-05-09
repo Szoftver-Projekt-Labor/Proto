@@ -1,57 +1,36 @@
 package com.panzerkampfwagen.graphics;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
-import javax.imageio.ImageIO;
+public class Picture extends JPanel{
 
-public class Picture {
-
-   private static final Map<String, BufferedImage> images = new HashMap<String, BufferedImage>();
-
-   static {
-
-      try {
-         importAs("Asteroid", "assets/Asteroid.png");
-         importAs("AsteroidCoal", "assets/AsteroidCoal.png");
-         importAs("AsteroidEmpty", "assets/AsteroidEmpty.png");
-         importAs("AsteroidIce", "assets/AsteroidIce.png");
-         importAs("AsteroidIron", "assets/AsteroidIron.png");
-         importAs("AsteroidMini", "assets/AsteroidMini.png");
-         importAs("AsteroidRobot", "assets/AsteroidRobot.png");
-         importAs("AsteroidSettler", "assets/AsteroidSettler.png");
-         importAs("AsteroidStatusBar", "assets/AsteroidStatusBar.png");
-         importAs("AsteroidUfo", "assets/AsteroidUfo.png");
-         importAs("AsteroidUranium", "assets/AsteroidUranium.png");
-         importAs("Buttons", "assets/Buttons.png");
-         importAs("CoalIcon", "assets/CoalIcon.png");
-         importAs("GateMiniSilly", "assets/GateMiniSilly.png");
-         importAs("IceIcon", "assets/IceIcon.png");
-         importAs("IronIcon", "assets/IronIcon.png");
-         importAs("NormalBackground", "assets/NormalBackground.png");
-         importAs("ProximityBackground", "assets/ProximityBackground.png");
-         importAs("ProximitySolarStormBackground", "assets/ProximitySolarStormBackground.png");
-         importAs("RobotIcon", "assets/RobotIcon.png");
-         importAs("RocketTexture", "assets/RocketTexture.png");
-         importAs("SettlerIcon", "assets/SettlerIcon.png");
-         importAs("SolarStormBackground", "assets/SolarStormBackground.png");
-         importAs("UfoIcon", "assets/UfoIcon.png");
-         importAs("Units", "assets/Units.png");
-         importAs("UraniumIcon", "assets/UraniumIcon.png");  
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-          
-   }
-
-   private static void importAs(String name, String url) throws IOException {
-      images.put(name, ImageIO.read(new File(url)));
-   }
-
-   public BufferedImage getTexture(String name) {
-      return images.get(name);
-   }
+   ImageIcon Asteroid = new ImageIcon("assets\\Asteroid.png");
+   ImageIcon AsteroidCoal = new ImageIcon("assets\\AsteroidCoal.png");
+   ImageIcon AsteroidEmpty = new ImageIcon("assets\\AsteroidEmpty.png");
+   ImageIcon AsteroidIce = new ImageIcon("assets\\AsteroidIce.png");
+   ImageIcon AsteroidIron = new ImageIcon("assets\\AsteroidIron.png");
+   ImageIcon AsteroidMini = new ImageIcon("assets\\AsteroidMini.png");
+   ImageIcon AsteroidRobot = new ImageIcon("assets\\AsteroidRobot.png");
+   ImageIcon AsteroidSettler = new ImageIcon("assets\\AsteroidSettler.png");
+   ImageIcon AsteroidStatusBar = new ImageIcon("assets\\AsteroidStatusBar.png");
+   ImageIcon AsteroidUfo = new ImageIcon("assets\\AsteroidUfo.png");
+   ImageIcon AsteroidUranium = new ImageIcon("assets\\AsteroidUranium.png");
+   ImageIcon Buttons = new ImageIcon("assets\\Buttons.png");
+   ImageIcon CoalIcon = new ImageIcon("assets\\CoalIcon.png");
+   ImageIcon GateIcon = new ImageIcon("assets\\GateIcon.png");
+   ImageIcon GateMini = new ImageIcon("assets\\GateMini.png");
+   ImageIcon GateMiniSilly = new ImageIcon("assets\\GateMiniSilly.png");
+   ImageIcon IceIcon = new ImageIcon("assets\\IceIcon.png");
+   ImageIcon IronIcon = new ImageIcon("assets\\IronIcon.png");
+   ImageIcon NormalBackground = new ImageIcon("assets\\NormalBackground.png");
+   ImageIcon ProximityBackground = new ImageIcon("assets\\ProximityBackground.png");
+   ImageIcon ProximitySolarStormBackground = new ImageIcon("assets\\ProximitySolarStormBackground.png");
+   ImageIcon RobotIcon = new ImageIcon("assets\\RobotIcon.png");
+   ImageIcon RocketTexture = new ImageIcon("assets\\RocketTexture.png");
+   ImageIcon SettlerIcon = new ImageIcon("assets\\SettlerIcon.png");
+   ImageIcon SolarStormBackground = new ImageIcon("assets\\SolarStormBackground.png");
+   ImageIcon UfoIcon = new ImageIcon("assets\\UfoIcon.png");
+   ImageIcon Units = new ImageIcon("assets\\Units.png");
+   ImageIcon UraniumIcon = new ImageIcon("assets\\UraniumIcon.png"); 
 }

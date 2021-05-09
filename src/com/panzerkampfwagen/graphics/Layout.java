@@ -23,19 +23,6 @@ public class Layout extends JFrame {
 		UpperPanel.add(InventoryPanel);
 		UpperPanel.setMinimumSize(new Dimension((int) (700), (int) (100)));
 
-<<<<<<< HEAD
-        //Panels
-        //UpperPanel és részei
-        JPanel UpperPanel = new JPanel();
-        UpperPanel.setLayout(new GridLayout(2,1));
-        JPanel AsteroidStatusPanel = new JPanel();
-        AsteroidStatusPanel.setLayout(new GridLayout(1,1));
-        JPanel InventoryPanel = new JPanel();
-        InventoryPanel.setLayout(new GridLayout(1,13));
-        UpperPanel.add(AsteroidStatusPanel);
-        UpperPanel.add(InventoryPanel);
-        UpperPanel.setMinimumSize(new Dimension((int)(700),(int)(100)));
-=======
 		// LowerPanel és részei
 		JPanel LowerPanel = new JPanel();
 		LowerPanel.setLayout(new GridLayout(2, 1));
@@ -65,7 +52,6 @@ public class Layout extends JFrame {
 		MiddlePanel.add(BackGroundPanel);
 		MiddlePanel.add(AsteroidsPanel);
 		MiddlePanel.setMinimumSize(new Dimension((int) (700), (int) (700)));
->>>>>>> fd289d8f16cacc067d61d5aa402317159f8bfbdd
 
 		// Set up components preferred size
 		AsteroidStatusPanel.setMinimumSize(new Dimension((int) (700), (int) (50)));
@@ -85,14 +71,9 @@ public class Layout extends JFrame {
 			AsteroidsPanel.add(new JButton(i.toString()));
 		}
 
-<<<<<<< HEAD
-        //BackGroundPanel.setBackground(pictures.getTexture("NormalBackground"));
-    
-=======
 		for (Integer i = 1; i < 14; i++) {
 			InventoryPanel.add(new JButton(i.toString()));
 		}
->>>>>>> fd289d8f16cacc067d61d5aa402317159f8bfbdd
 
 		// Add controls to set up horizontal and vertical gaps
 		Controls.add(DrillButton);
@@ -105,90 +86,9 @@ public class Layout extends JFrame {
 		// Tájolás
 		pane.add(UpperPanel, BorderLayout.NORTH);
 		pane.add(MiddlePanel, BorderLayout.CENTER);
-		pane.add(LowerPanel, BorderLayout.SOUTH);
+		pane.add(LowerPanel, BorderLayout.SOUTH);		
 	}
 
-<<<<<<< HEAD
-        for(Integer i = 1;i < 14; i++ ){
-            InventoryPanel.add(new JButton(i.toString()));
-        }
-         
-        //Add controls to set up horizontal and vertical gaps
-        Controls.add(DrillButton);
-        Controls.add(MineButton);
-        Controls.add(HideButton);
-        Controls.add(BuildRobotButton);
-        Controls.add(BuildGateButton);
-        Controls.add(BuildBaseButton);      
-        
-        //Tájolás
-        pane.add(UpperPanel, BorderLayout.NORTH);
-        pane.add(MiddlePanel, BorderLayout.CENTER);
-        pane.add(LowerPanel, BorderLayout.SOUTH);
-
-        //Menu
-        JMenu menu;
-        JMenuItem i1, i2, i3, i4;
- 
-        JMenuBar mb=new JMenuBar();  
-        menu=new JMenu("Menu");  
-        i1=new JMenuItem("New");  
-        i2=new JMenuItem("Save");  
-        i3=new JMenuItem("Load");  
-        i4=new JMenuItem("Rules");  
-        menu.add(i1); menu.add(i2); menu.add(i3); menu.add(i4); 
-        mb.add(menu); 
-        
-        ((JFrame) pane).setJMenuBar(mb);
-        pane.setSize(400,400);  
-        pane.setLayout(null);  
-        pane.setVisible(true);  
-    }
-     
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method is invoked from the
-     * event dispatch thread.
-     */
-    private static void createAndShowGUI() {
-        //Create and set up the window.
-        Layout frame = new Layout("Asteroid Mining");
-        frame.setMinimumSize(new Dimension((int)(700),(int)(900)));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Set up the content pane.
-        frame.addComponentsToPane(frame.getContentPane());
-        //Display the window.
-        frame.pack();
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }
-     
-    public static void main(String[] args) {
-        /* Use an appropriate Look and Feel */
-        try {
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        } catch (UnsupportedLookAndFeelException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        /* Turn off metal's use of bold fonts */
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
-         
-        //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
-=======
 	/**
 	 * Create the GUI and show it. For thread safety, this method is invoked from
 	 * the event dispatch thread.
@@ -231,5 +131,4 @@ public class Layout extends JFrame {
 			}
 		});
 	}
->>>>>>> fd289d8f16cacc067d61d5aa402317159f8bfbdd
 }
