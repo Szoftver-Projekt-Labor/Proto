@@ -3,12 +3,42 @@ package com.panzerkampfwagen.graphics;
 import java.awt.*;
 import javax.swing.*;
 
+class ImagePanel extends JPanel {
+
+	private Image img;
+  
+	public ImagePanel(String img) {
+	  this(new ImageIcon(img).getImage());
+	}
+  
+	public ImagePanel(Image img) {
+	  this.img = img;
+	  Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+	  setPreferredSize(size);
+	  setMinimumSize(size);
+	  setMaximumSize(size);
+	  setSize(size);
+	  setLayout(null);
+	}
+  
+	public void paintComponent(Graphics g) {
+	  g.drawImage(img, 0, 0, null);
+	}  
+}
 public class Layout extends JFrame {
 
 	public Layout(String name) {
 		super(name);
 		setResizable(false);
 	}
+
+	@Override
+	public void paint(Graphics g) {  
+		super.paint(g);
+        Toolkit t=Toolkit.getDefaultToolkit();  
+        Image i=t.getImage("Asteroid.png");  
+        g.drawImage(i, 120,100,this);          
+    }
 
 	public void addComponentsToPane(final Container pane) {
 		// Panels
@@ -33,6 +63,7 @@ public class Layout extends JFrame {
 		LowerPanel.add(UnitsPanel);
 		LowerPanel.add(Controls);
 		LowerPanel.setMinimumSize(new Dimension((int) (700), (int) (100)));
+		
 		// LowerPanel Buttons
 		JButton DrillButton = new JButton("Drill");
 		JButton MineButton = new JButton("Mine");
@@ -47,11 +78,16 @@ public class Layout extends JFrame {
 		JPanel AsteroidsPanel = new JPanel();
 		AsteroidsPanel.setLayout(new GridLayout(5, 5));
 		AsteroidsPanel.setBounds(100, 100, 500, 500);
-		JPanel MiddlePanel = new JPanel();
+		JPanel MiddlePanel = new JPanel();	
+		
+		ImagePanel normalBackground = new ImagePanel(new ImageIcon("assets/normalBackground.png").getImage());
+		BackGroundPanel.add(normalBackground);
+
 		MiddlePanel.setLayout(new OverlayLayout(MiddlePanel));
+		MiddlePanel.setMaximumSize(new Dimension((int) (700), (int) (700)));
 		MiddlePanel.add(BackGroundPanel);
 		MiddlePanel.add(AsteroidsPanel);
-		MiddlePanel.setMinimumSize(new Dimension((int) (700), (int) (700)));
+		
 
 		// Set up components preferred size
 		AsteroidStatusPanel.setMinimumSize(new Dimension((int) (700), (int) (50)));
@@ -63,16 +99,34 @@ public class Layout extends JFrame {
 		UnitsPanel.setMinimumSize(new Dimension((int) (700), (int) (50)));
 		Controls.setMinimumSize(new Dimension((int) (700), (int) (50)));
 
-		AsteroidStatusPanel.add(new JButton("Aszteroid Status"));
-		UnitsPanel.add(new JButton("Units"));
+		ImagePanel status = new ImagePanel(new ImageIcon("assets/AsteroidStatusBar.png").getImage());
+		JButton b1 = new JButton("Aszteroid Status");
+		b1.add(status);
+		AsteroidStatusPanel.add(b1);
 
+		ImagePanel units = new ImagePanel(new ImageIcon("assets/Units.png").getImage());
+		JButton b2 = new JButton("Units");
+		b2.add(units);
+		UnitsPanel.add(b2);
+
+		
 		// Add buttons to experiment with Grid Layout
+		
 		for (Integer i = 1; i < 26; i++) {
-			AsteroidsPanel.add(new JButton(i.toString()));
+			ImagePanel asteroid = new ImagePanel(new ImageIcon("assets/AsteroidMini.png").getImage());
+			JButton b = new JButton(i.toString());
+			b.setMinimumSize(new Dimension((int) (150), (int) (150)));
+			b.add(asteroid);
+			AsteroidsPanel.add(b);
 		}
-
+		
+		
 		for (Integer i = 1; i < 14; i++) {
-			InventoryPanel.add(new JButton(i.toString()));
+			ImagePanel coalIcon = new ImagePanel(new ImageIcon("assets/CoalIcon.png").getImage());
+			JButton b = new JButton(i.toString());
+			b.setMinimumSize(new Dimension((int) (50), (int) (54)));
+			b.add(coalIcon);
+			InventoryPanel.add(b);
 		}
 
 		// Add controls to set up horizontal and vertical gaps
@@ -83,10 +137,24 @@ public class Layout extends JFrame {
 		Controls.add(BuildGateButton);
 		Controls.add(BuildBaseButton);
 
+		//Kepek	
+		/*	
+		ImagePanel normalBackground = new ImagePanel(new ImageIcon("assets/normalBackground.png").getImage());
+		BackGroundPanel.add(normalBackground);
+		ImagePanel asteroidStatusBar = new ImagePanel(new ImageIcon("assets/AsteroidStatusBar.png").getImage());
+		AsteroidStatusPanel.add(asteroidStatusBar);
+		ImagePanel inventory = new ImagePanel(new ImageIcon("assets/RocketTexture.png").getImage());
+		InventoryPanel.add(inventory);
+		ImagePanel units = new ImagePanel(new ImageIcon("assets/Units.png").getImage());
+		UnitsPanel.add(units);
+		ImagePanel buttons = new ImagePanel(new ImageIcon("assets/Buttons.png").getImage());
+		Controls.add(buttons);
+		*/
+
 		// Tájolás
 		pane.add(UpperPanel, BorderLayout.NORTH);
 		pane.add(MiddlePanel, BorderLayout.CENTER);
-		pane.add(LowerPanel, BorderLayout.SOUTH);		
+		pane.add(LowerPanel, BorderLayout.SOUTH);
 	}
 
 	/**
@@ -97,7 +165,7 @@ public class Layout extends JFrame {
 		// Create and set up the window.
 		Layout frame = new Layout("Asteroid Mining");
 		frame.setMinimumSize(new Dimension((int) (700), (int) (900)));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		// Set up the content pane.
 		frame.addComponentsToPane(frame.getContentPane());
 		// Display the window.
