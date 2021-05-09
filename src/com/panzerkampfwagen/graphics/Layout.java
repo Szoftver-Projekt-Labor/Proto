@@ -92,10 +92,10 @@ public class Layout extends JFrame {
 		// Set up components preferred size
 		AsteroidStatusPanel.setMinimumSize(new Dimension((int) (700), (int) (50)));
 		InventoryPanel.setMinimumSize(new Dimension((int) (700), (int) (50)));
-		InventoryPanel.setMaximumSize(new Dimension((int) (700), (int) (50)));
+		//InventoryPanel.setMaximumSize(new Dimension((int) (700), (int) (50)));
 		BackGroundPanel.setMinimumSize(new Dimension((int) (700), (int) (700)));
 		AsteroidsPanel.setMinimumSize(new Dimension((int) (500), (int) (500)));
-		AsteroidsPanel.setMaximumSize(new Dimension((int) (500), (int) (500)));
+		//AsteroidsPanel.setMaximumSize(new Dimension((int) (500), (int) (500)));
 		UnitsPanel.setMinimumSize(new Dimension((int) (700), (int) (50)));
 		Controls.setMinimumSize(new Dimension((int) (700), (int) (50)));
 
@@ -108,14 +108,13 @@ public class Layout extends JFrame {
 		JButton b2 = new JButton("Units");
 		b2.add(units);
 		UnitsPanel.add(b2);
-
 		
 		// Add buttons to experiment with Grid Layout
 		
 		for (Integer i = 1; i < 26; i++) {
 			ImagePanel asteroid = new ImagePanel(new ImageIcon("assets/AsteroidMini.png").getImage());
 			JButton b = new JButton(i.toString());
-			b.setMinimumSize(new Dimension((int) (150), (int) (150)));
+			//b.setMinimumSize(new Dimension((int) (150), (int) (150)));
 			b.add(asteroid);
 			AsteroidsPanel.add(b);
 		}
@@ -124,7 +123,6 @@ public class Layout extends JFrame {
 		for (Integer i = 1; i < 14; i++) {
 			ImagePanel coalIcon = new ImagePanel(new ImageIcon("assets/CoalIcon.png").getImage());
 			JButton b = new JButton(i.toString());
-			b.setMinimumSize(new Dimension((int) (50), (int) (54)));
 			b.add(coalIcon);
 			InventoryPanel.add(b);
 		}
