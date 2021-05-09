@@ -41,4 +41,9 @@ public class Game {
 		gameInProgress = false;
 		Level.clear();
 	}
+//------------------------------------------------------------------------------
+	
+	public static void main(String... args) {
+		
+	}
 }
