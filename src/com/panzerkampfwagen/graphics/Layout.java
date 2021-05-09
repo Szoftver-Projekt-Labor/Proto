@@ -1,11 +1,6 @@
 package com.panzerkampfwagen.graphics;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Layout extends JFrame {
@@ -16,6 +11,10 @@ public class Layout extends JFrame {
     }
      
     public void addComponentsToPane(final Container pane) {
+
+        //Képek importálása
+        Picture pictures = new Picture();;
+
 
         //Panels
         //UpperPanel és részei
@@ -62,6 +61,7 @@ public class Layout extends JFrame {
         //Set up components preferred size        
         AsteroidStatusPanel.setMinimumSize(new Dimension((int)(700),(int)(50)));
         InventoryPanel.setMinimumSize(new Dimension((int)(700),(int)(50)));
+        InventoryPanel.setMaximumSize(new Dimension((int)(700),(int)(50)));
         BackGroundPanel.setMinimumSize(new Dimension((int)(700),(int)(700)));
         AsteroidsPanel.setMinimumSize(new Dimension((int)(500),(int)(500)));
         AsteroidsPanel.setMaximumSize(new Dimension((int)(500),(int)(500)));
@@ -69,42 +69,20 @@ public class Layout extends JFrame {
         Controls.setMinimumSize(new Dimension((int)(700),(int)(50)));
 
         AsteroidStatusPanel.add(new JButton("Aszteroid Status"));
-        InventoryPanel.add(new JButton("Inventory"));
         UnitsPanel.add(new JButton("Units"));
+
+        BackGroundPanel.setBackground(pictures.getTexture("NormalBackground"));
+    
 
 
         //Add buttons to experiment with Grid Layout
-        /*
-        for(Integer i = 1;i < 50; i++ ){
+        for(Integer i = 1;i < 26; i++ ){
             AsteroidsPanel.add(new JButton(i.toString()));
         }
-        */
 
-        AsteroidsPanel.add(new JButton("1"));
-        AsteroidsPanel.add(new JButton("2"));
-        AsteroidsPanel.add(new JButton("3"));
-        AsteroidsPanel.add(new JButton("4"));
-        AsteroidsPanel.add(new JButton("5"));
-        AsteroidsPanel.add(new JButton("6"));
-        AsteroidsPanel.add(new JButton("7"));
-        AsteroidsPanel.add(new JButton("8"));
-        AsteroidsPanel.add(new JButton("9"));
-        AsteroidsPanel.add(new JButton("10"));
-        AsteroidsPanel.add(new JButton("11"));
-        AsteroidsPanel.add(new JButton("12"));
-        AsteroidsPanel.add(new JButton("13"));
-        AsteroidsPanel.add(new JButton("14"));
-        AsteroidsPanel.add(new JButton("15"));
-        AsteroidsPanel.add(new JButton("16"));
-        AsteroidsPanel.add(new JButton("17"));
-        AsteroidsPanel.add(new JButton("18"));
-        AsteroidsPanel.add(new JButton("19"));
-        AsteroidsPanel.add(new JButton("20"));
-        AsteroidsPanel.add(new JButton("21"));
-        AsteroidsPanel.add(new JButton("22"));
-        AsteroidsPanel.add(new JButton("23"));
-        AsteroidsPanel.add(new JButton("24"));
-        AsteroidsPanel.add(new JButton("25"));
+        for(Integer i = 1;i < 14; i++ ){
+            InventoryPanel.add(new JButton(i.toString()));
+        }
          
         //Add controls to set up horizontal and vertical gaps
         Controls.add(DrillButton);
