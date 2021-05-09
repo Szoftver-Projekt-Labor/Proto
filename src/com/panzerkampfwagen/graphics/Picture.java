@@ -35,7 +35,7 @@ public class Picture {
          importAs("ProximityBackground", "assets/ProximityBackground.png");
          importAs("ProximitySolarStormBackground", "assets/ProximitySolarStormBackground.png");
          importAs("RobotIcon", "assets/RobotIcon.png");
-         importAs("RocketTextures", "assets/RocketTextures.png");
+         importAs("RocketTexture", "assets/RocketTexture.png");
          importAs("SettlerIcon", "assets/SettlerIcon.png");
          importAs("SolarStormBackground", "assets/SolarStormBackground.png");
          importAs("UfoIcon", "assets/UfoIcon.png");

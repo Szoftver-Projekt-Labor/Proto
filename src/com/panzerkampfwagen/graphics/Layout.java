@@ -15,7 +15,6 @@ public class Layout extends JFrame {
         //Képek importálása
         Picture pictures = new Picture();;
 
-
         //Panels
         //UpperPanel és részei
         JPanel UpperPanel = new JPanel();
@@ -71,7 +70,7 @@ public class Layout extends JFrame {
         AsteroidStatusPanel.add(new JButton("Aszteroid Status"));
         UnitsPanel.add(new JButton("Units"));
 
-        BackGroundPanel.setBackground(pictures.getTexture("NormalBackground"));
+        //BackGroundPanel.setBackground(pictures.getTexture("NormalBackground"));
     
 
 
@@ -96,6 +95,24 @@ public class Layout extends JFrame {
         pane.add(UpperPanel, BorderLayout.NORTH);
         pane.add(MiddlePanel, BorderLayout.CENTER);
         pane.add(LowerPanel, BorderLayout.SOUTH);
+
+        //Menu
+        JMenu menu;
+        JMenuItem i1, i2, i3, i4;
+ 
+        JMenuBar mb=new JMenuBar();  
+        menu=new JMenu("Menu");  
+        i1=new JMenuItem("New");  
+        i2=new JMenuItem("Save");  
+        i3=new JMenuItem("Load");  
+        i4=new JMenuItem("Rules");  
+        menu.add(i1); menu.add(i2); menu.add(i3); menu.add(i4); 
+        mb.add(menu); 
+        
+        ((JFrame) pane).setJMenuBar(mb);
+        pane.setSize(400,400);  
+        pane.setLayout(null);  
+        pane.setVisible(true);  
     }
      
     /**
