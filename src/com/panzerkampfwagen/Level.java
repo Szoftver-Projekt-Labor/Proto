@@ -1,6 +1,7 @@
 package com.panzerkampfwagen;
 
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -10,17 +11,18 @@ import com.panzerkampfwagen.units.Settler;
  * Pályáért felel és az azon lévő objektumokért.
  */
 public class Level {
-	private static List<Tickable> tickables = new ArrayList<>();
-	private static List<SolarSensitive> solarSensitives = new ArrayList<>();
+	private static List<Tickable> tickables = new LinkedList<Tickable>();
+	private static List<SolarSensitive> solarSensitives = new LinkedList<SolarSensitive>();
 	private static int settlerCount = 0;
 
 	/**
 	 * Meghívja a tickelhető objektumok tick függvényét.
 	 */
 	public static void tickThings() {
-		List<Tickable> tempTickables = List.copyOf(tickables);
-		for (Tickable t : tempTickables)
+		for (Iterator<Tickable> it = tickables.iterator(); it.hasNext(); ) {
+			Tickable t = it.next();
 			t.tick();
+		}
 	}
 
 	// TODO: Implement for graphic version
@@ -34,10 +36,11 @@ public class Level {
 	 */
 	public static void solarStormTime(/* Sun sun, double from, double to */) {
 		Random random = new Random();
-		List<SolarSensitive> temp = List.copyOf(solarSensitives);
-		for (SolarSensitive s : temp)
+		for (Iterator<SolarSensitive> it = solarSensitives.iterator(); it.hasNext(); ) {
+			SolarSensitive s = it.next();
 			if (random.nextDouble() < 0.5)
 				s.onSolarStorm();
+		}
 	}
 
 	/**
