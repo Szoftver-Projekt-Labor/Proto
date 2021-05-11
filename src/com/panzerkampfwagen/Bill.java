@@ -51,10 +51,8 @@ public class Bill {
 		Iterator<Unit> sIt = asteroid.getUnits().stream().filter(u -> u instanceof Settler).iterator();
 		while (sIt.hasNext() && !tryBuild(initer, (Settler) sIt.next()))
 			;
-		if (need.size() == 0) {
-			if (initer.loadCargo(this.result.make())) {
-				return true;
-			}
+		if (need.size() == 0 && this.result.onMake(initer)) {
+			return true;
 		}
 		for (OwnerRecord owr : have) {
 			owr.owner.loadCargo(owr.item);
@@ -73,19 +71,19 @@ public class Bill {
 		if (s != initer
 				&& (s == null || !((Player) s.getController()).prompt("Szia testvér! Kéne egy kis nyers_anyag buszjegyre.")))
 			return false;
-		List<Item> inv = s.getInventory();
 
-		List<Item> temp = new ArrayList<>();
-		temp.addAll(need);
+		List<Item> tempNeed = new ArrayList<>();
+		tempNeed.addAll(need);
 
-		List<Item> inventory = new ArrayList<>();
-		inventory.addAll(inv);
+		List<Item> inventory = s.getInventory();
+		List<Item> tempInv = new ArrayList<>();
+		tempInv.addAll(inventory);
 
-		for (Item neededItem : temp) {
-			for (int i = 0; i < inventory.size(); i++) {
-				Item currentItem = inventory.get(i);
+		for (Item neededItem : tempNeed) {
+			for (int i = 0; i < tempInv.size(); i++) {
+				Item currentItem = tempInv.get(i);
 				if (currentItem.sameAs(neededItem)) {
-					inv.remove(currentItem);
+					inventory.remove(currentItem);
 					need.remove(neededItem);
 					have.add(new OwnerRecord(currentItem, s));
 				}

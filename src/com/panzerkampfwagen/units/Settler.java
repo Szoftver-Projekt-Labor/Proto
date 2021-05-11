@@ -69,6 +69,7 @@ public class Settler extends Miner {
 	public boolean loadCargo(Item[] items) {
 		if (this.inventory.size() > 10 - items.length)
 			return false;
+
 		for (Item item : items) {
 			this.inventory.add(item);
 		}
@@ -78,7 +79,7 @@ public class Settler extends Miner {
 	/**
 	 * Ha az inventoryban van hely, akkor felveszi az itemet.
 	 * 
-	 * @param item felvevendő item
+	 * @param item felveendő item
 	 * @return sikerült e (true ha igen)
 	 */
 	public boolean loadCargo(Item item) {

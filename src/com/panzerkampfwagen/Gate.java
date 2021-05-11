@@ -5,6 +5,7 @@ import java.lang.ref.WeakReference;
 import com.panzerkampfwagen.resources.Ice;
 import com.panzerkampfwagen.resources.Iron;
 import com.panzerkampfwagen.resources.Uranium;
+import com.panzerkampfwagen.units.Settler;
 import com.panzerkampfwagen.units.Unit;
 
 /**
@@ -127,10 +128,10 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 	/**
 	 * Készít egy kapupárt.
 	 * 
-	 * @return a kapupár, amit legyártott
+	 * @return sikerült-e betölteni a kapukat a telepes inventory-jába
 	 */
 	@Override
-	public Gate[] make() {
+	public boolean onMake(Settler creator) {
 		Gate[] pairOfGates = new Gate[2];
 		pairOfGates[0] = new Gate();
 		pairOfGates[1] = new Gate();
@@ -138,7 +139,7 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 		pairOfGates[0].pair = new WeakReference<Gate>(pairOfGates[1]);
 		pairOfGates[1].pair = new WeakReference<Gate>(pairOfGates[0]);
 
-		return pairOfGates;
+		return creator.loadGates(pairOfGates);
 	}
 
 	/**

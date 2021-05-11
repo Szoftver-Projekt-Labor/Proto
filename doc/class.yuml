@@ -20,7 +20,7 @@
 // and being used as crafting material
 [<<interface>>;Item|sameAs(other:Item):boolean;dropItem(dropper:Settler):boolean]
 // Makes things craftable
-[<<interface>>;BuildableItem|getBuildCost():Array<Item>;make():Array<BuildableItem>]
+[<<interface>>;BuildableItem|getBuildCost():Array<Item>;onMake(creator:Settler):boolean]
 // Associates (string) names with BuildableItems
 [<<static>>;RecipeBook|getBill(itemName:String):Bill]
 
@@ -32,7 +32,7 @@
 // Only accessible to Bill
 [OwnerRecord]
 // When this is built the Game ends with a victory
-[Base|sameAs(Item):boolean;dropItem(Settler):boolean;make():Array<Base>;getBuildCost():Array<Item>]
+[Base|sameAs(Item):boolean;dropItem(Settler):boolean;onMake(creator:Settler):boolean;getBuildCost():Array<Item>]
 
 
 // A thing which controls a Unit (Player/AI)
@@ -55,7 +55,7 @@
 [Asteroid|layerCount:int;closeToSun:boolean|getUnits():Array<Unit>;getLayerCount():int;getCore():InCore;isCloseToSun():boolean;drill(nLayers:int):int;extractCore(Miner):boolean;ejectCore();insertCore(InCore):boolean;destroy();addUnit(Unit);removeUnit(Unit);tick()]
 // A Receiver which teleports Units to its pair
 // (when active)
-[Gate|pair:Gate;on:boolean;placed:boolean;damaged:boolean|-changeAnchor();getPair():Gate;addUnit(Unit);removeNeighbour(Receiver);tick();onSolarStorm();sameAs(Item):boolean;dropItem(Settler):boolean;make():Array<Gate>;getBuildCost():Array<Item>]
+[Gate|pair:Gate;on:boolean;placed:boolean;damaged:boolean|-changeAnchor();getPair():Gate;addUnit(Unit);removeNeighbour(Receiver);tick();onSolarStorm();sameAs(Item):boolean;dropItem(Settler):boolean;onMake(creator:Settler):boolean;getBuildCost():Array<Item>]
 
 
 // Things controlled by a Controller (Player/AI)
@@ -67,7 +67,7 @@
 // A hostile Unit controlled by the AI
 [UFO|mine();loadCargo(Item):boolean]
 // A friendly Unit controlled by the AI
-[Robot|onReceiverDestroyed();make():Array<Robot>;sameAs(Item):boolean;dropItem(Settler):boolean;getBuildCost():Array<Item>]
+[Robot|onReceiverDestroyed();onMake(creator:Settler):boolean;sameAs(Item):boolean;dropItem(Settler):boolean;getBuildCost():Array<Item>]
 
 
 // Children of this class can be mined

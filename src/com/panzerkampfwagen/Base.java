@@ -4,6 +4,7 @@ import com.panzerkampfwagen.resources.Coal;
 import com.panzerkampfwagen.resources.Ice;
 import com.panzerkampfwagen.resources.Iron;
 import com.panzerkampfwagen.resources.Uranium;
+import com.panzerkampfwagen.units.Settler;
 import com.panzerkampfwagen.units.Unit;
 
 /**
@@ -36,12 +37,12 @@ public class Base implements BuildableItem {
 	/**
 	 * Megépíti a bázist, meghívódik a Game.victory() metódus és véget ér a játék.
 	 * 
-	 * @return a felépített bázis
+	 * @return true
 	 */
 	@Override
-	public Base[] make() {
+	public boolean onMake(Settler creator) {
 		Game.victory();
-		return new Base[] { new Base() };
+		return true;
 	}
 
 	/**
@@ -57,6 +58,6 @@ public class Base implements BuildableItem {
 
 	@Override
 	public String status() {
-		return "You shouldn't see this.";
+		return "You shouldn't see this. If you do, something went terribly wrong.";
 	}
 }

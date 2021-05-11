@@ -132,8 +132,7 @@ public class Tesztek {
 	// #region Init
 
 	public void Init() {
-		sun = new Sun(10, 10);
-		sun.status();
+		sun = new Sun(1, 1);
 
 		// Magtipusok
 		iron1 = new Iron();
@@ -203,11 +202,15 @@ public class Tesztek {
 		u1 = new UFO(new AI_Alien(), a6);
 
 		// Teleport kapuk
-		Gate g1g2[] = new Gate().make();
-		g1 = g1g2[0];
-		g2 = g1g2[1];
-		g1.dropItem(s1);
-		g2.dropItem(s2);
+		Settler dummy = new Settler(new Player("GatePlacerDummy"), a1);
+		dummy.loadCargo(new Iron());
+		dummy.loadCargo(new Iron());
+		dummy.loadCargo(new Ice());
+		dummy.loadCargo(new Uranium());
+		RecipeBook.getBill("gate").startBuild(dummy);
+		dummy.dropGate(0);
+		dummy.move(a8);
+		dummy.dropGate(0);
 
 		// g2 a helyén, mehetünk a3-ra
 		s2.move(a3);

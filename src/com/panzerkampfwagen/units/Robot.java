@@ -35,8 +35,8 @@ public class Robot extends Unit implements BuildableItem {
 	 * @return új robot
 	 */
 	@Override
-	public Robot[] make() {
-		return new Robot[] { new Robot(null, null) };
+	public boolean onMake(Settler creator) {
+		return creator.loadCargo(new Robot(null, null));
 	}
 
 	/**
