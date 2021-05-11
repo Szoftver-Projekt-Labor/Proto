@@ -58,14 +58,15 @@ public class Layout extends JFrame {
 	public void draw(Settler s){
 		Graphics g = this.getGraphics();
 		Receiver r = s.getAsteroid();
+		Asteroid a;
 		if(r != null){
-			Asteroid a = (Asteroid)r;
-			a.draw(g, this, pic);			
+			a = (Asteroid)r;			
 		}
 		else{
 			r = s.getReceiver();
-			//Teleport kaput rajzol
+			a = (Asteroid) r.getRandomNeighbour();
 		}
+		a.draw(g, this, pic);
 	}
 
 	public Layout(String name) {
