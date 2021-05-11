@@ -1,7 +1,6 @@
 package com.panzerkampfwagen;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -11,8 +10,8 @@ import com.panzerkampfwagen.units.Settler;
  * Pályáért felel és az azon lévő objektumokért.
  */
 public class Level {
-	private static List<Tickable> tickables = new LinkedList<Tickable>();
-	private static List<SolarSensitive> solarSensitives = new LinkedList<SolarSensitive>();
+	private static List<Tickable> tickables = new OurLinkedList<Tickable>();
+	private static List<SolarSensitive> solarSensitives = new OurLinkedList<SolarSensitive>();
 	private static int settlerCount = 0;
 
 	/**
