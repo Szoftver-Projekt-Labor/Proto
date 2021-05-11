@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.panzerkampfwagen.Game;
 import com.panzerkampfwagen.Utils;
 import com.panzerkampfwagen.units.Settler;
 
@@ -51,6 +52,8 @@ public class Player extends Controller {
 				continue;
 			}
 			c.execute();
+			Game.gfx.draw((Settler)this.unit);
+
 		} while (this.steps > 0);
 	}
 

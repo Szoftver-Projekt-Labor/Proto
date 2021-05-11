@@ -2,9 +2,12 @@ package com.panzerkampfwagen;
 
 import java.util.List;
 
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
 import com.panzerkampfwagen.units.Miner;
 import com.panzerkampfwagen.units.Unit;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -182,5 +185,15 @@ public class Asteroid extends Receiver {
 	public String status() {
 		return super.status() + "\n\tlayerCount: " + layerCount + "\n\tcore: " + core + "\n\tcloseToSun: " + closeToSun
 				+ "\n\tunits: " + Utils.joinList(units);
+	}
+
+	public void draw(Graphics g, Layout l, Texture t){
+		if(this.layerCount == 0){
+			if(this.getCore() != null){
+				this.core.draw(g, l, t);
+			}
+			else g.drawImage(t.asteroidEmptyImage, 200, 350, l.centerPanel);
+		}
+		else g.drawImage(t.asteroidImage, 200, 350, l.centerPanel);
 	}
 }

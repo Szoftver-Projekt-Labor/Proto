@@ -1,11 +1,14 @@
 package com.panzerkampfwagen;
 
+import javax.swing.JPanel;
+import com.panzerkampfwagen.graphics.*;
 /**
  * Maga a játék végkimenetelét és folyamatát kezeli.
  */
 
 public class Game {
 	private static boolean gameInProgress = false;
+	public static Layout gfx;
 
 	/**
 	 * gameInProgress-t true-ra állítja, amíg ez true, meghívja a Level.tickThings()
@@ -44,6 +47,14 @@ public class Game {
 //------------------------------------------------------------------------------
 	
 	public static void main(String... args) {
-		
+		Layout gfx;
+
+		//menu();
+		Layout.init();
+
+		//Level.generate();
+		//Level.
+
+
 	}
 }

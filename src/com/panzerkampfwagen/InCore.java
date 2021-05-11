@@ -1,6 +1,10 @@
 package com.panzerkampfwagen;
 
 import com.panzerkampfwagen.units.Miner;
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
+
+import java.awt.*;
 
 /**
  * Interface, az aszeroidák magjába kerülhető dolgokat reprezentálja.
@@ -28,4 +32,6 @@ public interface InCore {
 	 * @return igaz, ha sikerült
 	 */
 	public boolean insertToCoreOf(Asteroid coreOwner);
+
+	public void draw(Graphics g, Layout l, Texture t);
 }

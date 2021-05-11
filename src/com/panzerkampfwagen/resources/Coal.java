@@ -1,6 +1,10 @@
 package com.panzerkampfwagen.resources;
 
 import com.panzerkampfwagen.Item;
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
+
+import java.awt.*;
 
 /**
  * Szenet reprezentál, nyersanyagfajta.
@@ -16,5 +20,10 @@ public class Coal extends CoreMaterial {
 	@Override
 	public boolean sameAs(Item other) {
 		return other instanceof Coal;
+	}
+
+	@Override
+	public void draw(Graphics g, Layout l, Texture t){
+		g.drawImage(t.asteroidCoalImage, 200, 350, l.centerPanel);
 	}
 }

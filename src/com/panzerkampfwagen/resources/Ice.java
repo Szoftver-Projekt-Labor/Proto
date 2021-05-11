@@ -6,6 +6,10 @@ import com.panzerkampfwagen.Level;
 import com.panzerkampfwagen.Tickable;
 import com.panzerkampfwagen.units.Miner;
 
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
+
+import java.awt.*;
 /**
  * Jégvizet reprezentál, nyersanyagfajta.
  */
@@ -65,5 +69,10 @@ public class Ice extends CoreMaterial implements Tickable {
 	@Override
 	public boolean sameAs(Item other) {
 		return other instanceof Ice;
+	}
+
+	@Override
+	public void draw(Graphics g, Layout l, Texture t){
+		g.drawImage(t.asteroidIceImage, 200, 350, l.centerPanel);
 	}
 }
