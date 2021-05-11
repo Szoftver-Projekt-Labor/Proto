@@ -195,5 +195,5 @@ public class Asteroid extends Receiver {
 			else g.drawImage(t.asteroidEmptyImage, 200, 350, l.centerPanel);
 		}
 		else g.drawImage(t.asteroidImage, 200, 350, l.centerPanel);
-	}
+	}	
 }

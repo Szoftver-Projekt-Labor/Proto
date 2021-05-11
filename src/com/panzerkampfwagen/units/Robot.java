@@ -87,11 +87,17 @@ public class Robot extends Unit implements BuildableItem {
 	}
 
 	@Override
-	public void draw(Graphics g, Layout l, Texture t){
+	public void draw(Graphics g, Layout l, Texture t, Settler s){
 		g.drawImage(t.asteroidRobotImage, 200, 350, l.centerPanel);
 	}
 
+	@Override
+	public void draw(Graphics g, Layout l, Texture t) {
+		g.drawImage(t.asteroidRobotImage, 200, 350, l.centerPanel);
+		
+	}	
+
 	public void drawIF_On_Asteroid(Graphics g, Layout l, Texture t){
 		g.drawImage(t.robotIconImage, 0, 0, l.centerPanel);
-	}
+	}	
 }

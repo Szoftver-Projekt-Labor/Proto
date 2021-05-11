@@ -66,7 +66,7 @@ public class Base implements BuildableItem {
 	}
 
 	@Override 
-	public void draw(Graphics g, Layout l, Texture t){
+	public void draw(Graphics g, Layout l, Texture t, Settler s){
 		
 	}
 }

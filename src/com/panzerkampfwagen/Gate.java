@@ -2,6 +2,8 @@ package com.panzerkampfwagen;
 
 import java.lang.ref.WeakReference;
 
+import javax.swing.ImageIcon;
+
 import com.panzerkampfwagen.resources.Ice;
 import com.panzerkampfwagen.resources.Iron;
 import com.panzerkampfwagen.resources.Uranium;
@@ -170,10 +172,15 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 	public void draw(Graphics g, Layout l, Texture t, Settler s){
 		int index = 0;
 		for(var v : s.getInventory()){		
-			if(v.equals(this)){
+			if(v.equals(this)){							
 				l.inventorySlotok.get(index).setIcon(new ImageIcon(t.asteroidIceImage));
 			}
 			index++;
 		}
+	}
+
+	@Override 
+	public void drawNeighbour(Graphics g, Layout l, Texture t){
+		
 	}
 }

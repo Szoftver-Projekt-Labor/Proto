@@ -14,5 +14,5 @@ public interface BuildableItem extends Item {
 
 	public boolean onMake(Settler creator);
 	
-	public void draw(Graphics g, Layout l, Texture t);
+	public void draw(Graphics g, Layout l, Texture t, Settler s);
 }

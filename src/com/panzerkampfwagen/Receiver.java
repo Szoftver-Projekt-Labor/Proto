@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Random;
 
 import com.panzerkampfwagen.units.Unit;
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
 
 import java.util.ArrayList;
+import java.awt.*;
 
 // TODO: NoNeighbourException uses
 /**
@@ -13,6 +16,14 @@ import java.util.ArrayList;
  */
 public abstract class Receiver implements Tickable {
 	protected List<Receiver> neighbours = new ArrayList<>();
+
+	public abstract void drawNeighbour(Graphics g, Layout l, Texture t);
+
+	public void draw(Graphics g, Layout l, Texture t, Integer page){
+		for(var v : neighbours){
+			
+		}
+	}
 
 	/**
 	 * Visszaadja az adott receiver szomszédainak a listáját.
