@@ -72,7 +72,7 @@ public class Player extends Controller {
 		System.out.println(unit.status());
 	}
 
-	private void move(String... params) {
+	public void move(String... params) {
 		if (params.length == 0)
 			return;
 		int index = Integer.parseInt(params[0]);

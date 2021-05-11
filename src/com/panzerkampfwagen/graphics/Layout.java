@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import com.panzerkampfwagen.Asteroid;
+import com.panzerkampfwagen.Game;
 import com.panzerkampfwagen.Receiver;
 import com.panzerkampfwagen.units.Settler;
 
@@ -54,9 +55,13 @@ public class Layout extends JFrame {
 	public JButton slotn10 = new JButton("10");
 	public JButton slotn11 = new JButton("11");
 	public ArrayList<JButton> neighborSlotok = new ArrayList<JButton>();
+	private int page = 0;
+	private Settler currentActiveSettler;
+	private Asteroid currentMainAsteroid;
+	private Graphics g = this.getGraphics();
 
 	public void draw(Settler s){
-		Graphics g = this.getGraphics();
+		currentActiveSettler = s;
 		Receiver r = s.getAsteroid();
 		Asteroid a;
 		if(r != null){
@@ -66,7 +71,9 @@ public class Layout extends JFrame {
 			r = s.getReceiver();
 			a = (Asteroid) r.getRandomNeighbour();
 		}
+		currentMainAsteroid = a;
 		a.draw(g, this, pic);
+		a.draw(g, this, pic, page);
 	}
 
 	public Layout(String name) {
@@ -104,6 +111,25 @@ public class Layout extends JFrame {
 			controlsPanel.add(BuildRobotButton);
 			controlsPanel.add(BuildGateButton);
 			controlsPanel.add(BuildBaseButton);
+
+			DrillButton.addActionListener(e -> {
+				currentActiveSettler.drill();
+			});
+			MineButton.addActionListener(e -> {
+				currentActiveSettler.mine();
+			});
+			HideButton.addActionListener(e -> {
+				currentActiveSettler.toggleHide();
+			});
+			BuildRobotButton.addActionListener(e -> {
+				currentActiveSettler.build("robot");;
+			});
+			BuildGateButton.addActionListener(e -> {
+				currentActiveSettler.build("gate");;
+			});
+			BuildBaseButton.addActionListener(e -> {
+				currentActiveSettler.build("base");;
+			});
 		controlsPanel.setPreferredSize(new Dimension(700, 50));
 		}
 
@@ -169,7 +195,26 @@ public class Layout extends JFrame {
 				neighborSlotok.add(slotn9);	
 				neighborSlotok.add(slotn10);	
 				neighborSlotok.add(slotn11);
-				neighborSlotok.add(forward);			
+				neighborSlotok.add(forward);
+
+				back.addActionListener(e -> {
+					if(page>0)
+							page-=1;
+						currentMainAsteroid.draw(g, Game.gfx, pic, page);
+					}
+				);
+				forward.addActionListener(e -> {
+					if(((page-1)*11)>currentMainAsteroid.getNeighbours().size())
+							page+=1;
+						currentMainAsteroid.draw(g, Game.gfx, pic, page);
+					}
+				);
+				for(int i=1; i<neighborSlotok.size()-1; i++){
+					neighborSlotok.get(i).addActionListener(e -> {
+						currentActiveSettler.getPlayer().move(Integer.toString(page+neighborSlotok.size()));
+					});
+				}
+
 		neighbours.setPreferredSize(new Dimension(700, 50));
 		}	
 		

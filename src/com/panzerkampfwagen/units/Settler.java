@@ -52,6 +52,10 @@ public class Settler extends Miner {
 		return gateInventory;
 	}
 
+	public Player getPlayer() {
+		return (Player) this.controller;
+	}
+
 	/**
 	 * A paraméterben megkapott itemet megépít a telepes.
 	 * 

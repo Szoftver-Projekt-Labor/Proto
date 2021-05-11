@@ -172,15 +172,19 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 	public void draw(Graphics g, Layout l, Texture t, Settler s){
 		int index = 0;
 		for(var v : s.getInventory()){		
-			if(v.equals(this)){							
+			if(v.equals(this)){
 				l.inventorySlotok.get(index).setIcon(new ImageIcon(t.asteroidIceImage));
 			}
 			index++;
 		}
 	}
 
-	@Override 
-	public void drawNeighbour(Graphics g, Layout l, Texture t){
-		
+	@Override
+	public void drawNeighbour(Graphics g, Layout l, Texture t, Integer slot) {
+		if(this.damaged){
+			l.neighborSlotok.get(slot).setIcon(new ImageIcon(t.gateMiniSillyImage));
+		}else{
+			l.neighborSlotok.get(slot).setIcon(new ImageIcon(t.gateMiniImage));
+		}
 	}
 }

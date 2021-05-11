@@ -17,11 +17,14 @@ import java.awt.*;
 public abstract class Receiver implements Tickable {
 	protected List<Receiver> neighbours = new ArrayList<>();
 
-	public abstract void drawNeighbour(Graphics g, Layout l, Texture t);
+	public abstract void drawNeighbour(Graphics g, Layout l, Texture t, Integer slot);
 
 	public void draw(Graphics g, Layout l, Texture t, Integer page){
-		for(var v : neighbours){
-			
+		int d = (page-1)*11;
+		int p =neighbours.size()- (neighbours.size()%d);
+		int max = Integer.max(p+11, neighbours.size());
+		for(int i= p; i< max; i++){
+			neighbours.get(i).drawNeighbour(g, l, t, i-p+1);
 		}
 	}
 
