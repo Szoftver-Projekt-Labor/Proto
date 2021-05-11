@@ -12,6 +12,10 @@ import com.panzerkampfwagen.Utils;
 import com.panzerkampfwagen.controllers.Player;
 
 import java.util.ArrayList;
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
+
+import java.awt.*;
 
 /**
  * Telepest reprezentál. Képes mozogni, fúrni, bányászni, építeni. Játékos
@@ -162,5 +166,14 @@ public class Settler extends Miner {
 	public String status() {
 		return super.status() + "\n\tinventory: " + Utils.joinList(inventory) + "\n\tGate inventory: "
 				+ Utils.joinList(gateInventory);
+	}
+
+	@Override
+	public void draw(Graphics g, Layout l, Texture t){
+		g.drawImage(t.asteroidSettlerImage, 200, 350, l.centerPanel);
+	}
+
+	public void drawIF_On_Asteroid(Graphics g, Layout l, Texture t){
+		g.drawImage(t.settlerIconImage, 0, 50, l.centerPanel);
 	}
 }

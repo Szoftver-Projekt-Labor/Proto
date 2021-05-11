@@ -9,6 +9,10 @@ import com.panzerkampfwagen.controllers.AI_RoBot;
 import com.panzerkampfwagen.resources.Coal;
 import com.panzerkampfwagen.resources.Iron;
 import com.panzerkampfwagen.resources.Uranium;
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
+
+import java.awt.*;
 
 /**
  * Robotot reprezentál. Képes mozogni, fúrni. Telepes megépítheti őt.
@@ -80,5 +84,14 @@ public class Robot extends Unit implements BuildableItem {
 		this.hiding = false;
 		((Asteroid) this.receiver).ejectCore();
 		return true;
+	}
+
+	@Override
+	public void draw(Graphics g, Layout l, Texture t){
+		g.drawImage(t.asteroidRobotImage, 200, 350, l.centerPanel);
+	}
+
+	public void drawIF_On_Asteroid(Graphics g, Layout l, Texture t){
+		g.drawImage(t.robotIconImage, 0, 0, l.centerPanel);
 	}
 }

@@ -1,6 +1,5 @@
 package com.panzerkampfwagen;
 
-import javax.swing.JPanel;
 import com.panzerkampfwagen.graphics.*;
 /**
  * Maga a játék végkimenetelét és folyamatát kezeli.

@@ -4,11 +4,17 @@ import com.panzerkampfwagen.Asteroid;
 import com.panzerkampfwagen.Item;
 import com.panzerkampfwagen.Receiver;
 import com.panzerkampfwagen.controllers.Controller;
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
+
+import java.awt.*;
 
 /**
  * Bányászni tudó egységeket reprezentálja.
  */
 public abstract class Miner extends Unit {
+
+	public abstract void draw(Graphics g, Layout l, Texture t);
 
 	/**
 	 * @param r A Receiver amin az egység indul
