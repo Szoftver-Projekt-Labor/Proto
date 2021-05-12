@@ -41,7 +41,7 @@ public class Player extends Controller {
 		String answer[];
 		do {
 			cliPrompt();
-			answer = Utils.scanner.nextLine().split(" ");
+			/*answer = Utils.scanner.nextLine().split(" ");
 			Command c = commands.get(answer[0]);
 			if (c == null) {
 				System.out.println("Ismeretlen parancs.");
@@ -51,7 +51,7 @@ public class Player extends Controller {
 				c.execute(Arrays.copyOfRange(answer, 1, answer.length));
 				continue;
 			}
-			c.execute();
+			c.execute();*/
 			Game.gfx.draw((Settler)this.unit);
 
 		} while (this.steps > 0);

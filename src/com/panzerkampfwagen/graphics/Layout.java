@@ -58,9 +58,13 @@ public class Layout extends JFrame {
 	private int page = 0;
 	private Settler currentActiveSettler;
 	private Asteroid currentMainAsteroid;
-	private Graphics g = this.getGraphics();
+	private Graphics g;
 
 	public void draw(Settler s){
+		invalidate();
+		while(g==null){
+
+		}
 		currentActiveSettler = s;
 		Receiver r = s.getAsteroid();
 		Asteroid a;
@@ -74,6 +78,13 @@ public class Layout extends JFrame {
 		currentMainAsteroid = a;
 		a.draw(g, this, pic);
 		a.draw(g, this, pic, page);
+	}
+	@Override
+	public void paint(Graphics g){
+		if(this.g==null){
+		this.g = g.create();
+		}
+		super.paint(g);
 	}
 
 	public Layout(String name) {
@@ -113,22 +124,31 @@ public class Layout extends JFrame {
 			controlsPanel.add(BuildBaseButton);
 
 			DrillButton.addActionListener(e -> {
-				currentActiveSettler.drill();
+				if(currentActiveSettler != null)
+					currentActiveSettler.drill();
 			});
 			MineButton.addActionListener(e -> {
-				currentActiveSettler.mine();
+				if(currentActiveSettler != null)
+					currentActiveSettler.mine();
 			});
 			HideButton.addActionListener(e -> {
-				currentActiveSettler.toggleHide();
+				if(currentActiveSettler != null)
+					currentActiveSettler.toggleHide();
 			});
 			BuildRobotButton.addActionListener(e -> {
-				currentActiveSettler.build("robot");;
+				if(currentActiveSettler != null){
+					currentActiveSettler.build("robot");
+				}
 			});
 			BuildGateButton.addActionListener(e -> {
-				currentActiveSettler.build("gate");;
+				if(currentActiveSettler != null){
+					currentActiveSettler.build("gate");
+				}
 			});
 			BuildBaseButton.addActionListener(e -> {
-				currentActiveSettler.build("base");;
+				if(currentActiveSettler != null){
+					currentActiveSettler.build("base");
+				}
 			});
 		controlsPanel.setPreferredSize(new Dimension(700, 50));
 		}
@@ -200,18 +220,23 @@ public class Layout extends JFrame {
 				back.addActionListener(e -> {
 					if(page>0)
 							page-=1;
+					if(currentActiveSettler != null)
 						currentMainAsteroid.draw(g, Game.gfx, pic, page);
 					}
 				);
 				forward.addActionListener(e -> {
-					if(((page-1)*11)>currentMainAsteroid.getNeighbours().size())
+					if(currentActiveSettler != null)
+						if(((page-1)*11)>currentMainAsteroid.getNeighbours().size())
 							page+=1;
+					if(currentActiveSettler != null)
 						currentMainAsteroid.draw(g, Game.gfx, pic, page);
 					}
 				);
 				for(int i=1; i<neighborSlotok.size()-1; i++){
 					neighborSlotok.get(i).addActionListener(e -> {
-						currentActiveSettler.getPlayer().move(Integer.toString(page+neighborSlotok.size()));
+						if(currentActiveSettler != null){
+							currentActiveSettler.getPlayer().move(Integer.toString(page+neighborSlotok.size()));
+						}
 					});
 				}
 
