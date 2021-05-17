@@ -2,6 +2,8 @@ package com.panzerkampfwagen;
 
 import java.util.List;
 
+import javax.swing.ImageIcon;
+
 import com.panzerkampfwagen.graphics.Layout;
 import com.panzerkampfwagen.graphics.Texture;
 import com.panzerkampfwagen.units.Miner;
@@ -196,4 +198,9 @@ public class Asteroid extends Receiver {
 		}
 		else g.drawImage(t.asteroidImage, 200, 350, l.centerPanel);
 	}
+
+	@Override
+	public void drawNeighbour(Graphics g, Layout l, Texture t, Integer slot) {
+		l.neighborSlotok.get(slot).setIcon(new ImageIcon(t.asteroidMiniImage));
+	}	
 }

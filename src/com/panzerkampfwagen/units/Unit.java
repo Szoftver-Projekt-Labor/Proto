@@ -6,6 +6,10 @@ import com.panzerkampfwagen.InCore;
 import com.panzerkampfwagen.Level;
 import com.panzerkampfwagen.Receiver;
 import com.panzerkampfwagen.controllers.Controller;
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
+
+import java.awt.*;
 
 /**
  * Az egységeket reprezentálja. Lehet telepes, robot vagy UFO.
@@ -15,6 +19,8 @@ public abstract class Unit implements InCore, AllEventCompatible {
 	protected Receiver receiver;
 	protected boolean onAsteroid;
 	protected boolean hiding = false;
+
+	public abstract void draw(Graphics g, Layout l, Texture t);
 
 	/**
 	 * @param r A Receiver amin az egység indul

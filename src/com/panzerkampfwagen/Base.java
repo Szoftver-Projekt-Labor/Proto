@@ -6,6 +6,10 @@ import com.panzerkampfwagen.resources.Iron;
 import com.panzerkampfwagen.resources.Uranium;
 import com.panzerkampfwagen.units.Settler;
 import com.panzerkampfwagen.units.Unit;
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
+
+import java.awt.*;
 
 /**
  * Bázist reprezentálja.
@@ -59,5 +63,10 @@ public class Base implements BuildableItem {
 	@Override
 	public String status() {
 		return "You shouldn't see this. If you do, something went terribly wrong.";
+	}
+
+	@Override 
+	public void draw(Graphics g, Layout l, Texture t, Settler s){
+		
 	}
 }

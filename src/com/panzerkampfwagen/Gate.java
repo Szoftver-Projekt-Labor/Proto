@@ -2,11 +2,17 @@ package com.panzerkampfwagen;
 
 import java.lang.ref.WeakReference;
 
+import javax.swing.ImageIcon;
+
 import com.panzerkampfwagen.resources.Ice;
 import com.panzerkampfwagen.resources.Iron;
 import com.panzerkampfwagen.resources.Uranium;
 import com.panzerkampfwagen.units.Settler;
 import com.panzerkampfwagen.units.Unit;
+import com.panzerkampfwagen.graphics.Layout;
+import com.panzerkampfwagen.graphics.Texture;
+
+import java.awt.*;
 
 /**
  * Egy olyan speciális mezőt reprezentál, amire ha rálépünk, akkor egy másikon
@@ -160,5 +166,25 @@ public class Gate extends Receiver implements BuildableItem, AllEventCompatible 
 	@Override
 	public String status() {
 		return super.status() + "\n\tpair: " + pair + "\n\ton: " + on + "\n\tplaced: " + placed + "\n\tdamaged: " + damaged;
+	}
+
+	@Override 
+	public void draw(Graphics g, Layout l, Texture t, Settler s){
+		int index = 0;
+		for(var v : s.getInventory()){		
+			if(v.equals(this)){
+				l.inventorySlotok.get(index).setIcon(new ImageIcon(t.asteroidIceImage));
+			}
+			index++;
+		}
+	}
+
+	@Override
+	public void drawNeighbour(Graphics g, Layout l, Texture t, Integer slot) {
+		if(this.damaged){
+			l.neighborSlotok.get(slot).setIcon(new ImageIcon(t.gateMiniSillyImage));
+		}else{
+			l.neighborSlotok.get(slot).setIcon(new ImageIcon(t.gateMiniImage));
+		}
 	}
 }

@@ -1,6 +1,5 @@
 package com.panzerkampfwagen;
 
-import javax.swing.JPanel;
 import com.panzerkampfwagen.graphics.*;
 /**
  * Maga a játék végkimenetelét és folyamatát kezeli.
@@ -47,13 +46,12 @@ public class Game {
 //------------------------------------------------------------------------------
 	
 	public static void main(String... args) {
-		Layout gfx;
-
+		gfx=new Layout("Game");
 		//menu();
 		Layout.init();
 
-		//Level.generate();
-		//Level.
+		Level.generate();
+		Game.play();
 
 
 	}

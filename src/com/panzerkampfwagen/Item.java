@@ -21,5 +21,5 @@ public interface Item extends Thing {
 	 * @param dropper az a unit, amelyik ledobja
 	 * @return igaz, ha sikerült
 	 */
-	public boolean dropItem(Unit dropper);
+	public boolean dropItem(Unit dropper);	
 }
